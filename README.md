@@ -11,7 +11,7 @@ This practical book focuses on real-life cases and hands-on scenarios to develop
 ## Instructions and Navigation
 All of the code is organized into folders. Each folder starts with a number followed by the application name. For example, Chapter02.
 
-Chapter 9 only contains code.
+Chapter09 only contains code.
 
 The code will look like the following:
 ```
@@ -23,14 +23,14 @@ monitors => {
 
 This book assumes you have basic knowledge of Linux Operating System. It also assumes you have basic knowledge of DevOps practices. This book will go from basic setup to advanced setup of OneOps and its related functions. All the configurations and tasks mentioned in this book will work on a basic standalone setup and have been tested as such. So to run anything from this book you will need at least a standalone setup on your desktop, laptop or in the cloud. The most common way to setup is as mentioned in Chapter 1, Getting Started with OneOps, to install VirtualBox and then vagrant and then follow the instructions provided by OneOps installation. Following hardware resources are required for running OneOps:
 
-CPUs: 4 cores
-Memory: 16 GB
-Disk Space: 80 GB
+* CPUs: 4 cores
+* Memory: 16 GB
+* Disk Space: 80 GB
 Following software is needed to run OneOps:
 
-Linux Operating System: Centos 7.x
-VirtualBox
-AWS or Azure account
+* Linux Operating System: Centos 7.x
+* VirtualBox
+* AWS or Azure account
 Internet connectivity is required to connect to, install and manager other clouds.
 
 ## Related Products
