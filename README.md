@@ -1,5 +1,3 @@
-# Practical-OneOps
-Practical OneOps, published by Packt
 # Practical OneOps
 This is the code repository for [Practical OneOps](https://www.packtpub.com/networking-and-servers/practical-oneops?utm_source=github&utm_medium=repository&utm_campaign=9781786461995), published by [Packt](https://www.packtpub.com/?utm_source=github). It contains all the supporting project files necessary to work through the book from start to finish.
 ## About the Book
@@ -26,6 +24,7 @@ This book assumes you have basic knowledge of Linux Operating System. It also as
 * CPUs: 4 cores
 * Memory: 16 GB
 * Disk Space: 80 GB
+
 Following software is needed to run OneOps:
 
 * Linux Operating System: Centos 7.x
