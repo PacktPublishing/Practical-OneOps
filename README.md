@@ -30,6 +30,7 @@ Following software is needed to run OneOps:
 * Linux Operating System: Centos 7.x
 * VirtualBox
 * AWS or Azure account
+
 Internet connectivity is required to connect to, install and manager other clouds.
 
 ## Related Products
