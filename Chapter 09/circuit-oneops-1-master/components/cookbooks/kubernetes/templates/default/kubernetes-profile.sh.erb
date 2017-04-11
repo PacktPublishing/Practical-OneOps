@@ -1,0 +1,8 @@
+export PATH=$PATH:/opt/cni/bin
+export ETCD_ENDPOINTS=<%= node['etcd']['servers'] %>
+export KUBECONFIG=/etc/kubernetes/kubeconfig
+alias kp='kubectl get pods --all-namespaces'
+alias kc='kubectl'
+alias ks='kubectl --namespace=kube-system'
+alias kb='kubectl run -i -t busybox --image=busybox'
+alias kubednslogs='kubectl --namespace=kube-system get pods | grep dns | head -1 | awk "{ print \$1 }" | xargs -I{} kubectl --namespace=kube-system logs {} kubedns'

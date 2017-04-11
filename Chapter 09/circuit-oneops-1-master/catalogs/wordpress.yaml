@@ -1,0 +1,2690 @@
+--- !ruby/object:Chef::Catalog 
+cis: !map:Mash 
+  48504: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1233-48504
+      lastRfcId: 
+      ciId: 48504
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Php
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          fcgi: "true"
+          port: "9000"
+        prefix_options: {}
+
+      ciName: web-php
+      created: 1320214004372
+    prefix_options: &id001 {}
+
+  771809: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1104-771809
+      lastRfcId: 
+      ciId: 771809
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          use_organization_in_dns_domain: "true"
+          repair: "false"
+          recovery: disabled
+          domain: kloopz.net
+          availability: single
+          use_environment_in_dns_domain: "true"
+          use_assembly_in_dns_domain: "true"
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: demo
+      created: 1330421845043
+    prefix_options: *id001
+  48526: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1036-48526
+      lastRfcId: 
+      ciId: 48526
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Build
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repository: http://core.svn.wordpress.org/tags/3.2.1/
+          persist: "[]"
+          depth: "1"
+          ci: "false"
+          migration_command: |-
+            # wp-config
+            cp /kloopz/wp-config.php wp-config.php
+            # plugins
+            unzip /kloopz/onswipe.1.1.zip -d wp-content/plugins
+          restart_command: service php-fastcgi restart
+          scm: svn
+          revision: HEAD
+          environment: "{}"
+          submodules: "false"
+          key: ""
+        prefix_options: {}
+
+      ciName: web-build-wp
+      created: 1320214004372
+    prefix_options: *id001
+  771513: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1012-771513
+      lastRfcId: 
+      ciId: 771513
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Apache
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          modules: "[\"mod_status\",\"mod_alias\",\"mod_auth_basic\",\"mod_authz_host\"]"
+          install_type: repository
+          tokens: Prod
+          contact: ops@example.com
+          signature: "On"
+          prefork: "{\"startservers\":16,\"minspareservers\":16,\"maxspareservers\":32,\"serverlimit\":400,\"maxclients\":400,\"maxrequestsperchild\":10000}"
+          build_options: "{\"srcdir\":\"/usr/local/src/apache\",\"version\":\"2.2.21\",\"prefix\":\"/usr/local/apache\",\"configure\":\"\"}"
+          ports: "[\"80\",\"443\"]"
+          request_timeout: "300"
+          user: wordpress
+          worker: "{\"startservers\":4,\"maxclients\":1024,\"minsparethreads\":64,\"maxsparethreads\":192,\"maxcthreadsperchild\":64,\"maxrequestsperchild\":0}"
+          keepalive: "On"
+        prefix_options: {}
+
+      ciName: www-apache
+      created: 1330421716885
+    prefix_options: *id001
+  38099: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1152-38099
+      lastRfcId: 
+      ciId: 38099
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: account.Keypair
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          public: ""
+          description: kp1
+        prefix_options: {}
+
+      ciName: kp1
+      created: 1320209373366
+    prefix_options: *id001
+  343074: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1325-343074
+      lastRfcId: 
+      ciId: 343074
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Volume
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          size: 100%FREE
+        prefix_options: {}
+
+      ciName: database-datavol
+      created: 1322793217412
+    prefix_options: *id001
+  343080: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1067-343080
+      lastRfcId: 
+      ciId: 343080
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: S
+          ostype: fedora-16
+        prefix_options: {}
+
+      ciName: database-compute
+      created: 1322793217412
+    prefix_options: *id001
+  48506: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1067-48506
+      lastRfcId: 
+      ciId: 48506
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: XS
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: web-compute
+      created: 1320214004372
+    prefix_options: *id001
+  772284: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1104-772284
+      lastRfcId: 
+      ciId: 772284
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          use_organization_in_dns_domain: "true"
+          repair: "false"
+          recovery: disabled
+          domain: kloopz.net
+          availability: redundant
+          use_environment_in_dns_domain: "true"
+          use_assembly_in_dns_domain: "true"
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: live
+      created: 1330423013502
+    prefix_options: *id001
+  771525: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-46073-771525
+      lastRfcId: 
+      ciId: 771525
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.User
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          username: wordpress
+          description: Wordpress System User
+        prefix_options: {}
+
+      ciName: www-user-wp
+      created: 1330421716885
+    prefix_options: *id001
+  343592: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-10789-343592
+      lastRfcId: 
+      ciId: 343592
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Website
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          server_name: _
+          port: "80"
+          root: /kloopz/web-build-wp/current
+          upstream: "{ \"php\" : \"127.0.0.1:9000\" }"
+          extra: |
+            index index.html index.htm index.php;
+            
+            location = /favicon.ico {
+                    log_not_found off;
+                    access_log off;
+            }
+            
+            location = /robots.txt {
+                    allow all;
+                    log_not_found off;
+                    access_log off;
+            }
+            
+            location / {
+                    try_files $uri $uri/ /index.php;
+            }
+            
+            location ~ .php$ {
+                    fastcgi_split_path_info ^(.+.php)(/.+)$;
+                    include fastcgi_params;
+                    fastcgi_intercept_errors on;
+                    fastcgi_pass php;
+            }
+            
+            location ~* .(js|css|png|jpg|jpeg|gif|ico)$ {
+                    expires max;
+                    log_not_found off;
+            }
+
+        prefix_options: {}
+
+      ciName: web-website-wp
+      created: 1322793531062
+    prefix_options: *id001
+  771509: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1233-771509
+      lastRfcId: 
+      ciId: 771509
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Php
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          fcgi: "false"
+          install_type: repository
+          port: "9000"
+          build_options: "{\"srcdir\":\"/usr/local/src/php\",\"version\":\"PHP_5_3_10\",\"prefix\":\"/usr/local/php\",\"configure\":\"\"}"
+        prefix_options: {}
+
+      ciName: www-php
+      created: 1330421716885
+    prefix_options: *id001
+  48501: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1246-48501
+      lastRfcId: 
+      ciId: 48501
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: php
+          version: "0.2"
+          aliases: "[]"
+          description: Wordpress PHP application
+          source: packer
+        prefix_options: {}
+
+      ciName: web
+      created: 1320214004372
+    prefix_options: *id001
+  48512: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1111-48512
+      lastRfcId: 
+      ciId: 48512
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.File
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          exec_cmd: ""
+          content: "            <?php\n            define('DB_NAME', 'wpdb');\n            define('DB_USER', 'wpuser');\n            define('DB_PASSWORD', 'wppassword');\n            define('DB_HOST', 'database');\n            define('DB_CHARSET', 'utf8');\n            define('DB_COLLATE', '');\n            define('AUTH_KEY',         ']s}axY h3Ex^=Ht{`x+*a:yO-j1peMEhNS1Kl+A&1|G=qll,P]73p7tA{jUEvqQ|');\n            define('SECURE_AUTH_KEY',  '<I@?NZ(xs?bJ:82&Q8n{9 ~<oQ2$t^.=UkmZooqzU)C0g*lz$-1SBy|0oQp*~o.<');\n            define('LOGGED_IN_KEY',    'Y<(RY$lomc}_v2}FD-|;V~6MD+@R]Xv`g|:6&0}3UQPZH}DqdsK9yO =h?oCmR#P');\n            define('NONCE_KEY',        'ULeY7aO8h0n#|H1cmmKxBM_6rJSRLGNoJ!U>-oS1Iw?}0HQv@(v.$rB0_M =ESqY');\n            define('AUTH_SALT',        'l?OcVHf+dz 9W(f-BH&/Q3@XKJ.z%3/Fu6)sx&1tv&4XocrEL4Ck(&Id&g+@i,p,');\n            define('SECURE_AUTH_SALT', 'd&l33g/+>{?I/k30+^Jp]B(uzo u6+j]@lp}*`4h?#jX(7#w-DVgNJr>ZabMQXUo');\n            define('LOGGED_IN_SALT',   'M$H7-?n)y_^E*b~u-x$!|R_p-eZGB02@i0zwhuy1GbK9k#V[u%8S<b:Zcm$4Rv$j');\n            define('NONCE_SALT',       'Uz)d/&9cd_wSGJB@i6[S<n19gcS-liuDdC..j.Ag@/[B$BW>0|cI(1tBFJGjxQZ(');\n            $table_prefix  = 'wp_';\n            define('WPLANG', '');\n            define('WP_DEBUG', false);\n            \n            /* That's all, stop editing! Happy blogging. */\n            \n            /** Absolute path to the WordPress directory. */\n            if ( !defined('ABSPATH') )\n            \tdefine('ABSPATH', dirname(__FILE__) . '/');\n            \n            /** Sets up WordPress vars and included files. */\n            require_once(ABSPATH . 'wp-settings.php');"
+          path: /kloopz/wp-config.php
+        prefix_options: {}
+
+      ciName: web-file-wp-config.php
+      created: 1320214004372
+    prefix_options: *id001
+  771515: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-10789-771515
+      lastRfcId: 
+      ciId: 771515
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Website
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          server_name: www.$KLOOPZ{env_name}.wordpress.kloopz.kloopz.net
+          ssl: "off"
+          port: "80"
+          sslcert: ""
+          root: /usr/local/wordpress/current
+          sslcertkey: ""
+          upstream: "{}"
+          extra: ""
+        prefix_options: {}
+
+      ciName: www-website
+      created: 1330421716885
+    prefix_options: *id001
+  343076: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1189-343076
+      lastRfcId: 
+      ciId: 343076
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Mysql
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          port: "3306"
+          datadir: /data
+          version: "5.5"
+          password: --ENCRYPTED--
+        prefix_options: {}
+
+      ciName: database-mysql
+      created: 1322793217412
+    prefix_options: *id001
+  343082: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1076-343082
+      lastRfcId: 
+      ciId: 343082
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Database
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          dbname: wpdb
+          username: wpuser
+          extra: ""
+          password: --ENCRYPTED--
+        prefix_options: {}
+
+      ciName: database-database
+      created: 1322793217412
+    prefix_options: *id001
+  771511: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1067-771511
+      lastRfcId: 
+      ciId: 771511
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: XS
+          hosts: "{}"
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: www-compute
+      created: 1330421716885
+    prefix_options: *id001
+  343072: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1246-343072
+      lastRfcId: 
+      ciId: 343072
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: mysql
+          version: "0.2"
+          aliases: "[]"
+          description: MySQL Database for Wordpress
+          source: packer
+        prefix_options: {}
+
+      ciName: database
+      created: 1322793217412
+    prefix_options: *id001
+  771522: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1036-771522
+      lastRfcId: 
+      ciId: 771522
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Build
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          install_dir: /usr/local/wordpress
+          repository: http://core.svn.wordpress.org/tags/3.3.1/
+          persist: "[]"
+          depth: "1"
+          username: ""
+          as_group: wordpress
+          ci: "false"
+          as_user: wordpress
+          migration_command: ""
+          restart_command: ""
+          scm: svn
+          revision: HEAD
+          environment: "{}"
+          before_restart: ""
+          submodules: "false"
+          password: --ENCRYPTED--
+          key: ""
+        prefix_options: {}
+
+      ciName: www-phpapp-wp
+      created: 1330421716885
+    prefix_options: *id001
+  48509: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1203-48509
+      lastRfcId: 
+      ciId: 48509
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Nginx
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          version: 1.0.5
+        prefix_options: {}
+
+      ciName: web-nginx
+      created: 1320214004372
+    prefix_options: *id001
+  48542: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1088-48542
+      lastRfcId: 
+      ciId: 48542
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Download
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          basic_auth_password: ""
+          checksum: ""
+          path: /kloopz/onswipe.1.1.zip
+          basic_auth_user: ""
+          source: http://downloads.wordpress.org/plugin/onswipe.1.1.zip
+          headers: "{}"
+        prefix_options: {}
+
+      ciName: web-download-onswipe
+      created: 1320214004372
+    prefix_options: *id001
+  771506: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1246-771506
+      lastRfcId: 
+      ciId: 771506
+      comments: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: php
+          version: "0.3"
+          aliases: "[]"
+          description: ""
+          source: packer
+        prefix_options: {}
+
+      ciName: www
+      created: 1330421716885
+    prefix_options: *id001
+  343078: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 37988-1121-343078
+      lastRfcId: 
+      ciId: 343078
+      comments: ""
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Filesystem
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          device: ""
+          mount_point: /data
+          fstype: xfs
+          options: ""
+        prefix_options: {}
+
+      ciName: database-datafs
+      created: 1322793217412
+    prefix_options: *id001
+description: Wordpress
+name: wordpress
+nspath: /kloopz
+relations: !map:Mash 
+  771512: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771506-2002-771511
+      comments: ""
+      fromCiId: 771506
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771512
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 771511
+      created: 1330421716885
+    prefix_options: &id002 {}
+
+  343073: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 37986-1352-343072
+      comments: ""
+      fromCiId: 37986
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.ComposedOf
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343073
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 343072
+      created: 1322793217412
+    prefix_options: *id002
+  343084: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343074-1631-343080
+      comments: ""
+      fromCiId: 343074
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343084
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 343080
+      created: 1322793217412
+    prefix_options: *id002
+  771820: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771809-2163-448853
+      comments: ""
+      fromCiId: 771809
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Utilizes
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771820
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      toCiId: 448853
+      created: 1330421845083
+    prefix_options: *id002
+  771523: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771506-2002-771522
+      comments: ""
+      fromCiId: 771506
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771523
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: phpapp
+          constraint: 0..*
+        prefix_options: {}
+
+      toCiId: 771522
+      created: 1330421716885
+    prefix_options: *id002
+  343090: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48501-1877-343072
+      comments: ""
+      fromCiId: 48501
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.LinksTo
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343090
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 343072
+      created: 1322793217412
+    prefix_options: *id002
+  48510: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48501-2002-48509
+      comments: ""
+      fromCiId: 48501
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48510
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: nginx
+          constraint: 0..1
+        prefix_options: {}
+
+      toCiId: 48509
+      created: 1320214004372
+    prefix_options: *id002
+  771518: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771509-1631-771513
+      comments: ""
+      fromCiId: 771509
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771518
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 771513
+      created: 1330421716885
+    prefix_options: *id002
+  771507: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 37986-1352-771506
+      comments: ""
+      fromCiId: 37986
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.ComposedOf
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771507
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 771506
+      created: 1330421716885
+    prefix_options: *id002
+  343079: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343072-2002-343078
+      comments: ""
+      fromCiId: 343072
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343079
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datafs
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 343078
+      created: 1322793217412
+    prefix_options: *id002
+  48543: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48501-2002-48542
+      comments: ""
+      fromCiId: 48501
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48543
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: download
+          constraint: 0..999
+        prefix_options: {}
+
+      toCiId: 48542
+      created: 1320214004372
+    prefix_options: *id002
+  772294: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 37986-2000-772284
+      comments: ""
+      fromCiId: 37986
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.RealizedIn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 772294
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 772284
+      created: 1330423013502
+    prefix_options: *id002
+  48505: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48501-2002-48504
+      comments: ""
+      fromCiId: 48501
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48505
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: php
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 48504
+      created: 1320214004372
+    prefix_options: *id002
+  343085: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343076-1631-343078
+      comments: ""
+      fromCiId: 343076
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343085
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 343078
+      created: 1322793217412
+    prefix_options: *id002
+  48527: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48501-2002-48526
+      comments: ""
+      fromCiId: 48501
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48527
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: build
+          constraint: 0..999
+        prefix_options: {}
+
+      toCiId: 48526
+      created: 1320214004372
+    prefix_options: *id002
+  771524: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771522-1631-771509
+      comments: ""
+      fromCiId: 771522
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771524
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 771509
+      created: 1330421716885
+    prefix_options: *id002
+  48511: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48509-1631-48506
+      comments: ""
+      fromCiId: 48509
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48511
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 48506
+      created: 1320214004372
+    prefix_options: *id002
+  771519: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771513-1631-771511
+      comments: ""
+      fromCiId: 771513
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771519
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 771511
+      created: 1330421716885
+    prefix_options: *id002
+  771508: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771506-1877-343072
+      comments: ""
+      fromCiId: 771506
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.LinksTo
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771508
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 343072
+      created: 1330421716885
+    prefix_options: *id002
+  48544: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48542-1631-48506
+      comments: ""
+      fromCiId: 48542
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48544
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 48506
+      created: 1320214004372
+    prefix_options: *id002
+  772295: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 772284-2163-448847
+      comments: ""
+      fromCiId: 772284
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Utilizes
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 772295
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      toCiId: 448847
+      created: 1330423013577
+    prefix_options: *id002
+  771514: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771506-2002-771513
+      comments: ""
+      fromCiId: 771506
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771514
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: apache
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 771513
+      created: 1330421716885
+    prefix_options: *id002
+  343075: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343072-2002-343074
+      comments: ""
+      fromCiId: 343072
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343075
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datavol
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 343074
+      created: 1322793217412
+    prefix_options: *id002
+  343086: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343076-1631-343080
+      comments: ""
+      fromCiId: 343076
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343086
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 343080
+      created: 1322793217412
+    prefix_options: *id002
+  771822: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771809-2147-747086
+      comments: ""
+      fromCiId: 771809
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.SecuredBy
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771822
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 747086
+      created: 1330421845153
+    prefix_options: *id002
+  48528: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48526-1631-48504
+      comments: ""
+      fromCiId: 48526
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48528
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 48504
+      created: 1320214004372
+    prefix_options: *id002
+  343081: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343072-2002-343080
+      comments: ""
+      fromCiId: 343072
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343081
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 343080
+      created: 1322793217412
+    prefix_options: *id002
+  771520: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771515-1631-771509
+      comments: ""
+      fromCiId: 771515
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771520
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 771509
+      created: 1330421716885
+    prefix_options: *id002
+  343593: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48501-2002-343592
+      comments: ""
+      fromCiId: 48501
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343593
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: website
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 343592
+      created: 1322793531062
+    prefix_options: *id002
+  48507: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48501-2002-48506
+      comments: ""
+      fromCiId: 48501
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48507
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 48506
+      created: 1320214004372
+    prefix_options: *id002
+  343087: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343078-1631-343074
+      comments: ""
+      fromCiId: 343078
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343087
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 343074
+      created: 1322793217412
+    prefix_options: *id002
+  48529: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48526-1631-48509
+      comments: ""
+      fromCiId: 48526
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48529
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 48509
+      created: 1320214004372
+    prefix_options: *id002
+  771526: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771506-2002-771525
+      comments: ""
+      fromCiId: 771506
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771526
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: user
+          constraint: 0..1
+        prefix_options: {}
+
+      toCiId: 771525
+      created: 1330421716885
+    prefix_options: *id002
+  771510: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771506-2002-771509
+      comments: ""
+      fromCiId: 771506
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771510
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: php
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 771509
+      created: 1330421716885
+    prefix_options: *id002
+  48502: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 37986-1352-48501
+      comments: ""
+      fromCiId: 37986
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.ComposedOf
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48502
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 48501
+      created: 1320214004372
+    prefix_options: *id002
+  48513: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48501-2002-48512
+      comments: ""
+      fromCiId: 48501
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48513
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: file
+          constraint: 0..999
+        prefix_options: {}
+
+      toCiId: 48512
+      created: 1320214004372
+    prefix_options: *id002
+  771521: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771515-1631-771513
+      comments: ""
+      fromCiId: 771515
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771521
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 771513
+      created: 1330421716885
+    prefix_options: *id002
+  343594: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343592-1631-48509
+      comments: ""
+      fromCiId: 343592
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343594
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 48509
+      created: 1322793531062
+    prefix_options: *id002
+  772297: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 772284-2147-747086
+      comments: ""
+      fromCiId: 772284
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.SecuredBy
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 772297
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 747086
+      created: 1330423013608
+    prefix_options: *id002
+  343088: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343078-1631-343080
+      comments: ""
+      fromCiId: 343078
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343088
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 343080
+      created: 1322793217412
+    prefix_options: *id002
+  771516: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771506-2002-771515
+      comments: ""
+      fromCiId: 771506
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771516
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: website
+          constraint: 1..*
+        prefix_options: {}
+
+      toCiId: 771515
+      created: 1330421716885
+    prefix_options: *id002
+  48508: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48504-1631-48506
+      comments: ""
+      fromCiId: 48504
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48508
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 48506
+      created: 1320214004372
+    prefix_options: *id002
+  343077: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343072-2002-343076
+      comments: ""
+      fromCiId: 343072
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343077
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: mysql
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 343076
+      created: 1322793217412
+    prefix_options: *id002
+  771527: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771525-1631-771511
+      comments: ""
+      fromCiId: 771525
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771527
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 771511
+      created: 1330421716885
+    prefix_options: *id002
+  343083: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343072-2002-343082
+      comments: ""
+      fromCiId: 343072
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343083
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: database
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 343082
+      created: 1322793217412
+    prefix_options: *id002
+  771819: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 37986-2000-771809
+      comments: ""
+      fromCiId: 37986
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: base.RealizedIn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771819
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 771809
+      created: 1330421845043
+    prefix_options: *id002
+  48514: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 48512-1631-48506
+      comments: ""
+      fromCiId: 48512
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 48514
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 48506
+      created: 1320214004372
+    prefix_options: *id002
+  343595: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343592-1631-48526
+      comments: ""
+      fromCiId: 343592
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343595
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 48526
+      created: 1322793531062
+    prefix_options: *id002
+  343089: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 343082-1631-343076
+      comments: ""
+      fromCiId: 343082
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 343089
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 343076
+      created: 1322793217412
+    prefix_options: *id002
+  771517: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 771509-1631-771511
+      comments: ""
+      fromCiId: 771509
+      toCi: 
+      nsPath: /kloopz/wordpress
+      rfcId: 0
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 771517
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 771511
+      created: 1330421716885
+    prefix_options: *id002

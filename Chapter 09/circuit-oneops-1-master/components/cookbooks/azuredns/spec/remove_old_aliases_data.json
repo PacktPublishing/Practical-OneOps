@@ -1,0 +1,59 @@
+{
+  "customer_domain": "env.asm.org.oneops.com",
+  "dns_action": "create",
+  "workorder": {
+    "cloud": {
+      "ciName": "azure",
+      "ciAttributes": {
+        "priority": "0"
+      }
+    },
+    "services": {
+      "dns": {
+        "azure": {
+          "ciAttributes": {
+            "tenant_id": "<TENANT-ID>",
+            "client_id": "<CLIENT-ID>",
+            "client_secret": "<CLIENT-SECRET>",
+            "cloud_dns_id": "asm.org",
+            "zone": "oneops.com"
+          }
+        }
+      }
+    },
+    "box": {
+      "ciAttributes": {
+        "source": "packer",
+        "is_active": "false",
+        "description": "",
+        "major_version": "1",
+        "pack": "mysql",
+        "version": "0.4",
+        "availability": "single"}
+    },
+    "payLoad": {
+      "Entrypoint": [
+        {
+          "ciName": "db"
+        }
+      ]
+    },
+    "rfcCi": {
+      "ciAttributes": {
+        "ostype": "ubuntu-12.04",
+        "hosts": "{}",
+        "image_id": "",
+        "size": "S",
+        "aliases": "[\"alias2\"]",
+        "full_aliases": "[\"full-alias2\"]"
+      },
+      "ciBaseAttributes": {
+        "aliases": "[\"alias1\",\"alias2\"]",
+        "full_aliases": "[\"full-alias1\",\"full-alias2\"]"
+      }
+    },
+    "azure_rest_token": "na",
+    "platform-resource-group": "TestResourceGroup"
+  }
+}
+

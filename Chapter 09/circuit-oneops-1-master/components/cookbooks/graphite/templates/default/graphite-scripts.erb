@@ -1,0 +1,96 @@
+#!/bin/bash
+#
+# chkconfig: 35 90 12
+# description: graphite script
+#
+
+LOCKFILE=/var/lock/subsys/carbon
+GRAPHITE_ROOT=/opt/graphite
+PID_DIR=/var/run/carbon
+
+start() {
+    if ( isRunning ); then
+                echo "INFO: Graphite is already running"
+    else
+        # start carbon-cache
+        for i in $(seq 1 <%= node["cpu"]["total"] %>); do
+            if [ "$i" -lt "10" ]; then i=0$i; fi
+            /usr/bin/python $GRAPHITE_ROOT/bin/carbon-cache.py --instance=$i --pidfile=$PID_DIR/carbon-$i.pid start &
+            sleep 1
+        done
+        # start relays
+        /usr/bin/python $GRAPHITE_ROOT/bin/carbon-relay.py --instance=b --pidfile=$PID_DIR/carbon-relay-a start &
+        sleep 2
+        /usr/bin/python $GRAPHITE_ROOT/bin/carbon-relay.py --instance=a --pidfile=$PID_DIR/carbon-relay-b start &
+        sleep 4
+        service uwsgi start
+        sleep 2
+        service nginx start
+        touch $LOCKFILE
+        echo "graphite started"
+    fi
+}
+
+stop() {
+    if ( isRunning ); then
+        DPID=`ps -ef | grep carbon | grep -v grep | wc -l`
+        echo $DPID
+        while [ $DPID -gt 0 ]; do
+            /usr/bin/python $GRAPHITE_ROOT/bin/carbon-relay.py --debug --instance=a --pidfile=$PID_DIR/carbon-relay-a stop
+            /usr/bin/python $GRAPHITE_ROOT/bin/carbon-relay.py --debug --instance=b --pidfile=$PID_DIR/carbon-relay-b stop
+            for i in $(seq 1 <%= node["cpu"]["total"] %>); do
+                if [ "$i" -lt "10" ]; then i=0$i; fi
+                /usr/bin/python $GRAPHITE_ROOT/bin/carbon-cache.py --instance=$i --pidfile=$PID_DIR/carbon-$i.pid stop
+            done
+            DPID=`ps -ef | grep carbon | grep -v grep | wc -l`
+            echo 'sleep for 2 seconds and try to stop carbon again.'
+            sleep 2
+        done
+        service uwsgi stop
+        service nginx stop
+        rm -f $LOCKFILE
+        echo "graphite stopped"
+    else
+        echo "INFO: No process for Graphite running currently"
+    fi
+}
+
+status() {
+    if ( isRunning ); then
+        echo "INFO: Graphite is running"
+        exit 0
+    else
+        echo "INFO: Graghite is not running"
+        exit 1
+    fi
+}
+
+isRunning() {
+    if [ -f "${LOCKFILE}" ]; then
+        if [ "$(ls -A $PID_DIR)" ]; then
+            return 0
+        fi
+    fi
+    return 1
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        stop
+        start
+        ;;
+  status)
+        status
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+
+exit 0

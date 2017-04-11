@@ -1,0 +1,16 @@
+<% 
+  # spark-tool.erb
+  #
+  # This is a template file for a Spark tool.  It calls
+  # the tool in the Spark distribution and passes in the path
+  # to the Spark master provided in the spark.master file in the conf
+  # directory.
+ %>
+#!/bin/bash
+
+export MASTER=`cat <%= @spark_dir %>/conf/spark.master`
+<% if !@deploy_mode.empty? %>
+export DEPLOY_MODE="<%= @deploy_mode %>"
+<% end %>
+
+<%= @spark_dir %>/bin/`basename $0` "$@"

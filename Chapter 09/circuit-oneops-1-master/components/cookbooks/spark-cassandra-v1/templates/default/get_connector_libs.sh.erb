@@ -1,0 +1,80 @@
+<% 
+  # get_connector_libs.sh.erb
+  #
+  # This script is used to download all of the connector libraries
+  # based on the version of Spark either specified or detected.
+  #
+  # Only the first two parts of the version are used.
+ %>
+#!/bin/bash
+
+CONNECTOR_LIBS=""
+CONNECTOR_LIBS_14="
+  com/datastax/spark/spark-cassandra-connector_2.10/1.4.2/spark-cassandra-connector_2.10-1.4.2.jar
+  com/datastax/spark/spark-cassandra-connector-java_2.10/1.4.2/spark-cassandra-connector-java_2.10-1.4.2.jar
+  com/datastax/cassandra/cassandra-driver-core/2.1.9/cassandra-driver-core-2.1.9.jar
+  joda-time/joda-time/2.3/joda-time-2.3.jar
+  org/joda/joda-convert/1.2/joda-convert-1.2.jar
+  com/google/guava/guava/14.0.1/guava-14.0.1.jar
+  com/twitter/jsr166e/1.1.0/jsr166e-1.1.0.jar"
+
+CONNECTOR_LIBS_15="
+  com/datastax/spark/spark-cassandra-connector_2.10/1.5.0/spark-cassandra-connector_2.10-1.5.0.jar
+  com/datastax/spark/spark-cassandra-connector-java_2.10/1.5.0/spark-cassandra-connector-java_2.10-1.5.0.jar
+  com/datastax/cassandra/cassandra-driver-core/3.0.1/cassandra-driver-core-3.0.1.jar
+  joda-time/joda-time/2.3/joda-time-2.3.jar
+  org/joda/joda-convert/1.2/joda-convert-1.2.jar
+  com/google/guava/guava/16.0.1/guava-16.0.1.jar
+  com/twitter/jsr166e/1.1.0/jsr166e-1.1.0.jar"
+
+SPARK_VERSION_FULL="<%= @spark_version %>"
+
+if [[ "$SPARK_VERSION_FULL" == "auto" ]]; then
+  # Detect the Spark version by running the spark shell with --version
+  # specified and parse the output.
+  SPARK_VERSION_FULL=`/opt/spark/bin/spark-shell --version 2>&1 |grep version |sed "s/^.*version //"`
+fi
+
+# Take the first two components of the version:  for x.y.z, use x.y
+SPARK_VERSION=`IFS='.' read -ra SPARK_VERS <<< "$SPARK_VERSION_FULL"; echo ${SPARK_VERS[0]}.${SPARK_VERS[1]}`
+
+echo "Spark Version: $SPARK_VERSION"
+
+if [[ "$SPARK_VERSION" == "2.0" ]]; then
+  # No connector libraries yet
+  CONNECTOR_LIBS=""
+elif [[ "$SPARK_VERSION" == "1.6" ]]; then
+  # Use 1.5 libraries
+  CONNECTOR_LIBS=$CONNECTOR_LIBS_15
+elif [[ "$SPARK_VERSION" == "1.5" ]]; then
+  CONNECTOR_LIBS=$CONNECTOR_LIBS_15
+elif [[ "$SPARK_VERSION" == "1.4" ]]; then
+  CONNECTOR_LIBS=$CONNECTOR_LIBS_14
+else
+  echo "Invalid Spark version found ($SPARK_VERSION)."
+  exit 1
+fi
+
+# Make sure a connector dir is specified.
+if [ -n "<%= @connector_dir %>" ]; then
+  # If it is not empty, clean its contents
+  if [ -n "`ls -A <%= @connector_dir %>`" ]; then
+    echo "Cleaning existing directory..."
+    rm -f <%= @connector_dir %>/*
+  fi
+fi
+
+if [[ "$CONNECTOR_LIBS" == "" ]]; then
+  echo "No connector libraries to install for this version (Spark $SPARK_VERSION)."
+else
+  for CONNLIB in $CONNECTOR_LIBS; do
+    CONNLIBURL=<%= @nexus_url %>/content/groups/public/$CONNLIB
+
+    LIBJAR=`echo $CONNLIB | sed "s|^.*/||"`
+
+    echo "Downloading $LIBJAR..."
+    curl $CONNLIBURL -o <%= @connector_dir %>/$LIBJAR
+  done
+
+  chown spark:spark <%= @connector_dir %>/*
+fi

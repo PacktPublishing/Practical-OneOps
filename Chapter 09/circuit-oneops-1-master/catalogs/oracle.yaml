@@ -1,0 +1,729 @@
+--- !ruby/object:Chef::Catalog 
+cis: !map:Mash 
+  5874: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 5839-1198-5874
+      lastRfcId: 
+      ciId: 5874
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: single
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: qa
+      created: 1315893605751
+    prefix_options: &id001 {}
+
+  5841: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 5839-1058-5841
+      lastRfcId: 
+      ciId: 5841
+      comments: default keypair
+      rfcId: 0
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      execOrder: 0
+      rfcAction: 
+      ciClassName: account.Keypair
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          public: ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApM++KYxLTMV4N5KmdwaJXvV6oL5+o4dKA8yqT4oCpuZd0m0xmYv11nIlRJol4L4kZSINT/8gUTl+SR7IAx5vVCd+LljcnHQHzD6+rCPMNN3+iKFEZs9oSg6QGN3u9fHtSiZxG4KIdjNAmk6m5MMtA5q0UskfnaHOzJT3irUpT5FTPie5jToAzgtsCPy5v+zDl3LGA8I0JzD3zdf45Y7H9wwFVdoaRBd2XmWVsvFitqnei7/lQCM34LQZhkHk5Bca7yIzm0QC47aCG+JiDWNV24RUV1+0G1BtlwdMQlFFWg2sy0GAK52KQEG9SRWdsZzBR8XLFeCH90kChXiQ/ZuYSQ== kfilipovski@macbook-eth.home
+          private: ""
+          description: kfilipovski
+        prefix_options: {}
+
+      ciName: kfilipovski
+      created: 1315893350816
+    prefix_options: *id001
+  5957: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 5839-1627-5957
+      lastRfcId: 
+      ciId: 5957
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Download
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          basic_auth_password: ""
+          checksum: ""
+          path: /data/linux.x64_11gR2_database_1of2.zip
+          basic_auth_user: ""
+          source: s3://kloopz/linux.x64_11gR2_database_1of2.zip
+          headers: "{}"
+        prefix_options: {}
+
+      ciName: oradb-download-zip2of2
+      created: 1315895374031
+    prefix_options: *id001
+  5847: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 5839-1651-5847
+      lastRfcId: 
+      ciId: 5847
+      comments: ""
+      rfcId: 0
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Oracle
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          listenerport: "1521"
+          version: "11.2"
+          syspassword: sys
+        prefix_options: {}
+
+      ciName: oradb-oracle
+      created: 1315893576481
+    prefix_options: *id001
+  5849: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 5839-1065-5849
+      lastRfcId: 
+      ciId: 5849
+      comments: ""
+      rfcId: 0
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: L
+          ostype: centos-6.0
+        prefix_options: {}
+
+      ciName: oradb-compute
+      created: 1315893576481
+    prefix_options: *id001
+  6043: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 5839-1198-6043
+      lastRfcId: 
+      ciId: 6043
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: single
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: qa0913
+      created: 1315896714835
+    prefix_options: *id001
+  5955: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 5839-1627-5955
+      lastRfcId: 
+      ciId: 5955
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Download
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          basic_auth_password: ""
+          checksum: ""
+          path: /data/linux.x64_11gR2_database_1of2.zip
+          basic_auth_user: ""
+          source: s3://kloopz/linux.x64_11gR2_database_1of2.zip
+          headers: "{}"
+        prefix_options: {}
+
+      ciName: oradb-download-zip1of2
+      created: 1315895374031
+    prefix_options: *id001
+  5845: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 5839-1164-5845
+      lastRfcId: 
+      ciId: 5845
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: oracle
+          version: "0.1"
+          aliases: ""
+          description: Oracle DB
+          source: packer
+        prefix_options: {}
+
+      ciName: oradb
+      created: 1315893576481
+    prefix_options: *id001
+  5851: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 5839-1206-5851
+      lastRfcId: 
+      ciId: 5851
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Database
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          dbname: ariadb
+          username: ariauser
+          password: ariapassword
+          extra: ""
+        prefix_options: {}
+
+      ciName: oradb-database-aria
+      created: 1315893576481
+    prefix_options: *id001
+description: main
+name: oracle
+nspath: /kloopz
+relations: !map:Mash 
+  5956: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 5845-1423-5955
+      comments: ""
+      fromCiId: 5845
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 5956
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: download
+          constraint: 0..999
+        prefix_options: {}
+
+      created: 1315895374031
+      toCiId: 5955
+    prefix_options: &id002 {}
+
+  5846: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 5837-1299-5845
+      comments: ""
+      fromCiId: 5837
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.ComposedOf
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 5846
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      created: 1315893576481
+      toCiId: 5845
+    prefix_options: *id002
+  5852: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 5845-1423-5851
+      comments: ""
+      fromCiId: 5845
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 5852
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: database
+          constraint: 0..999
+        prefix_options: {}
+
+      created: 1315893576481
+      toCiId: 5851
+    prefix_options: *id002
+  6050: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 6043-1464-3971
+      comments: ""
+      fromCiId: 6043
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.Utilizes
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 6050
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      created: 1315896714880
+      toCiId: 3971
+    prefix_options: *id002
+  5880: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 5837-1307-5874
+      comments: ""
+      fromCiId: 5837
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.RealizedIn
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 5880
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      created: 1315893605751
+      toCiId: 5874
+    prefix_options: *id002
+  5958: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 5845-1423-5957
+      comments: ""
+      fromCiId: 5845
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 5958
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: download
+          constraint: 0..999
+        prefix_options: {}
+
+      created: 1315895374031
+      toCiId: 5957
+    prefix_options: *id002
+  5881: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 5874-1464-3971
+      comments: ""
+      fromCiId: 5874
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.Utilizes
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 5881
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      created: 1315893605811
+      toCiId: 3971
+    prefix_options: *id002
+  5848: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 5845-1423-5847
+      comments: ""
+      fromCiId: 5845
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 5848
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: oracle
+          constraint: 1..1
+        prefix_options: {}
+
+      created: 1315893576481
+      toCiId: 5847
+    prefix_options: *id002
+  6052: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 6043-1462-5841
+      comments: ""
+      fromCiId: 6043
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.SecuredBy
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 6052
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      created: 1315896714930
+      toCiId: 5841
+    prefix_options: *id002
+  5850: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 5845-1423-5849
+      comments: ""
+      fromCiId: 5845
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 5850
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      created: 1315893576481
+      toCiId: 5849
+    prefix_options: *id002
+  5883: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 5874-1462-5841
+      comments: ""
+      fromCiId: 5874
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.SecuredBy
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 5883
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      created: 1315893606076
+      toCiId: 5841
+    prefix_options: *id002
+  6049: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 5837-1307-6043
+      comments: ""
+      fromCiId: 5837
+      rfcId: 0
+      toCi: 
+      nsPath: /kloopz/oratest
+      releaseId: 0
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      isActiveInRelease: false
+      relationName: base.RealizedIn
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 6049
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      created: 1315896714835
+      toCiId: 6043
+    prefix_options: *id002

@@ -1,0 +1,24 @@
+<%
+  # server-gmond.conf.erb
+  #
+  # This template contains the additions to the default gmond
+  # template.
+ %>
+
+globals {
+  mute = yes
+  deaf = no
+  send_metadata_interval = 30 /*secs */
+}
+
+cluster {
+  name = "<%= @cluster_name %>"
+}
+
+udp_recv_channel {
+  port = <%= @source_port %>
+}
+
+tcp_accept_channel {
+  port = <%= @source_port %>
+}

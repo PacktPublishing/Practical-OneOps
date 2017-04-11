@@ -1,0 +1,76 @@
+
+# haproxy cfg
+#
+global
+    # to have these messages end up in /var/log/haproxy.log you will
+    # need to:
+    #
+    # 1) configure syslog to accept network log events.  This is done
+    #    by adding the '-r' option to the SYSLOGD_OPTIONS in
+    #    /etc/sysconfig/syslog
+    #
+    # 2) configure local2 events to go to the /var/log/haproxy.log
+    #   file. A line like the following can be added to
+    #   /etc/sysconfig/syslog
+    #
+    #    local2.*                       /var/log/haproxy.log
+    #
+    log         127.0.0.1 local2
+
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     <%= node.haproxy.maxconn_defaults %>
+
+    user        haproxy
+    group       haproxy
+    daemon
+
+<% if node.haproxy.enable_stats_socket == "true" -%>
+    stats socket <%= node.haproxy.stats_socket_location %>
+<% end -%>
+
+<% if node.haproxy.enable_stats_web == "true" -%>
+
+listen stats :<%= node.haproxy.stats_web_port %>
+  mode http
+  stats enable
+  stats uri /
+
+<% end -%>
+
+defaults
+    mode            <%= node.haproxy.lbmode %>
+    log             global
+<% JSON.parse(node.haproxy.options).each do |option| %>
+    option          <%= option %>
+<% end %>
+    retries         <%= node.haproxy.retries %>       
+    maxconn         <%= node.haproxy.maxconn_defaults %>
+    timeout connect <%= node.haproxy.timeout_connect %>
+    timeout client  <%= node.haproxy.timeout_client %>
+    timeout server  <%= node.haproxy.timeout_server %>
+
+<%
+platform_name =  node.workorder.box.ciName
+%>
+
+#
+# platform <%= platform_name %>
+#
+
+<% JSON.parse(node.haproxy.listeners).each_pair do |external_port,internal_port| %>
+frontend <%= platform_name %>-<%= external_port %>
+       bind *:<%= external_port %>
+       default_backend <%= platform_name %>-<%= internal_port %>
+
+<%
+check_port = node.haproxy.check_port == "" ? internal_port : node.haproxy.check_port
+%>
+
+backend <%= platform_name %>-<%= internal_port %>
+       balance <%= node.haproxy.lbmethod %>
+  <% node.workorder.payLoad.RequiresComputes.each do |member| -%>
+       server <%= member[:ciName] %> <%= member[:ciAttributes][:private_ip] %>:<%= internal_port %> check port <%= check_port %> maxconn <%= node.haproxy.maxconn_server %> weight 1
+  <% end %>
+  
+<% end %>

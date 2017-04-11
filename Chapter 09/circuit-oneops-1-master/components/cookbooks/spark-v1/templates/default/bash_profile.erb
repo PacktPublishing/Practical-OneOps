@@ -1,0 +1,19 @@
+<%
+  # bash_profile.erb
+  #
+  # This is the template file for the Spark user bash_profile.  It
+	# contains a number of convenient aliases for the spark user.
+ %>
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+export SPARK_HOME=<%= @spark_dir %>
+
+# Alias
+alias spark-defaults.conf='less $SPARK_HOME/conf/spark-defaults.conf'
+alias spark-env.sh='less $SPARK_HOME/conf/spark-env.sh'

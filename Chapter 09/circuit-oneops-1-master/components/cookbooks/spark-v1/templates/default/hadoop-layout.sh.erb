@@ -1,0 +1,9 @@
+<% 
+  # hadoop-layout.sh.erb
+  #
+  # This is the Hadoop layout configuration file.  It contains
+  # additional variables that define the Hadoop environment.
+ %>
+#!/usr/bin/env bash
+
+export HADOOP_CLASSPATH=<%= @hadoop_dir %>/share/hadoop/tools/lib/hadoop-openstack-3.0.0-SNAPSHOT.jar:<%= @hadoop_dir %>/share/hadoop/tools/lib/httpclient-4.2.5.jar:<%= @hadoop_dir %>/share/hadoop/tools/lib/httpcore-4.2.5.jar:$HADOOP_CLASSPATH

@@ -1,0 +1,16 @@
+# NameNode
+*.sink.ganglia.class=org.apache.hadoop.metrics2.sink.ganglia.GangliaSink31
+*.period=10
+namenode.sink.ganglia.servers=<%= @cia["ganglia_servers"] %>
+
+# SecondaryNameNode
+*.sink.ganglia.class=org.apache.hadoop.metrics2.sink.ganglia.GangliaSink31
+*.period=10
+secondarynamenode.sink.ganglia.servers=<%= @cia["ganglia_servers"] %>
+
+# ResourceManager
+*.sink.ganglia.class=org.apache.hadoop.metrics2.sink.ganglia.GangliaSink31
+*.period=10
+resourcemanager.sink.ganglia.servers=<%= @cia["ganglia_servers"] %>
+maptask.sink.ganglia.servers=<%= @cia["ganglia_servers"] %>
+reducetask.sink.ganglia.servers=<%= @cia["ganglia_servers"] %>

@@ -1,0 +1,213 @@
+#!/bin/bash
+# description: Tomcat Start Stop Restart  
+# processname: tomcat<%=node[:tomcat][:version][0,1]%>
+# chkconfig: 234 20 80  
+ 
+#set for using non-default java
+#export JAVA_HOME=/usr/lib/jvm/java-6-sun
+
+<% if node[:tomcat].has_key?(:pre_shutdown_command) && !node[:tomcat][:pre_shutdown_command].empty? %>
+PRE_SHUTDOWN_COMMAND="<%= node[:tomcat][:pre_shutdown_command].gsub(/\r\n?/,"\n") %>"
+<% else %>
+PRE_SHUTDOWN_COMMAND=
+<% end %>
+<% if node[:tomcat].has_key?(:time_to_wait_before_shutdown) && !node[:tomcat][:time_to_wait_before_shutdown].empty?%>
+TIME_TO_WAIT="<%= node[:tomcat][:time_to_wait_before_shutdown] %>"
+<% else %>
+TIME_TO_WAIT=
+<% end %>
+<% if node[:tomcat].has_key?(:logfiles_path) && !node[:tomcat][:logfiles_path].empty? %>
+LOG_FILES_PATH="<%= node[:tomcat][:logfiles_path] %>"
+<% else %>
+LOG_FILES_PATH="/tmp/"
+<% end %>
+
+TOMCAT_SERVICE_NAME="tomcat<%=node[:tomcat][:version][0,1]%>"
+SU="sudo -u"
+TOMCAT_USER="<%= node.tomcat_owner %>"
+TOMCAT_BASE_DIR="<%= node.tomcat.tomcat_install_dir %>/tomcat<%= node.tomcat.version.gsub(/\..*/,"") %>"
+CATALINA_PID="<%= node[:tomcat][:home] %>/tomcat.pid"
+STOP_TIMEOUT="<%= node[:tomcat][:stop_time] %>"
+SHUTDOWN_COMMAND="$SU $TOMCAT_USER $TOMCAT_BASE_DIR/bin/shutdown.sh"
+START_COMMAND="$SU $TOMCAT_USER $TOMCAT_BASE_DIR/bin/startup.sh"
+pid=
+
+POST_STARTUP_COMMAND_CONTENTS="$TOMCAT_BASE_DIR/bin/poststartup.sh"
+
+POST_STARTUP_COMMAND="$SU $TOMCAT_USER $POST_STARTUP_COMMAND_CONTENTS"
+<% if node[:tomcat].has_key?(:polling_frequency_post_startup_check) && !node[:tomcat][:polling_frequency_post_startup_check].empty? %>
+TIME_BETWEEN_APP_START_CHECK="<%= node[:tomcat][:polling_frequency_post_startup_check] %>"
+<% else %>
+TIME_BETWEEN_APP_START_CHECK=1
+<% end %>
+
+<% if node[:tomcat].has_key?(:max_number_of_retries_for_post_startup_check) && !node[:tomcat][:max_number_of_retries_for_post_startup_check].empty? %>
+NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED="<%= node[:tomcat][:max_number_of_retries_for_post_startup_check] %>"
+<% else %>
+NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED=10
+<% end %>
+SKIP_PRE_SHUTDOWN=0
+
+function get_tomcat_pid() {
+    pid=$(pgrep -f "org.apache.catalina.startup.Bootstrap")
+    return $pid
+}
+
+
+function stop_tomcat(){
+    echo "Stopping tomcat using $SHUTDOWN_COMMAND"
+   if [ $SKIP_PRE_SHUTDOWN -eq 0 ];then
+        if [ -n "$PRE_SHUTDOWN_COMMAND" ];then
+            echo "Executing the PreShutdownHook $PRE_SHUTDOWN_COMMAND"
+            eval "$PRE_SHUTDOWN_COMMAND"
+            if [ -n "$TIME_TO_WAIT" ];  then
+                get_tomcat_pid
+                if [ -n "$pid" ]; then
+                  echo "Sleeping for  $TIME_TO_WAIT seconds."
+                  sleep "$TIME_TO_WAIT"
+                else
+                  echo "Tomcat is not running, skipping sleep."
+                fi
+            else
+                 echo "No time to wait before shutdown configured, stopping catalina."
+             fi
+        else
+              echo "No PreShutdownHook configured, Skipping it. "
+        fi
+     else
+        echo "skipping preshutdownhook . "
+     fi
+    fix_pid
+    if [ $? -eq 1 ] ; then
+        exit 1
+    fi
+    eval "$SHUTDOWN_COMMAND $STOP_TIMEOUT "
+    get_tomcat_pid
+    if [ -n "$pid" ]; then
+        echo "Tomcat failed to shut down , forcing the tomcat to shutdown"
+        eval "$SHUTDOWN_COMMAND -force"
+        get_tomcat_pid
+        if [ -n "$pid" ]; then 
+            kill -9 "$pid"
+            rm -f "$CATALINA_PID"
+            sleep 5
+            get_tomcat_pid
+            if [ -n "$pid" ] ; then
+                echo "Could not stop tomcat."
+            else
+                rm -f   "/var/lock/subsys/$TOMCAT_SERVICE_NAME"
+                echo "Tomcat stopped"
+            fi
+        else
+            rm -f   "/var/lock/subsys/$TOMCAT_SERVICE_NAME"
+            echo "Tomcat stopped"
+        fi   
+    else
+      rm -f   "/var/lock/subsys/$TOMCAT_SERVICE_NAME"
+      echo "Tomcat stopped."
+    fi
+
+}
+
+function fix_pid(){
+    get_tomcat_pid
+    if [ -f "$CATALINA_PID" ]; then
+        PID_TOMCAT=$(cat "$CATALINA_PID")
+    fi
+    if [ "$PID_TOMCAT" != "$pid" ]; then
+        ps -p "$PID" >/dev/null 2>&1
+        if [ $? -eq 0 ] ; then
+            echo "Are there two tomcat processes ? found one $TOMCAT_PID other one $PID? "
+            exit 1
+        else
+            if [ -n $pid ];then
+                echo "$pid" > "$CATALINA_PID"
+                echo "PID file fixed from $PID_TOMCAT to $pid "
+            fi
+        fi
+    fi
+}
+
+
+
+function start_tomcat(){
+    echo "Starting tomcat."
+    fix_pid
+    if [ $? -eq 1 ] ; then
+        exit 1
+    fi
+    eval "$START_COMMAND"
+    sleep 2
+    status
+    if [ $? != 0 ]; then
+        exit 1
+    else
+        touch "/var/lock/subsys/$TOMCAT_SERVICE_NAME"
+    fi
+    if [ -s "$POST_STARTUP_COMMAND_CONTENTS" ];then
+        if [ -n "$NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED" ];  then
+            echo "Executing post start up command every $TIME_BETWEEN_APP_START_CHECK second for $NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED times."
+            for (( i = 1; i <= NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED; i++ )); do
+                    #executing post startup script.
+                    eval "$POST_STARTUP_COMMAND"
+                    STATUS_OF_POST_START_UP_COMMAND=$?
+                    if [ $STATUS_OF_POST_START_UP_COMMAND -eq 1 ]; then
+                        sleep $TIME_BETWEEN_APP_START_CHECK 
+                        echo "PostStartUpCommand failed;retrying  $i of $NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED "
+                        continue
+                    else
+                        echo "PostStartUpCommand succeeded! "
+                        break
+                    fi
+            done
+        else
+             echo "Skipping POST_STARTUP_COMMAND as NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED not configured"
+         fi
+    else
+          STATUS_OF_POST_START_UP_COMMAND=0
+          echo "No PostStartUpCommand configured, Skipping it. "
+    fi
+
+
+    if [ $STATUS_OF_POST_START_UP_COMMAND -eq 1 ]; then
+        echo " POST_STARTUP_COMMAND failed ; stopping tomcat"
+        SKIP_PRE_SHUTDOWN=1
+        stop_tomcat
+        exit 1
+    fi    
+
+}
+
+function status(){
+    get_tomcat_pid
+    if [ -n "$pid" ];then
+        echo "Tomcat running as :$(ps  --no-headers -o cmd $pid|tail ) "
+        echo "Tomcat pid: $pid"
+    else
+        echo "Tomcat is not running"
+        exit 1
+    fi
+}
+
+case $1 in
+
+
+status)
+    status
+  ;;
+
+start)
+	start_tomcat  ;;
+ 
+stop) 
+ stop_tomcat
+ ;;
+restart)
+ 	
+   stop_tomcat
+   start_tomcat
+ 
+  ;;
+esac
+    
+exit 0

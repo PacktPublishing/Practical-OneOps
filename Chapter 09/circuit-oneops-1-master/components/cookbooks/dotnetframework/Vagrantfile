@@ -1,0 +1,50 @@
+#VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = 'win2016chef12118'
+  config.vm.guest = :windows
+
+  config.vm.provider "virtualbox" do |v|
+    v.gui = false
+  end
+  config.vm.communicator = "winrm"
+  config.winrm.timeout = 24000
+  config.winrm.max_tries = 20
+
+  config.winrm.host = '127.0.0.1'
+  config.winrm.username = 'vagrant'
+  config.winrm.password = 'vagrant'
+
+  config.vm.provision :chef_solo do |chef|
+    chef.log_level         = :debug
+    chef.cookbooks_path = [".."]
+    chef.add_recipe("dotnetframework::add")
+
+    chef.json = {
+      "dotnetframework": {
+        "dotnet_version_package_name": "{ \".Net 4.6\":\"dotnet4.6\", \".Net 3.5\":\"dotnet3.5\" }",
+        "chocolatey_package_source": "https://chocolatey.org/api/v2/"
+      },
+      "workorder": {
+        "services": {
+          "mirror": {
+            "vagrant": {
+              "ciAttributes": {
+                "mirrors": "{ \"chocolatey-repo\":\"http://chocodev.cloud.com/chocolatey\"}"
+              }
+            }
+          }
+        },
+        "cloud": {
+          "nsId": 110104,
+          "ciAttributes": {
+            "adminstatus": "active",
+            "auth": ""
+          },
+          "ciName": "vagrant",
+        }
+      }
+    }
+  end
+
+end

@@ -1,0 +1,127 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'fog'
+require 'json'
+require 'route53'
+
+action = ARGV[0]
+if action=="stop"  
+  # the start on the other host will cleanup if needed
+  puts "ok"
+  exit 0
+end
+
+node = JSON.parse(`cat /opt/oneops/workorder/crm*`)
+token = node["workorder"]["token"]["ciAttributes"]
+zone_domain = node["dns_domain"] +'.'
+public_ip = nil
+max_retry_count = 5
+
+  entrypoint_dns_name = node["workorder"]["box"]["ciName"]+'.'+node["customer_domain"]
+  puts "entrypoint_dns_name: "+entrypoint_dns_name
+
+  ip_host = (`hostname`).chop
+  ip_raw = ip_host.sub("ip-","")
+  ip = ip_raw.gsub("-",".")
+
+  computes = node["workorder"]["payLoad"]["ManagedVia"]
+  computes.each do |compute|
+    if compute["ciAttributes"]["private_ip"] == ip
+      public_ip = compute["ciAttributes"]["public_ip"]
+    end
+  end
+    
+  if public_ip == nil || public_ip == ""
+    compute_dns_name = ip
+  else
+    compute_dns_name = (`host #{public_ip}`).chop.split(" ")[4]
+  end
+
+  record_type = "CNAME"
+  if compute_dns_name =~ /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
+    record_type = "A"
+  end
+    
+  conn = Route53::Connection.new(token["key"], token["secret"])
+  dns_zone = conn.get_zones(zone_domain)[0]
+
+  #puts "dns_zone:"+dns_zone.inspect
+  # route53 gem doesnt expose the name servers, so use fog
+  dns = Fog::DNS.new(
+    :provider => 'AWS',
+    :aws_access_key_id => token["key"],
+    :aws_secret_access_key => token["secret"]
+  )
+
+  hosted_zone = dns.get_hosted_zone(dns_zone.host_url)
+  #puts "hosted_zone:"+hosted_zone.inspect
+
+  authoritative_dns_server = hosted_zone.body["NameServers"][rand(4)]
+
+  puts "authoritative_dns_server="+authoritative_dns_server
+
+  existing_dns = (`dig +short #{entrypoint_dns_name} @#{authoritative_dns_server}`).chop
+
+
+  # if theres an old one lets cleanup
+  if !existing_dns.empty? && existing_dns != compute_dns_name
+      if action == "status"
+         puts entrypoint_dns_name+" has diff: "+existing_dns
+         exit 7
+      end
+      puts "deleting #{record_type}: "+entrypoint_dns_name+" to "+existing_dns + "..."
+      dns_record = Route53::DNSRecord.new(entrypoint_dns_name, record_type, "60", [existing_dns], dns_zone)
+      resp = dns_record.delete
+      max_sleep_count = 30
+      sleep_count = 0
+      while !resp.complete? && sleep_count < max_sleep_count do
+          puts "waiting for dns delete transaction to complete ...sleeing 10, then will check again"
+          sleep(10)
+          sleep_count += 1
+      end
+      if sleep_count >= max_sleep_count
+        puts "route53 still in pending after 5min:"
+        puts resp
+        exit 1
+      end
+  elsif existing_dns == compute_dns_name
+      if action == "status"
+         puts entrypoint_dns_name+" to "+compute_dns_name +" - all good."
+         exit 0
+      end
+
+    complete = true;
+    puts "existing #{record_type}: "+entrypoint_dns_name+" to "+compute_dns_name + "...no change needed."
+  end
+
+  retry_count = 0
+  # create the new record
+  while retry_count < max_retry_count && !complete do
+    # catch all errors and retry
+    begin
+
+      # opens connection ; get zone and create new record for the entrypoint
+      puts "creating #{record_type}: "+entrypoint_dns_name+" to "+compute_dns_name + "..."
+      dns_record = Route53::DNSRecord.new(entrypoint_dns_name, record_type, "60", [compute_dns_name], dns_zone)
+      resp = dns_record.create
+      sleep_count = 0
+      # try for 5min - but need to wait so we dont cache dns miss on the inductor
+      max_sleep_count = 30
+      while !resp.complete? && sleep_count < max_sleep_count do
+          puts "waiting for dns transaction to complete ...sleeing 10, then will check again"
+          sleep(10)
+          sleep_count += 1
+      end
+      if sleep_count >= max_sleep_count
+        puts "route53 still in pending after 5min:"
+        puts resp
+        exit 1
+      end
+      complete = true
+
+    # catch all errors and retry
+    rescue Exception => e
+      puts "got exception:"+ e.message
+    end
+    retry_count += 1
+  end

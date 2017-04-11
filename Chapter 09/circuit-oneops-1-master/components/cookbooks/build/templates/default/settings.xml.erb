@@ -1,0 +1,13 @@
+<settings>
+  <proxies>
+    <proxy>
+      <active>true</active>
+      <protocol><%= Chef::Config[:http_proxy].split("://")[0] %></protocol>
+      <host><%= Chef::Config[:http_proxy].split("://")[1].split(":")[0] %></host>
+      <port><%= Chef::Config[:http_proxy].split("://")[1].split(":")[1] %></port>
+      <username></username>
+      <password></password>
+      <nonProxyHosts><%= Chef::Config[:no_proxy].gsub(",","|") %></nonProxyHosts>
+    </proxy>
+  </proxies>
+</settings>

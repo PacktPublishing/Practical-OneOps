@@ -1,0 +1,82 @@
+#!/bin/bash
+
+PATH_TYPE=$1
+
+if [ "$PATH_TYPE" == "" ]; then
+  echo "ERROR: No path type specified"
+  exit 1
+fi
+
+CONFIG_FILE="<%= @spark_dir %>/conf/spark-defaults.conf"
+CONFIG_FILE_BKP="/tmp/spark-defaults.conf"
+
+# Clean up the backup configuration file in case it exists
+rm -f $CONFIG_FILE_BKP
+
+ADDITIONAL_JARS=""
+
+# Determine what paths need to be added
+if [ -d '<%= @hive_dir %>/lib' -a "$PATH_TYPE" == "driver" ]; then
+  # Add the hive MySql connector to the path
+  ADDITIONAL_JARS="`ls -1 <%= @hive_dir %>/lib/mysql-connector-* |head -n 1`"
+fi
+
+if [ -d '<%= @spark_dir %>/connector' ]; then
+  # Add any libraries in the connector directory
+  CONNECTOR_JARS="`ls -1 <%= @spark_dir %>/connector/*.jar 2>/dev/null |tr '\n' ':' |sed "s/:$//"`"
+
+  if [ -n "$CONNECTOR_JARS" ]; then
+    if [ -n "$ADDITIONAL_JARS" ]; then
+      ADDITIONAL_JARS=$ADDITIONAL_JARS:$CONNECTOR_JARS
+    else
+      ADDITIONAL_JARS=$CONNECTOR_JARS
+    fi
+  fi
+fi
+
+# ADDITIONAL_JARS now contains the jars that need to be
+# added to any existing path
+CONFIG_SETTING="spark.$PATH_TYPE.extraClassPath"
+
+if [ "`grep -c \"^$CONFIG_SETTING\" $CONFIG_FILE`" == "0" ]; then
+  # There are no settings present.
+  if [ -n "$ADDITIONAL_JARS" ]; then
+    # Just append the settings to the bottom of the file
+    echo "$CONFIG_SETTING $ADDITIONAL_JARS" >> $CONFIG_FILE
+  else
+    # No current settings, and nothing to add.  Nothing to do.
+    :
+  fi
+else
+  PATH_LINE=`cat $CONFIG_FILE |grep "^$CONFIG_SETTING" |awk '{ print $2; }'`
+
+  # Remove anything in the connector or hive lib directories from the path
+  STRIPPED_PATH1=`echo $PATH_LINE |tr ':' '\n' |grep -v "^<%= @spark_dir %>/connector/" |tr '\n' ':' |sed "s/:$//"`
+  STRIPPED_PATH2=`echo $STRIPPED_PATH1 |tr ':' '\n' |grep -v "^<%= @hive_dir %>/lib/" |tr '\n' ':' |sed "s/:$//"`
+
+  if [ -n "$STRIPPED_PATH2" ]; then
+    if [ -n "$ADDITIONAL_JARS" ]; then
+      NEW_PATH_LINE="$CONFIG_SETTING $STRIPPED_PATH2:$ADDITIONAL_JARS"
+    else
+      NEW_PATH_LINE="$CONFIG_SETTING $STRIPPED_PATH2"
+    fi
+  else
+    if [ -n "$ADDITIONAL_JARS" ]; then
+      NEW_PATH_LINE="$CONFIG_SETTING $ADDITIONAL_JARS"
+    else
+      NEW_PATH_LINE=""
+    fi
+  fi
+
+  if [ -n "$NEW_PATH_LINE" ]; then
+    # Update the config setting.
+    cat $CONFIG_FILE |sed "/^$CONFIG_SETTING/c\\$NEW_PATH_LINE" >> $CONFIG_FILE_BKP
+  else
+    # Delete the setting.
+    cat $CONFIG_FILE |sed "/^$CONFIG_SETTING/d" >> $CONFIG_FILE_BKP
+  fi
+fi
+
+if [ -f "$CONFIG_FILE_BKP" ]; then
+  mv $CONFIG_FILE_BKP $CONFIG_FILE
+fi

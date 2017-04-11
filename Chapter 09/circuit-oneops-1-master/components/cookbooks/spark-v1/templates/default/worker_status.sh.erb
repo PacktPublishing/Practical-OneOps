@@ -1,0 +1,29 @@
+<% 
+  # worker-status.sh.erb
+  #
+  # This script checks the status of the workers in a Spark
+  # cluster.
+  #
+ %>
+#!/usr/bin/env bash
+
+TOTAL_WORKERS=`curl -s http://<%= @spark_master_ip %>:8080/metrics/master/json/ | python -c 'import sys, json; print json.load(sys.stdin)["gauges"]["master.workers"]["value"]'`
+ALIVE_WORKERS=`curl -s http://<%= @spark_master_ip %>:8080/metrics/master/json/ | python -c 'import sys, json; print json.load(sys.stdin)["gauges"]["master.aliveWorkers"]["value"]'`
+DOWN_WORKERS=`expr $TOTAL_WORKERS - $ALIVE_WORKERS`
+
+# If any entries are blank, represent them as '0'
+if [ "$ALIVE_WORKERS" = "" ]; then
+  ALIVE_WORKERS=0
+fi
+
+if [ "$DOWN_WORKERS" = "" ]; then
+  DOWN_WORKERS=0
+fi
+
+if [ "$TOTAL_WORKERS" = "" ]; then
+  TOTAL_WORKERS=0
+fi
+
+echo "aliveWorkers=$ALIVE_WORKERS | aliveWorkers=$ALIVE_WORKERS"
+echo "downWorkers=$DOWN_WORKERS | downWorkers=$DOWN_WORKERS"
+echo "totalWorkers=$TOTAL_WORKERS | totalWorkers=$TOTAL_WORKERS"

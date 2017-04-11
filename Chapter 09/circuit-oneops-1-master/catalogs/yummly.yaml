@@ -1,0 +1,1129 @@
+--- !ruby/object:Chef::Catalog 
+cis: !map:Mash 
+  54686: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1171-54686
+      lastRfcId: 
+      ciId: 54686
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: cassandra
+          version: "0.2"
+          description: ""
+          aliases: ""
+          source: packer
+        prefix_options: {}
+
+      ciName: cassandra
+      created: 1316795378309
+    prefix_options: &id001 {}
+
+  55259: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1054-55259
+      lastRfcId: 
+      ciId: 55259
+      comments: ""
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: S
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: mycass-compute
+      created: 1316796259259
+    prefix_options: *id001
+  54688: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1042-54688
+      lastRfcId: 
+      ciId: 54688
+      comments: ""
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Cassandra
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          cluster: TestCluster
+          version: "0.8"
+        prefix_options: {}
+
+      ciName: cassandra-cassandra
+      created: 1316795378309
+    prefix_options: *id001
+  55255: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1171-55255
+      lastRfcId: 
+      ciId: 55255
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: cassandra
+          version: "0.2"
+          description: ""
+          aliases: ""
+          source: packer
+        prefix_options: {}
+
+      ciName: mycass
+      created: 1316796259259
+    prefix_options: *id001
+  51845: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1090-51845
+      lastRfcId: 
+      ciId: 51845
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: single
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: qa
+      created: 1316630270864
+    prefix_options: *id001
+  55041: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1090-55041
+      lastRfcId: 
+      ciId: 55041
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: redundant
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: test3
+      created: 1316795685421
+    prefix_options: *id001
+  54706: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1090-54706
+      lastRfcId: 
+      ciId: 54706
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: redundant
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: test2
+      created: 1316795394413
+    prefix_options: *id001
+  51813: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1104-51813
+      lastRfcId: 
+      ciId: 51813
+      comments: default keypair
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: account.Keypair
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          public: ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApM++KYxLTMV4N5KmdwaJXvV6oL5+o4dKA8yqT4oCpuZd0m0xmYv11nIlRJol4L4kZSINT/8gUTl+SR7IAx5vVCd+LljcnHQHzD6+rCPMNN3+iKFEZs9oSg6QGN3u9fHtSiZxG4KIdjNAmk6m5MMtA5q0UskfnaHOzJT3irUpT5FTPie5jToAzgtsCPy5v+zDl3LGA8I0JzD3zdf45Y7H9wwFVdoaRBd2XmWVsvFitqnei7/lQCM34LQZhkHk5Bca7yIzm0QC47aCG+JiDWNV24RUV1+0G1BtlwdMQlFFWg2sy0GAK52KQEG9SRWdsZzBR8XLFeCH90kChXiQ/ZuYSQ== kfilipovski@macbook-eth.home
+          private: ""
+          description: kfilipovski
+        prefix_options: {}
+
+      ciName: kfilipovski
+      created: 1316629977745
+    prefix_options: *id001
+  54690: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1054-54690
+      lastRfcId: 
+      ciId: 54690
+      comments: ""
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: S
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: cassandra-compute
+      created: 1316795378309
+    prefix_options: *id001
+  55257: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1042-55257
+      lastRfcId: 
+      ciId: 55257
+      comments: ""
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Cassandra
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          cluster: TestCluster
+          version: "0.8"
+        prefix_options: {}
+
+      ciName: mycass-cassandra
+      created: 1316796259259
+    prefix_options: *id001
+  54845: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1090-54845
+      lastRfcId: 
+      ciId: 54845
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: single
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: test1
+      created: 1316795567417
+    prefix_options: *id001
+  52436: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 51811-1090-52436
+      lastRfcId: 
+      ciId: 52436
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: single
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: west
+      created: 1316638970549
+    prefix_options: *id001
+description: Yummly dev
+name: yummly
+nspath: /kloopz
+relations: !map:Mash 
+  54851: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 51809-1190-54845
+      comments: ""
+      fromCiId: 51809
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.RealizedIn
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 54851
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 54845
+      created: 1316795567417
+    prefix_options: &id002 {}
+
+  55258: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 55255-1558-55257
+      comments: ""
+      fromCiId: 55255
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 55258
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: cassandra
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 55257
+      created: 1316796259259
+    prefix_options: *id002
+  52442: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 51809-1190-52436
+      comments: ""
+      fromCiId: 51809
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.RealizedIn
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 52442
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 52436
+      created: 1316638970549
+    prefix_options: *id002
+  51854: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 51845-1227-51813
+      comments: ""
+      fromCiId: 51845
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.SecuredBy
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 51854
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 51813
+      created: 1316630271296
+    prefix_options: *id002
+  55050: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 55041-1227-51813
+      comments: ""
+      fromCiId: 55041
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.SecuredBy
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 55050
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 51813
+      created: 1316795685506
+    prefix_options: *id002
+  52443: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 52436-1261-3747
+      comments: ""
+      fromCiId: 52436
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Utilizes
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 52443
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      toCiId: 3747
+      created: 1316638970638
+    prefix_options: *id002
+  54852: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 54845-1261-3732
+      comments: ""
+      fromCiId: 54845
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Utilizes
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 54852
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      toCiId: 3732
+      created: 1316795567450
+    prefix_options: *id002
+  54687: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 51809-1279-54686
+      comments: ""
+      fromCiId: 51809
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.ComposedOf
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 54687
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 54686
+      created: 1316795378309
+    prefix_options: *id002
+  54715: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 54706-1227-51813
+      comments: ""
+      fromCiId: 54706
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.SecuredBy
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 54715
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 51813
+      created: 1316795394506
+    prefix_options: *id002
+  55260: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 55255-1558-55259
+      comments: ""
+      fromCiId: 55255
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 55260
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 55259
+      created: 1316796259259
+    prefix_options: *id002
+  54689: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 54686-1558-54688
+      comments: ""
+      fromCiId: 54686
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 54689
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: cassandra
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 54688
+      created: 1316795378309
+    prefix_options: *id002
+  51851: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 51809-1190-51845
+      comments: ""
+      fromCiId: 51809
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.RealizedIn
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 51851
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 51845
+      created: 1316630270864
+    prefix_options: *id002
+  52445: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 52436-1227-51813
+      comments: ""
+      fromCiId: 52436
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.SecuredBy
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 52445
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 51813
+      created: 1316638970694
+    prefix_options: *id002
+  54854: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 54845-1227-51813
+      comments: ""
+      fromCiId: 54845
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.SecuredBy
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 54854
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 51813
+      created: 1316795567641
+    prefix_options: *id002
+  55047: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 51809-1190-55041
+      comments: ""
+      fromCiId: 51809
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.RealizedIn
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 55047
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 55041
+      created: 1316795685421
+    prefix_options: *id002
+  55256: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 51809-1279-55255
+      comments: ""
+      fromCiId: 51809
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.ComposedOf
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 55256
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 55255
+      created: 1316796259259
+    prefix_options: *id002
+  51852: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 51845-1261-3732
+      comments: ""
+      fromCiId: 51845
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Utilizes
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 51852
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      toCiId: 3732
+      created: 1316630271055
+    prefix_options: *id002
+  54712: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 51809-1190-54706
+      comments: ""
+      fromCiId: 51809
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.RealizedIn
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 54712
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 54706
+      created: 1316795394413
+    prefix_options: *id002
+  55048: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 55041-1261-3732
+      comments: ""
+      fromCiId: 55041
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Utilizes
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 55048
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      toCiId: 3732
+      created: 1316795685456
+    prefix_options: *id002
+  54691: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 54686-1558-54690
+      comments: ""
+      fromCiId: 54686
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 54691
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 54690
+      created: 1316795378309
+    prefix_options: *id002
+  54713: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 54706-1261-3747
+      comments: ""
+      fromCiId: 54706
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/yummly
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Utilizes
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 54713
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      toCiId: 3747
+      created: 1316795394450
+    prefix_options: *id002

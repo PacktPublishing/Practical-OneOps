@@ -1,0 +1,62 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          jboss
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/Stop JBoss AS v7.0.0
+### END INIT INFO
+
+
+export JAVA_HOME=/usr/java/default
+
+#define where jboss is - this is the directory containing directories log, bin, conf etc
+export JBOSS_HOME=<%= node["jboss"]["jboss_home"] %>
+
+#define the user under which jboss will run, or use 'RUNASIS' to run as the current user
+export JBOSS_USER=${JBOSS_USER:-"jboss"}
+
+#make sure java is in your path
+JAVAPTH=${JAVAPTH:-"$JAVA_HOME/bin/java"}
+export PATH=$PATH:$JAVAPTH
+
+#source some script files in order to set and export environmental
+#variables
+#as well as add the appropriate executables to $PATH
+[ -r /etc/profile.d/java.sh ] && . /etc/profile.d/java.sh
+[ -r /etc/profile.d/jboss.sh ] && . /etc/profile.d/jboss.sh
+
+
+
+
+case "$1" in
+    start)
+        echo "Starting JBoss AS <%= node["jboss"]["version"] %>"
+        exec nohup sudo -u jboss sh ${JBOSS_HOME}/bin/standalone.sh >/dev/null 2>&1 &
+    ;;
+    stop)
+        echo "Stopping JBoss AS <%= node["jboss"]["version"] %>"
+        sudo -u jboss sh ${JBOSS_HOME}/bin/jboss-cli.sh --connect command=:shutdown
+    ;;
+    status)
+        jboss_running="$( ps -ef | grep $JBOSS_HOME | grep -v 'grep' )"
+        if [ -z "${jboss_running}" ] ; then
+        echo "JBoss is not running"
+        exit 1
+    else
+        echo "JBoss is running"
+    fi
+    ;;
+    restart)
+        echo "Stopping Jboss"
+        sudo -u jboss sh ${JBOSS_HOME}/bin/jboss-cli.sh --connect command=:shutdown
+        echo "Starting JBoss AS <%= node["jboss"]["version"] %>"
+        exec nohup sudo -u jboss sh ${JBOSS_HOME}/bin/standalone.sh >/dev/null 2>&1 &
+    *)
+        echo "Usage: /etc/init.d/jboss {start|stop|status|restart}"
+        exit 1
+    ;;
+esac
+
+exit 0

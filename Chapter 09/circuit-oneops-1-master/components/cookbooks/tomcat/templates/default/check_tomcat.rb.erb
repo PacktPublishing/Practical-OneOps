@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+#
+# gets tomcat metrics from manager/status xml api
+#
+
+require 'net/http'
+require 'rubygems'
+require 'xmlsimple'
+
+port = <%= node.tomcat.port %>
+
+stats = XmlSimple.xml_in(`curl -s --user admin:admin "http://127.0.0.1:#{port}/manager/status?XML=true"`,{ 'KeyAttr' => 'name', 'ForceArray' => false })
+
+#puts "stats="+stats.inspect
+#"connector"=>{"http-8080"=>{"threadInfo"=>{
+
+arg = ARGV[0]
+perf = nil
+
+<%
+# default tomcat
+connector_name = "http-#{node.tomcat.port}"
+
+case node.tomcat.version
+when "7.0"
+	connector_name = '"http-bio-'+node.tomcat.port+'"'
+end
+%>
+
+if arg == "RequestInfo"
+  requestInfo = stats["connector"]['<%= connector_name %>']["requestInfo"]
+  bytesSent = requestInfo["bytesSent"]
+  bytesReceived = requestInfo["bytesReceived"]
+  requestCount = requestInfo["requestCount"]
+  errorCount =  requestInfo["errorCount"]
+  maxTime = requestInfo["maxTime"]
+  processingTime = requestInfo["processingTime"]
+
+  perf = "bytesSent=#{bytesSent} bytesReceived=#{bytesReceived} requestCount=#{requestCount} errorCount=#{errorCount} maxTime=#{maxTime} processingTime=#{processingTime}"
+
+elsif arg == "ThreadInfo"
+  threadInfo = stats["connector"]['<%= connector_name %>']["threadInfo"]
+  currentThreadsBusy = threadInfo["currentThreadsBusy"]
+  maxThreads = threadInfo["maxThreads"]
+  currentThreadCount = threadInfo["currentThreadCount"]
+  percentBusy = (currentThreadsBusy.to_f/maxThreads.to_f)*100
+  # no max
+  if maxThreads == "-1"
+    percentBusy = "0.0"
+  end
+
+  perf = "currentThreadsBusy=#{currentThreadsBusy} maxThreads=#{maxThreads} currentThreadCount=#{currentThreadCount} percentBusy=#{percentBusy}"
+
+elsif arg == "JvmInfo"
+  jvm = stats["jvm"]["memory"]
+  max = jvm["max"]
+  free = jvm["free"]
+  total = jvm["total"]
+  percentUsed = ((total.to_f-free.to_f) / total.to_f) * 100
+
+  perf = "max=#{max} free=#{free} total=#{total} percentUsed=#{percentUsed}"
+
+else
+  puts "usage: check_tomcat.rb [RequestInfo,ThreadInfo,JvmInfo] ... ex) check_tomcat.rb ThreadInfo"
+
+end
+
+puts perf + "|"+ perf

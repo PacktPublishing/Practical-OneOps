@@ -1,0 +1,57 @@
+#!/bin/bash
+
+clientPort=<%= node['zookeeper']['client_port'] %>
+declare -i returnCode=0
+declare -i num_active_nodes=0
+active_nodes=""
+
+declare -a ips=(<%= @string_of_hostname %>)
+declare -i total_nodes=${#ips[@]}
+
+## Iterate over all IPs
+for ip in "${ips[@]}"
+do	
+	## More detailed check if ruok command returns good status
+	srvrOut=`echo srvr | nc -w 1 $ip $clientPort | grep "Mode" | awk -F": " '{print $2}'`
+
+	## Retry one more time
+	if [ $? -ne 0 ]; then
+		#echo "ERROR: Some problem with nc command, retrying again"
+		srvrOut=`echo srvr | nc -w 1 $ip $clientPort | grep "Mode" | awk -F": " '{print $2}'`
+	fi
+		
+	### If node is leader or follower, then it is good. Otherwise return error
+	if [ "$srvrOut" == "follower" ]; then
+		num_active_nodes=$(($num_active_nodes+1))
+		active_nodes="$active_nodes $ip"
+	elif [ "$srvrOut" == "leader" ]; then
+		num_active_nodes=$(($num_active_nodes+1))
+		active_nodes="$active_nodes $ip(leader)"
+	elif [ "$srvrOut" == "observer" ]; then
+		not_used="true"
+    elif [ "$srvrOut" == "standalone" ]; then
+        num_active_nodes=$(($num_active_nodes+1))
+	else
+		#"ERROR: $ip is not a leader, follower or an observer, but returned 'imok' response"
+		returnCode=0
+	fi
+done
+
+declare -i original_count=$total_nodes
+declare -i mod2=$total_nodes%2
+
+if [ $mod2 -eq 0 ]; then
+	total_nodes=$total_nodes+1
+fi
+
+declare -i quorum=0
+let quorum=$total_nodes/2+1
+
+if [ $num_active_nodes -lt $quorum ]; then
+	# Zookeeper Ensemble is in bad state"
+	# Quorum of $quorum not met, only $num_active_nodes active nodes
+	returnCode=2
+fi 
+
+echo "Alert|return_code=$returnCode"
+exit $?	

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+user_host=$1
+location=$2
+minutes_age=$3
+filter=$4
+
+backup_count=`ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $user_host "find $location -cmin -$minutes_age" 2>/dev/null|grep $filter|wc -l|xargs`
+
+echo "backup_count=$backup_count|backup_count=$backup_count"

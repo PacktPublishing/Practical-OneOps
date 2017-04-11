@@ -1,0 +1,26 @@
+<%
+  # ganglia.conf.erb
+  #
+  # This is the Apache httpd web context configuration file.
+  # It sets up the /ganglia context on the web server.
+ %>
+#
+# Ganglia monitoring system php web frontend
+#
+
+Alias /ganglia /usr/share/ganglia
+
+<Directory />
+    AllowOverride none
+    Require all granted
+</Directory>
+
+<Location /ganglia>
+  Require all granted
+</Location>
+
+<VirtualHost *:<%= @gweb_port %> >
+ServerAlias /
+DocumentRoot /usr/share/ganglia
+
+</VirtualHost>

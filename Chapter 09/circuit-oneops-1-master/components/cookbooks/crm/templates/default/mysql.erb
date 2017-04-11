@@ -1,0 +1,6 @@
+#!/bin/bash
+export OCF_ROOT=/usr/lib/ocf 
+export OCF_RESKEY_binary=/usr/bin/mysqld_safe
+export OCF_RESKEY_datadir=/db
+
+/usr/lib/ocf/resource.d/heartbeat/mysql $*

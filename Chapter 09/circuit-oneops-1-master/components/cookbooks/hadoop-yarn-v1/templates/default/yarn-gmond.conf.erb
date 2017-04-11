@@ -1,0 +1,12 @@
+# THIS FILE IS MANAGED BY CHEF
+
+# Ganglia gmond configuration for yarn hosts
+# - gmond runs on the host and gathers system statistics
+# - statistics sent to several gmonds for the cluster (site)
+
+<% @ganglia_servers.each do |server| -%>
+ udp_send_channel {
+    host = <%= server.split(':')[0] %>
+    port = <%= server.split(':')[1] %>
+}
+<% end %>

@@ -1,0 +1,35 @@
+---
+driver:
+  name: azurerm
+
+driver_config:
+  location: 'East US'
+  machine_size: 'Standard_D1'
+
+provisioner:
+  name: chef_solo
+  require_chef_omnibus: 12.11.18
+
+platforms:
+  - name: windows2012-r2
+    driver_config:
+      image_urn: MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:latest
+      winrm_powershell_script: |-
+        set-executionpolicy -executionpolicy unrestricted
+        winrm quickconfig -q
+        winrm set "winrm/config" '@{MaxTimeoutms="1800000"}'
+        winrm set "winrm/config/winrs" '@{MaxMemoryPerShellMB="1024"}'
+        winrm set "winrm/config/service" '@{AllowUnencrypted="true"}'
+        winrm set "winrm/config/client" '@{AllowUnencrypted="true"}'
+        winrm set "winrm/config/service/auth" '@{Basic="true"}'
+        winrm set "winrm/config/client/auth" '@{Basic="true"}'
+        netsh advfirewall firewall set rule name="Windows Remote Management (HTTP-In)" profile=public protocol=tcp localport=5985 remoteip=localsubnet new remoteip=any
+    transport:
+      name: winrm
+
+suites:
+  - name: dotnetframework
+    run_list:
+      - recipe[chocolatey]
+      - recipe[dotnetframework::add]
+    attributes: { "workorder": { "rfcCi": { "ciAttributes": { "dotnet_framework_version": "dotnet4.5.2",  "chocolatey_package_source": "https://chocolatey.org/api/v2/"  } } } }

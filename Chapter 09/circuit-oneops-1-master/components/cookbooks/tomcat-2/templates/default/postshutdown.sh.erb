@@ -1,0 +1,11 @@
+#!/bin/bash
+# description: Post Shutdown Script for Tomcat
+
+POST_SHUTDOWN_COMMAND="<%= node['tomcat']['startup_shutdown']['post_shutdown_command'] %>"
+
+eval "$POST_SHUTDOWN_COMMAND"
+if [ $? -eq 1 ]; then
+    echo "Post Shutdown Command failed!"
+else
+    echo "Post Shutdown Command succeeded!"
+fi

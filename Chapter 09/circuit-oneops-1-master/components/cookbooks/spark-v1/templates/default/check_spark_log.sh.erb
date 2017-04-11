@@ -1,0 +1,13 @@
+<% 
+  # check_spark_log.sh.erb
+  #
+  # This script checks the entries in the Spark log.
+  #
+ %>
+#!/usr/bin/env bash
+
+# Look up the spark log based on the log parameter
+LOG_PATTERN="<%= @spark_log_dir %>/spark-spark-*$2*.out"
+LOG_FILE=`ls -1 $LOG_PATTERN |head -n 1`
+
+/opt/nagios/libexec/check_logfiles   --noprotocol --tag=$1 --logfile=$LOG_FILE --warningpattern="$3" --criticalpattern="$4"

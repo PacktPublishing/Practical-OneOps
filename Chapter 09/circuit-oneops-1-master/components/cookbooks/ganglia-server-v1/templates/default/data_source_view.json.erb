@@ -1,0 +1,19 @@
+<%
+  # data_source_view.json.erb
+  #
+  # This is the Ganglia view definition file.  It contains the
+  # default view created for every data source.
+ %>
+{
+  "view_name": "<%= @view_name %>",
+  "default_size": "medium",
+  "items": [
+    {
+      "cluster": "<%= @cluster_name %>",
+      "graph": "cluster_jobs_report"
+    }
+  ],
+  "view_type": "standard",
+  "parent": null,
+  "common_y_axis": 0
+}

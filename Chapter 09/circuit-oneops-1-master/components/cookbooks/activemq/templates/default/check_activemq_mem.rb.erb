@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+#
+# gets queue metrics from builtin xml apis
+#
+#sslenabled  port path authenabled adminusername adminpassword
+sslenable = ARGV[0]
+port = ARGV[1]
+path = ARGV[2]
+authenabled = ARGV[3]
+adminusername = ARGV[4]
+adminpassword = ARGV[5]
+
+require 'net/http'
+require 'rubygems'
+require 'xmlsimple'
+require 'nokogiri'
+
+url =''
+perf=''
+ignore_cert = ''
+
+protocol = 'http'
+if "#{sslenable}" == 'true'
+  ignore_cert = ' -k '
+  protocol = 'https'
+end
+
+if "#{authenabled}" == 'false'
+  url = "#{protocol}://localhost:#{port}#{path} #{ignore_cert}"
+else
+  url = "#{protocol}://localhost:#{port}#{path}  -u #{adminusername}:#{adminpassword} #{ignore_cert}"
+end
+
+data = `curl -s #{url}`
+
+doc = Nokogiri::HTML(data)
+
+label=''
+items = doc.xpath("//div[contains(@class,'body-content')]/table/tr/td").collect {|node|
+ if node.text.include?'percent used'
+   label = node.text
+  else
+    if label != ''
+       label.gsub!(/\s/,'_')
+       perf += "#{label}=#{node.text} "
+      label = ''
+    end
+ end
+}
+puts "Memory status |" + perf

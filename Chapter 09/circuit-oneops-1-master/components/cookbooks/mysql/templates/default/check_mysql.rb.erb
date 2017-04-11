@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+# 
+# decorates check_mysql with nagios plugin format perfdata based on stdout
+#
+raw = (`/opt/nagios/libexec/check_mysql -u root`).gsub("\n",'')
+metrics = raw.split("  ")
+perf_str = ""
+metrics.each do |m|
+  parts = m.split(": ")
+  key = parts[0]
+  if key != "Uptime"
+    perf_str += key.gsub(" ","_").downcase + "="+ parts[1] +" "
+  end
+end
+puts raw + "|"+ perf_str

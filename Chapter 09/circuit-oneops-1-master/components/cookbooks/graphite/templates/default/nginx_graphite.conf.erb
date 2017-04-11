@@ -1,0 +1,88 @@
+worker_processes <%= node["cpu"]["total"] %>; # the number of cores
+worker_rlimit_nofile 200000; # filehandle for each connection
+
+events {
+    multi_accept on; #accept as many connections as possible
+    worker_connections  10000;  #increase connection pool from default 1024
+    use epoll;
+}
+
+http {
+  tcp_nodelay on;
+  keepalive_timeout  30;
+  keepalive_requests 100000;
+
+  include mime.types;
+  default_type application/octet-stream;
+
+  # Custom log format showing request and upstream response timing
+  # http://lincolnloop.com/blog/2010/nov/9/tracking-application-response-time-nginx/
+  log_format timed_combined
+      '$remote_addr - $remote_user [$time_local]  '
+      '"$request" $status $body_bytes_sent '
+      '"$http_referer" "$http_user_agent" '
+      '$request_time $upstream_response_time $pipe';
+
+  proxy_cache_path /opt/nginx/cache levels=1:2 inactive=2m keys_zone=graphite_cache:10m max_size=1g;
+
+  server {
+    listen 80 default_server deferred;
+    listen 8080 default_server deferred;
+
+    charset utf-8;
+    access_log /opt/nginx/logs/graphite.access.log timed_combined;
+    error_log /opt/nginx/logs/graphite.error.log error;
+
+    root /opt/graphite/webapp;
+
+    location /static/admin/ {
+      alias /usr/lib/python2.6/site-packages/django/contrib/admin/media;
+    }
+
+    location /content {
+    }
+
+    location / {
+      if ($args ~ (.*)[&?]_uniq=[^&]*$) {
+        set $args $1;
+      }
+      if ($args ~ (.*[&?])_uniq=[^&]*&(.*)) {
+        set $args $1$2;
+      }
+      if ($args ~ (.*)[&?]_salt=[^&]*$) {
+        set $args $1;
+      }
+      if ($args ~ (.*[&?])_salt=[^&]*&(.*)) {
+        set $args $1$2;
+      }
+      proxy_cache_key "$scheme$host$uri$is_args$args";
+      proxy_pass http://127.0.0.1:8888;
+      proxy_read_timeout 300s;
+      proxy_cache graphite_cache;
+      proxy_cache_valid any 10s;
+      proxy_ignore_headers Cache-Control;
+      proxy_cache_use_stale error timeout invalid_header updating http_500 http_502 http_503 http_504 http_404;
+      proxy_cache_lock on;
+      proxy_cache_lock_timeout 300s;
+
+      add_header 'Access-Control-Allow-Origin' '*';
+      add_header 'Access-Control-Allow-Methods' 'GET, POST';
+      add_header 'Access-Control-Allow-Headers' 'Authorization, Content-Type';
+      add_header 'Access-Control-Allow-Credentials' 'true';
+    }
+  }
+
+  server {
+    listen 8888 default_server deferred;
+
+    charset utf-8;
+    access_log /opt/nginx/logs/uwsgi.access.log timed_combined;
+    error_log /opt/nginx/logs/uwsgi.error.log error;
+
+    location / {
+      uwsgi_pass 127.0.0.1:3031;
+      include uwsgi_params;
+      uwsgi_read_timeout 300s;
+    }
+  }
+}

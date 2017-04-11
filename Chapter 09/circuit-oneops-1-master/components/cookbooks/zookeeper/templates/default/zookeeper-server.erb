@@ -1,0 +1,45 @@
+#!/bin/bash
+# description: Zookeeper Start Stop Restart
+# processname: zookeeper-server
+# chkconfig: 234 20 80
+
+SU="su zookeeper -c "
+ZK_SERVER_SH=<%= @zookeeper[:install_dir]%>/zookeeper-<%=@zookeeper[:version]%>/bin/zkServer.sh
+
+case $1 in
+status)
+    "$ZK_SERVER_SH" status
+  ;;
+start)
+ eval "$SU \"$ZK_SERVER_SH start\""   
+ if [ $? -eq 0 ] ; then
+        touch  /var/lock/subsys/zookeeper-server
+    else
+        echo "zookeeper failed to start"
+        exit 1
+    fi
+   ;;
+stop)
+   eval "$SU \"$ZK_SERVER_SH stop\""
+    if [ $? -eq 0 ] ; then
+        rm -f  /var/lock/subsys/zookeeper-server
+    else
+        echo "zookeeper failed to stop"
+        exit 1
+    fi
+ ;;
+restart)
+  eval "$SU \"$ZK_SERVER_SH restart\"" 
+ if [ $? -eq 0 ] ; then
+        touch  /var/lock/subsys/zookeeper-server
+    else
+        echo "zookeeper failed to stop"
+        exit 1
+    fi
+  ;;
+
+*)
+echo "Usage: $0 {start|stop|restart|status}" >&2
+
+esac
+

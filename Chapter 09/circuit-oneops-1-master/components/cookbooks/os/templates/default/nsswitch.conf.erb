@@ -1,0 +1,21 @@
+passwd:     files <%= @ldap%>
+shadow:     files
+group:      files <%= @ldap%>
+#hosts:     db files nisplus nis dns
+
+hosts:      files dns
+bootparams: nisplus [NOTFOUND=return] files
+
+ethers:     files <%= @ldap%>
+netmasks:   files
+networks:   files <%= @ldap%>
+protocols:  files <%= @ldap%>
+rpc:        files <%= @ldap%>
+services:   files <%= @ldap%>
+
+netgroup:   files <%= @ldap%>
+
+publickey:  nisplus
+
+automount:  files <%= @ldap%>
+aliases:    files nisplus

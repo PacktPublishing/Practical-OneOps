@@ -1,0 +1,6 @@
+<% if node['topic']['destinationtype'] == 'Q' %>
+<!-- Q-destinationname-Q --><authorizationEntry queue=<%="'#{@destinationname}'" %> read=<%="'#{@destinationname}_r'" %> write=<%="'#{@destinationname}_w'" %> admin=<%="'#{@destinationname}_w,admins'" %> />
+<% end %>
+<% if node['topic']['destinationtype'] == 'T' %>
+<!-- T-destinationname-T --><authorizationEntry topic=<%="'#{@destinationname}'" %> read=<%="'#{@destinationname}_r'" %> write=<%="'#{@destinationname}_w'" %> admin=<%="'#{@destinationname}_w,admins'" %> />
+<% end %>

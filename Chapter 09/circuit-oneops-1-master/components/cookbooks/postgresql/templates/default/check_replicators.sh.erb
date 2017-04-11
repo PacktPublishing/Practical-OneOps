@@ -1,0 +1,8 @@
+#!/bin/bash
+# check for sender
+replicator_count=`pgrep -f "wal sender process"|wc -l|xargs`
+if [ $out == "0" ]; then
+  # check for receiver
+  replicator_count=`pgrep -f "wal receiver process"|wc -l|xargs`
+fi
+echo "replicators=$replicator_count|replicators=$replicator_count"

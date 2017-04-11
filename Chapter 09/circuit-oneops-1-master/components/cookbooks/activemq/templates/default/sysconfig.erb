@@ -1,0 +1,8 @@
+<% env = node[:activemq].has_key?(:environment) ? Mash.new(JSON.parse(node[:activemq][:environment])) : Hash.new %>
+<% env.each do |k,v| %>
+export <%= k %>=<%= v %>
+<% end %>
+# Custom extenstion to pass env variables defined by oneops users
+for envfile in `ls -1 /opt/oneops/env/*/.env 2> /dev/null`; do
+	. $envfile
+done

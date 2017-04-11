@@ -1,0 +1,2793 @@
+--- !ruby/object:Chef::Catalog 
+cis: !map:Mash 
+  465481: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1104-465481
+      lastRfcId: 
+      ciId: 465481
+      comments: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: redundant
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: qa
+      created: 1324522262141
+    prefix_options: &id001 {}
+
+  517005: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1067-517005
+      lastRfcId: 
+      ciId: 517005
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: L
+          hosts: "{}"
+          ostype: ubuntu-10.04
+        prefix_options: {}
+
+      ciName: mongodb0-compute
+      created: 1325752811523
+    prefix_options: *id001
+  517011: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-31854-517011
+      lastRfcId: 
+      ciId: 517011
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Mongodb
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          mongodbuser: root
+          port: "27017"
+          datapath: /data/mongodb
+          mongodbgroup: root
+          version: 2.0.2
+          apppath: mongodb
+          mount_point: /data
+        prefix_options: {}
+
+      ciName: mongodb0-mongodb
+      created: 1325752811523
+    prefix_options: *id001
+  517374: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1325-517374
+      lastRfcId: 
+      ciId: 517374
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Volume
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          size: 100%FREE
+        prefix_options: {}
+
+      ciName: postgresql0-datavol
+      created: 1325753459738
+    prefix_options: *id001
+  465262: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1067-465262
+      lastRfcId: 
+      ciId: 465262
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: M
+          ostype: ubuntu-10.04
+        prefix_options: {}
+
+      ciName: vcap-compute
+      created: 1324522025818
+    prefix_options: *id001
+  517380: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1076-517380
+      lastRfcId: 
+      ciId: 517380
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Database
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          dbname: mydb
+          username: myuser
+          extra: ""
+          password: --ENCRYPTED--
+        prefix_options: {}
+
+      ciName: postgresql0-database
+      created: 1325753459738
+    prefix_options: *id001
+  517358: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1189-517358
+      lastRfcId: 
+      ciId: 517358
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Mysql
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          port: "3306"
+          datadir: /data
+          version: "5.5"
+          password: --ENCRYPTED--
+        prefix_options: {}
+
+      ciName: mysql0-mysql
+      created: 1325753459738
+    prefix_options: *id001
+  465268: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1325-465268
+      lastRfcId: 
+      ciId: 465268
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Volume
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          size: 100%FREE
+        prefix_options: {}
+
+      ciName: vcap-datavol
+      created: 1324522025818
+    prefix_options: *id001
+  517364: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1076-517364
+      lastRfcId: 
+      ciId: 517364
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Database
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          dbname: mydb
+          username: myuser
+          extra: ""
+          password: --ENCRYPTED--
+        prefix_options: {}
+
+      ciName: mysql0-database
+      created: 1325753459738
+    prefix_options: *id001
+  420713: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1152-420713
+      lastRfcId: 
+      ciId: 420713
+      comments: default keypair
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: account.Keypair
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          public: ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEApM++KYxLTMV4N5KmdwaJXvV6oL5+o4dKA8yqT4oCpuZd0m0xmYv11nIlRJol4L4kZSINT/8gUTl+SR7IAx5vVCd+LljcnHQHzD6+rCPMNN3+iKFEZs9oSg6QGN3u9fHtSiZxG4KIdjNAmk6m5MMtA5q0UskfnaHOzJT3irUpT5FTPie5jToAzgtsCPy5v+zDl3LGA8I0JzD3zdf45Y7H9wwFVdoaRBd2XmWVsvFitqnei7/lQCM34LQZhkHk5Bca7yIzm0QC47aCG+JiDWNV24RUV1+0G1BtlwdMQlFFWg2sy0GAK52KQEG9SRWdsZzBR8XLFeCH90kChXiQ/ZuYSQ== kfilipovski@macbook-eth.home
+          description: kfilipovski
+        prefix_options: {}
+
+      ciName: kfilipovski
+      created: 1323750338092
+    prefix_options: *id001
+  517007: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1121-517007
+      lastRfcId: 
+      ciId: 517007
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Filesystem
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          device: ""
+          mount_point: /data
+          fstype: xfs
+          options: noatime,nodiratime
+        prefix_options: {}
+
+      ciName: mongodb0-datafs
+      created: 1325752811523
+    prefix_options: *id001
+  465258: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1246-465258
+      lastRfcId: 
+      ciId: 465258
+      comments: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: cloudfoundry
+          version: "0.1"
+          description: Cloud Foundry VCAP
+          aliases: "[\"api\",\"app1\",\"app2\",\"app3\"]"
+          source: packer
+        prefix_options: {}
+
+      ciName: vcap
+      created: 1324522025818
+    prefix_options: *id001
+  517376: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1121-517376
+      lastRfcId: 
+      ciId: 517376
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Filesystem
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          device: ""
+          mount_point: /data
+          fstype: xfs
+          options: ""
+        prefix_options: {}
+
+      ciName: postgresql0-datafs
+      created: 1325753459738
+    prefix_options: *id001
+  517354: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1246-517354
+      lastRfcId: 
+      ciId: 517354
+      comments: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: mysql
+          version: "0.2"
+          description: ""
+          aliases: "[]"
+          source: packer
+        prefix_options: {}
+
+      ciName: mysql0
+      created: 1325753459738
+    prefix_options: *id001
+  517382: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1253-517382
+      lastRfcId: 
+      ciId: 517382
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Postgresql
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          port: "5432"
+          version: "9.1"
+          postgresql_conf: "{\"data_directory\":\"'/data'\"}"
+        prefix_options: {}
+
+      ciName: postgresql0-postgresql
+      created: 1325753459738
+    prefix_options: *id001
+  465264: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1121-465264
+      lastRfcId: 
+      ciId: 465264
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Filesystem
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          device: ""
+          mount_point: /cloudfoundry
+          fstype: xfs
+          options: ""
+        prefix_options: {}
+
+      ciName: vcap-datafs
+      created: 1324522025818
+    prefix_options: *id001
+  517360: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1121-517360
+      lastRfcId: 
+      ciId: 517360
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Filesystem
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          device: ""
+          mount_point: /data
+          fstype: xfs
+          options: ""
+        prefix_options: {}
+
+      ciName: mysql0-datafs
+      created: 1325753459738
+    prefix_options: *id001
+  517003: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1246-517003
+      lastRfcId: 
+      ciId: 517003
+      comments: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: mongodb
+          version: "0.1"
+          description: ""
+          aliases: "[]"
+          source: packer
+        prefix_options: {}
+
+      ciName: mongodb0
+      created: 1325752811523
+    prefix_options: *id001
+  517009: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1325-517009
+      lastRfcId: 
+      ciId: 517009
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Volume
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          size: 100%FREE
+        prefix_options: {}
+
+      ciName: mongodb0-datavol
+      created: 1325752811523
+    prefix_options: *id001
+  517372: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1246-517372
+      lastRfcId: 
+      ciId: 517372
+      comments: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: postgresql
+          version: "0.2"
+          description: ""
+          aliases: "[]"
+          source: packer
+        prefix_options: {}
+
+      ciName: postgresql0
+      created: 1325753459738
+    prefix_options: *id001
+  465260: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1036-465260
+      lastRfcId: 
+      ciId: 465260
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Build
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          install_dir: /cloudfoundry
+          repository: git://github.com/cloudfoundry/vcap.git
+          persist: "[]"
+          depth: "1"
+          ci: "false"
+          migration_command: ""
+          restart_command: cd /cloudfoundry; rm -fr vcap; ln -s current vcap
+          revision: master
+          scm: git
+          environment: "{}"
+          submodules: "true"
+          key: ""
+        prefix_options: {}
+
+      ciName: vcap-vcap
+      created: 1324522025818
+    prefix_options: *id001
+  517378: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1067-517378
+      lastRfcId: 
+      ciId: 517378
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: S
+          hosts: "{}"
+          ostype: ubuntu-11.10
+        prefix_options: {}
+
+      ciName: postgresql0-compute
+      created: 1325753459738
+    prefix_options: *id001
+  517356: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1325-517356
+      lastRfcId: 
+      ciId: 517356
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Volume
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          size: 100%FREE
+        prefix_options: {}
+
+      ciName: mysql0-datavol
+      created: 1325753459738
+    prefix_options: *id001
+  465266: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1111-465266
+      lastRfcId: 
+      ciId: 465266
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.File
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          exec_cmd: /cloudfoundry/vcap/dev_setup/bin/vcap_dev_setup -c /cloudfoundry/config/vcap_dev_config.yml -d /cloudfoundry && /cloudfoundry/vcap/dev_setup/bin/vcap_dev start
+          content: |-
+            ---
+            deployment:
+              name: "default"
+              domain: "cloudfoundry.kloopz.kloopz.net"
+            dea:
+              runtimes:
+                - ruby18
+            jobs:
+              install:
+                - router
+                - nats_server
+                - cloud_controller:
+                    builtin_services:
+                      - mysql
+                - health_manager
+                - ccdb
+                - dea
+                - mysql_node:
+                    index: "0"
+                - mysql_gateway
+          path: /cloudfoundry/config/vcap_dev_config.yml
+        prefix_options: {}
+
+      ciName: vcap-config
+      created: 1324522025818
+    prefix_options: *id001
+  517362: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 420711-1067-517362
+      lastRfcId: 
+      ciId: 517362
+      comments: ""
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: S
+          hosts: "{}"
+          ostype: ubuntu-11.10
+        prefix_options: {}
+
+      ciName: mysql0-compute
+      created: 1325753459738
+    prefix_options: *id001
+description: CloudFoundry
+name: cloudfoundry
+nspath: /kloopz
+relations: !map:Mash 
+  517379: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517372-2002-517378
+      comments: ""
+      fromCiId: 517372
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517379
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517378
+      created: 1325753459738
+    prefix_options: &id002 {}
+
+  465261: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465258-2002-465260
+      comments: ""
+      fromCiId: 465258
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465261
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: vcap
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 465260
+      created: 1324522025818
+    prefix_options: *id002
+  465272: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465266-1631-465260
+      comments: ""
+      fromCiId: 465266
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465272
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 465260
+      created: 1324522025818
+    prefix_options: *id002
+  517016: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517007-1631-517009
+      comments: ""
+      fromCiId: 517007
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517016
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517009
+      created: 1325752811523
+    prefix_options: *id002
+  517357: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517354-2002-517356
+      comments: ""
+      fromCiId: 517354
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517357
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datavol
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517356
+      created: 1325753459738
+    prefix_options: *id002
+  517368: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517358-1631-517362
+      comments: ""
+      fromCiId: 517358
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517368
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517362
+      created: 1325753459738
+    prefix_options: *id002
+  517385: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517376-1631-517374
+      comments: ""
+      fromCiId: 517376
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517385
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517374
+      created: 1325753459738
+    prefix_options: *id002
+  465487: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 420709-2000-465481
+      comments: ""
+      fromCiId: 420709
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.RealizedIn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465487
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 465481
+      created: 1324522262141
+    prefix_options: *id002
+  465267: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465258-2002-465266
+      comments: ""
+      fromCiId: 465258
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465267
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: config
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 465266
+      created: 1324522025818
+    prefix_options: *id002
+  517363: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517354-2002-517362
+      comments: ""
+      fromCiId: 517354
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517363
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517362
+      created: 1325753459738
+    prefix_options: *id002
+  465273: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465264-1631-465268
+      comments: ""
+      fromCiId: 465264
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465273
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 465268
+      created: 1324522025818
+    prefix_options: *id002
+  517017: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517007-1631-517005
+      comments: ""
+      fromCiId: 517007
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517017
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517005
+      created: 1325752811523
+    prefix_options: *id002
+  517006: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517003-2002-517005
+      comments: ""
+      fromCiId: 517003
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517006
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517005
+      created: 1325752811523
+    prefix_options: *id002
+  517369: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517360-1631-517356
+      comments: ""
+      fromCiId: 517360
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517369
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517356
+      created: 1325753459738
+    prefix_options: *id002
+  517386: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517376-1631-517378
+      comments: ""
+      fromCiId: 517376
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517386
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517378
+      created: 1325753459738
+    prefix_options: *id002
+  465488: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465481-2163-448850
+      comments: ""
+      fromCiId: 465481
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Utilizes
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465488
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      toCiId: 448850
+      created: 1324522262186
+    prefix_options: *id002
+  517012: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517003-2002-517011
+      comments: ""
+      fromCiId: 517003
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517012
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: mongodb
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517011
+      created: 1325752811523
+    prefix_options: *id002
+  517375: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517372-2002-517374
+      comments: ""
+      fromCiId: 517372
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517375
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datavol
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517374
+      created: 1325753459738
+    prefix_options: *id002
+  517381: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517372-2002-517380
+      comments: ""
+      fromCiId: 517372
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517381
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: database
+          constraint: 1..*
+        prefix_options: {}
+
+      toCiId: 517380
+      created: 1325753459738
+    prefix_options: *id002
+  517513: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465258-1877-517354
+      comments: ""
+      fromCiId: 465258
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.LinksTo
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517513
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 517354
+      created: 1325753519809
+    prefix_options: *id002
+  465263: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465258-2002-465262
+      comments: ""
+      fromCiId: 465258
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465263
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 465262
+      created: 1324522025818
+    prefix_options: *id002
+  465274: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465264-1631-465262
+      comments: ""
+      fromCiId: 465264
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465274
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 465262
+      created: 1324522025818
+    prefix_options: *id002
+  517018: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465258-1877-517003
+      comments: ""
+      fromCiId: 465258
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.LinksTo
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517018
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 517003
+      created: 1325752811523
+    prefix_options: *id002
+  517359: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517354-2002-517358
+      comments: ""
+      fromCiId: 517354
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517359
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: mysql
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517358
+      created: 1325753459738
+    prefix_options: *id002
+  517370: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517360-1631-517362
+      comments: ""
+      fromCiId: 517360
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517370
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517362
+      created: 1325753459738
+    prefix_options: *id002
+  517387: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517380-1631-517382
+      comments: ""
+      fromCiId: 517380
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517387
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517382
+      created: 1325753459738
+    prefix_options: *id002
+  465269: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465258-2002-465268
+      comments: ""
+      fromCiId: 465258
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465269
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datavol
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 465268
+      created: 1324522025818
+    prefix_options: *id002
+  517013: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517011-1631-517007
+      comments: ""
+      fromCiId: 517011
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517013
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517007
+      created: 1325752811523
+    prefix_options: *id002
+  517365: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517354-2002-517364
+      comments: ""
+      fromCiId: 517354
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517365
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: database
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517364
+      created: 1325753459738
+    prefix_options: *id002
+  517514: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465258-1877-517372
+      comments: ""
+      fromCiId: 465258
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.LinksTo
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517514
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 517372
+      created: 1325753519809
+    prefix_options: *id002
+  465275: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465260-1631-465264
+      comments: ""
+      fromCiId: 465260
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465275
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 465264
+      created: 1324522025818
+    prefix_options: *id002
+  517008: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517003-2002-517007
+      comments: ""
+      fromCiId: 517003
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517008
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datafs
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517007
+      created: 1325752811523
+    prefix_options: *id002
+  517371: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517364-1631-517358
+      comments: ""
+      fromCiId: 517364
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517371
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517358
+      created: 1325753459738
+    prefix_options: *id002
+  517388: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517382-1631-517376
+      comments: ""
+      fromCiId: 517382
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517388
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517376
+      created: 1325753459738
+    prefix_options: *id002
+  517377: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517372-2002-517376
+      comments: ""
+      fromCiId: 517372
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517377
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datafs
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517376
+      created: 1325753459738
+    prefix_options: *id002
+  465259: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 420709-1352-465258
+      comments: ""
+      fromCiId: 420709
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.ComposedOf
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465259
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 465258
+      created: 1324522025818
+    prefix_options: *id002
+  465490: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465481-2147-420713
+      comments: ""
+      fromCiId: 465481
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.SecuredBy
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465490
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 420713
+      created: 1324522262478
+    prefix_options: *id002
+  465270: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465268-1631-465262
+      comments: ""
+      fromCiId: 465268
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465270
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 465262
+      created: 1324522025818
+    prefix_options: *id002
+  517355: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 420709-1352-517354
+      comments: ""
+      fromCiId: 420709
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.ComposedOf
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517355
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 517354
+      created: 1325753459738
+    prefix_options: *id002
+  517014: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517011-1631-517005
+      comments: ""
+      fromCiId: 517011
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517014
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517005
+      created: 1325752811523
+    prefix_options: *id002
+  517366: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517356-1631-517362
+      comments: ""
+      fromCiId: 517356
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517366
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517362
+      created: 1325753459738
+    prefix_options: *id002
+  517383: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517372-2002-517382
+      comments: ""
+      fromCiId: 517372
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517383
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: postgresql
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517382
+      created: 1325753459738
+    prefix_options: *id002
+  465276: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465260-1631-465262
+      comments: ""
+      fromCiId: 465260
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465276
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 465262
+      created: 1324522025818
+    prefix_options: *id002
+  465265: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465258-2002-465264
+      comments: ""
+      fromCiId: 465258
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465265
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datafs
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 465264
+      created: 1324522025818
+    prefix_options: *id002
+  517361: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517354-2002-517360
+      comments: ""
+      fromCiId: 517354
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517361
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datafs
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517360
+      created: 1325753459738
+    prefix_options: *id002
+  517389: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517382-1631-517378
+      comments: ""
+      fromCiId: 517382
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517389
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517378
+      created: 1325753459738
+    prefix_options: *id002
+  465271: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 465266-1631-465262
+      comments: ""
+      fromCiId: 465266
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 465271
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 465262
+      created: 1324522025818
+    prefix_options: *id002
+  517015: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517009-1631-517005
+      comments: ""
+      fromCiId: 517009
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517015
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517005
+      created: 1325752811523
+    prefix_options: *id002
+  517004: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 420709-1352-517003
+      comments: ""
+      fromCiId: 420709
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.ComposedOf
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517004
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 517003
+      created: 1325752811523
+    prefix_options: *id002
+  517367: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517358-1631-517360
+      comments: ""
+      fromCiId: 517358
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517367
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517360
+      created: 1325753459738
+    prefix_options: *id002
+  517384: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517374-1631-517378
+      comments: ""
+      fromCiId: 517374
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517384
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 517378
+      created: 1325753459738
+    prefix_options: *id002
+  517010: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 517003-2002-517009
+      comments: ""
+      fromCiId: 517003
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517010
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datavol
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 517009
+      created: 1325752811523
+    prefix_options: *id002
+  517373: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 420709-1352-517372
+      comments: ""
+      fromCiId: 420709
+      toCi: 
+      nsPath: /kloopz/cloudfoundry
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.ComposedOf
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 517373
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 517372
+      created: 1325753459738
+    prefix_options: *id002

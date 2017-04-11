@@ -1,0 +1,86 @@
+<% 
+  # initd-worker.erb
+  #
+  # This is the service init script used to run a Spark worker as a
+  # service on this node.
+ %>
+#!/bin/bash
+# init script for Spark worker
+# chkconfig: 2345 90 10
+# description: Spark worker
+
+source /etc/rc.d/init.d/functions
+
+SPARK_HOME=<%= @spark_dir %>
+SPARK_WORKER_LOG=<%= @spark_tmp_dir %>/logs/spark_worker.out
+SPARK_USER="spark"
+SPARK_WORKER_PID=/tmp/spark-spark-org.apache.spark.deploy.worker.Worker-1.pid
+SPARK_MASTER_URI=`cat $SPARK_HOME/conf/spark.master`
+
+prog=spark
+
+RETVAL=0
+
+start() {
+  if [ -f $SPARK_WORKER_PID ] && checkpid `cat $SPARK_WORKER_PID`; then
+    echo "Spark worker is already running."
+  else
+    echo -n $"Starting Spark worker: "
+    su - $SPARK_USER -c "$SPARK_HOME/sbin/start-slave.sh $SPARK_MASTER_URI >> $SPARK_WORKER_LOG 2>&1"
+
+    RETVAL=$?
+
+    echo_success
+    echo
+  fi
+
+  return $RETVAL
+}
+
+stop() {
+  echo -n $"Stopping Spark worker: "
+  sudo -u $SPARK_USER $SPARK_HOME/sbin/stop-slave.sh 2>&1 >/dev/null
+  if [ "$?" == "0" ]; then
+    RETVAL=0
+    echo_success
+  else
+    RETVAL=1
+    echo_failure
+  fi
+  echo
+  
+  [ $RETVAL = 0 ]
+}
+
+status_fn() {
+  if [ -f $SPARK_WORKER_PID ] && checkpid `cat $SPARK_WORKER_PID`; then
+    echo "Spark worker is running."
+    exit 0
+  else
+    echo "Spark worker is stopped."
+    exit 1
+  fi
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status_fn
+    ;;
+  restart)
+    stop
+    sleep 5
+    start
+    ;;
+  *)
+    echo $"Usage: $prog {start|stop|restart|status}"
+    RETVAL=3
+esac
+
+exit $RETVAL
+

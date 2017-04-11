@@ -1,0 +1,291 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'fog'
+require 'json'
+require 'route53'
+
+node = JSON.parse(`cat /opt/oneops/workorder/crm*`)
+wo = node["workorder"]
+token = wo["token"]["ciAttributes"]
+avail_zone = wo["zone"]["ciName"].split(".")[1]
+platform_name = wo["box"]["ciName"]
+r =  /(.*\d)[a-z]$/
+m = r.match avail_zone
+region = ''
+if m != nil
+  region = m[1]
+end
+
+if wo["zone"]["ciAttributes"].has_key?("region")
+  region = wo["zone"]["ciAttributes"][:region]
+end
+puts "region: "+region
+
+provider = Fog::Compute.new(
+      :provider => 'AWS',
+      :aws_access_key_id => token["key"],
+      :aws_secret_access_key => token["secret"],
+      :region => region
+)
+
+instance_id = wo["payLoad"]["ManagedVia"][0]["ciAttributes"]["instance_id"]
+puts "instance_id: "+instance_id
+compute = provider.servers.get(instance_id)
+existing_mappings = (`crm resource param ebs show device_map`).chop.split(",")
+deps = wo["payLoad"]["DependsOn"]
+
+max_retry_count = 5
+
+# status
+action = ARGV[0]
+if action =="status"
+
+    change_count = 0
+    dev_count = 0
+    existing_mappings.each do |dv_str|
+      dev_count += 1
+      vd = dv_str.split(":")
+      vol_id = vd[0]
+      volume = provider.volumes.new :id => vol_id
+      volume.reload
+      begin
+        if volume.server_id != instance_id || (volume.state != "in-use" && volume.state != "attached")
+          puts "bad vol:"+volume.inspect
+          change_count += 1
+        end
+      rescue  => e
+        puts "exception: "+e.message + "\n" + e.backtrace.inspect
+      end
+
+    end
+    if change_count > 0
+      puts "bad count: #{change_count} of #{dev_count}."
+      exit 7
+    else
+      puts "all #{dev_count} ok."
+    end
+
+    exit 0
+end
+
+
+if action == "stop"
+   # here until get crm under control and not do stop before starts
+   exit 0
+
+    cmd = "vgchange -an #{platform_name} 2>&1"
+	out = `#{cmd}`
+	if $?.to_i != 0
+		puts "#{cmd}:#{out}"
+		if out !~ /not found/ && out !~ /is exported/
+			puts "existing because not sure about the vgchange output"
+			exit 1
+		end
+	end
+
+    cmd = "vgexport #{platform_name} 2>&1"
+	out = `#{cmd}`
+	if $?.to_i != 0
+		puts "#{cmd}:#{out}"
+		if out !~ /not found/ && out !~ /is exported/
+			puts "existing because not sure about the vgexport output"
+			exit 1
+		end
+	end
+
+    # get volume
+	volume = nil
+	deps.each do |dep|
+       if dep["ciClassName"] == "bom.Volume"
+	     volume = dep
+	     puts "volume: "+volume["ciName"]     
+	   end
+	end	
+	if volume==nil
+	  puts "no volume in DependsOn"
+	  exit 1
+	end
+	md_dev = "/dev/md/"+volume["ciName"]
+    if File.exists?(md_dev)
+      cmd = "mdadm --stop "+md_dev
+      puts "cmd:#{cmd} ..."+`#{cmd}`
+      sleep 1
+      if File.exists?(md_dev)
+	     puts "raid device #{md_dev} not removed."
+      	exit 1
+      else
+	      puts "raid device #{md_dev} removed."
+      end
+      
+    else
+      puts "raid device #{md_dev} already removed."
+    end
+
+
+    existing_volumes = compute.volumes.all
+    puts "existing vols: "+existing_volumes.inspect
+
+    change_count = 1
+    retry_count = 1
+    while change_count > 0 && retry_count < max_retry_count
+      change_count = 0
+      existing_mappings.each do |dv_str|
+        vd = dv_str.split(":")
+        vol_id = vd[0]
+        volume = provider.volumes.new :id => vol_id
+        volume.reload
+        puts "volume:"+volume.inspect
+        begin
+          if volume.state != "available"
+            if volume.state != "detaching"
+	            puts "server set to nil:"
+	            volume.server = nil
+	        end
+            change_count += 1
+          else
+            puts "volume available."
+          end
+        rescue  => e
+          puts "exception: "+e.message + "\n" + e.backtrace.inspect
+        end
+      end
+      puts "this pass detach count: #{change_count}"
+      retry_count += 1
+      if change_count > 0
+	      retry_sec = retry_count*10
+	      puts "sleeping "+retry_sec.to_s+" sec..."
+	      sleep (retry_sec)
+	  end
+    end
+    exit 0
+end
+
+
+
+max_retry_count = 5
+slice_count = 10
+
+# start - was already created device_map in crm metadata
+begin
+
+    existing_volumes = compute.volumes.all
+    puts "existing vols: "+existing_volumes.inspect
+    existing_vol_map = Hash.new
+    existing_dev_map = Hash.new
+
+    existing_volumes.each do |vol|
+      existing_vol_map[vol.device] = vol
+    end
+
+    dev_list = ''
+    vols = Array.new
+
+    existing_mappings.each do |dv_str|
+      dv = dv_str.split(":")
+      device = dv[1].gsub("\n","")
+      vol = dv[0]
+      existing_dev_map[device] = vol
+      puts "added to dev_map: '#{device}':'#{vol}"
+
+      dev_list += " "+device
+      if existing_vol_map.has_key?(device)
+         existing_id = existing_vol_map[device].id
+         puts "exists "+existing_id+":"+device
+         vols.push(existing_id+":"+device)
+      else
+        vol_id = existing_dev_map[device]
+        puts "re-assigning vol: #{vol_id} dev: #{device} to #{instance_id}"
+        volume = provider.volumes.new :id => vol_id, :device => device
+        volume.server = compute
+        volume.reload
+      end
+
+    end
+
+    new_count =0
+    pending_count = 1
+    retry_count = 1
+    while pending_count > 0 && retry_count < max_retry_count
+      pending_count = 0
+      existing_mappings.each do |dv_str|
+        vd = dv_str.split(":")
+        vol_id = vd[0]
+        volume = provider.volumes.new :id => vol_id
+        volume.reload
+        puts "volume:"+volume.inspect
+        begin
+          if volume.state != "in-use" && volume.state != "attached"
+            puts "pending: "+vol_id+ " state: "+volume.state
+            pending_count += 1
+          end
+        rescue  => e
+          puts "exception: "+e.message + "\n" + e.backtrace.inspect
+        end
+      end
+      puts "pending count: #{pending_count}"
+      retry_count += 1
+      if pending_count > 0
+	      retry_sec = retry_count*5
+	      puts "sleeping "+retry_sec.to_s+" sec..."
+	      sleep (retry_sec)
+	  end
+    end
+
+    # get volume
+	volume = nil
+	deps.each do |dep|
+       if dep["ciClassName"] == "bom.Volume"
+	     volume = dep
+	     puts "volume: "+volume["ciName"]     
+	   end
+	end	
+	if volume==nil
+	  puts "no volume in DependsOn"
+	  exit 1
+	end
+
+    # raid device will re-assemble automatic, but could take some time
+    pending_count = 1
+    retry_count = 1
+    raid_dev = "/dev/md/"+volume["ciName"][0..-2]+"1"
+    while pending_count > 0 && retry_count < max_retry_count
+		pending_count = 0
+		# md sometimes adds a /_\d/ so need the * below
+		`ls #{raid_dev}*`
+	    if $?.to_i == 0
+	      puts "exists raid dev:"+raid_dev
+	    else
+	      puts "missing raid dev:"+raid_dev
+	      pending_count =1
+	    end
+	    retry_count += 1
+	end
+	if pending_count >0
+	  puts "hit max retry limit...still missing raid dev:"+raid_dev		
+	  exit 1
+	end
+
+	# lvm reassemble
+
+    # use primary ciName
+    vol_name = volume["ciName"][0..-2]+"1" 
+	vol_dev = "/dev/#{platform_name}/#{vol_name}"
+	puts `pvscan`
+	if File.exists?(vol_dev) 
+	  puts "exists vol dev:"+vol_dev
+	else	
+      puts "vgimport #{platform_name}: "+`vgimport #{platform_name}`
+      puts "vgchange -ay #{platform_name}: "+`vgchange -ay #{platform_name}`
+      sleep 1
+      if !File.exists?(vol_dev) 
+        puts "missing vol dev:"+vol_dev
+        exit 1
+      else
+        puts "exists:"+vol_dev
+      end
+    end
+    
+rescue => e
+    puts "exception: "+e.message + "\n" + e.backtrace.inspect
+end          

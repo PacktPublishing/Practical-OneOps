@@ -1,0 +1,3 @@
+<% if !["redhat","centos"].include?(node.platform)  %>
+CustomLog ${APACHE_LOG_DIR}/other_vhosts_access.log combined
+<% end %>

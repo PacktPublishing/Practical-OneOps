@@ -1,0 +1,13 @@
+[Unit]
+Description=Nginx
+Documentation=https://www.nginx.com/resources/wiki/
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/opt/nginx/sbin/nginx -c /opt/nginx/conf/nginx.conf
+User=root
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

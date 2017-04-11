@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'fog'
+require 'json'
+
+action = ARGV[0]
+
+node = JSON.parse(`cat /opt/oneops/workorder/crm*`)
+token = node["workorder"]["token"]["ciAttributes"]
+
+public_ip = (`crm resource param ip1 show ip`).chop
+runs_on = (`crm resource show ip1`).chop.gsub(/.*: /,'').chop
+hostname = `hostname`.chop
+
+ip_row = (`ifconfig eth0`).split("\n")[1]
+ip = ip_row.scan(/inet addr:(\d+\.\d+\.\d+\.\d+)/)[0][0]
+puts "private_ip: "+ip+" public_ip: "+public_ip + " runs on: "+runs_on+ " this hostname: "+hostname
+if hostname != runs_on
+  if action == "stop"
+	  puts "ok - not running here."
+	  exit 0 
+  else 
+	  puts "not starting because it shouldnt be running here."
+	  exit 3
+  end
+end
+
+if action == "status" && hostname != runs_on
+  puts "status: down"
+  exit 3
+end
+
+instance_id = ""
+computes = node["workorder"]["payLoad"]["ManagedVia"]
+computes.each do |compute|
+  if compute["ciAttributes"]["private_ip"] == ip
+    instance_id = compute["ciAttributes"]["instance_id"]
+  end
+end
+
+provider = 'AWS'
+zoneCiName = node["workorder"]["zone"]["ciName"]
+#"ciName": "ec2.us-west-2b",
+region = ""
+if zoneCiName =~ /(.*)\.(.*)[a-z]/
+  if $1 != "ec2"
+    provider = $1
+  end
+  region = $2
+end
+
+conn = Fog::Compute.new(
+  :provider => provider,
+  :region => region,
+  :aws_access_key_id => token["key"],
+  :aws_secret_access_key => token["secret"]
+)
+server = conn.servers.get(instance_id)
+
+addresses = conn.addresses.all
+
+if action == 'start'
+   addresses.each do |addr|
+     if addr.public_ip == public_ip
+       puts "has shared_ip:"+addr.inspect
+       addr.server = server
+       puts "now shared_ip:"+addr.inspect
+     end
+   end
+end
+
+if action == 'stop'
+   addresses.each do |addr|
+     if addr.public_ip == public_ip
+       puts "has shared_ip:"+addr.inspect
+       addr.server = nil
+       puts "now shared_ip server set to nil"
+     end
+   end
+end

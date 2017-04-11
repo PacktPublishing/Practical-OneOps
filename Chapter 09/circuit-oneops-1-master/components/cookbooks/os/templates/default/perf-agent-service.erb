@@ -1,0 +1,13 @@
+[Unit]
+Description=Logstash agent
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+Environment=GOTRACEBACK=crash
+ExecStart=/opt/logstash-forwarder/bin/logstash-forwarder -config=/etc/logstash-forwarder/perf-agent-lsf.conf -spool-size 20
+MountFlags=slave
+
+[Install]
+WantedBy=multi-user.target
+

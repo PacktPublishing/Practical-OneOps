@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<solr persistent="true" sharedLib="lib">
+<cores adminPath="/admin/cores" zkClientTimeout="20000" hostPort="8080" hostContext="solr">
+<shardHandlerFactory name="shardHandlerFactory" class="HttpShardHandlerFactory">
+<int name="maxConnectionsPerHost">${maxConnectionsPerHost:100}</int>
+<int name="socketTimeout">${socketTimeout:5000}</int>
+<int name="connTimeout">${connTimeout:2000}</int>
+<int name="distribUpdateConnTimeout">${distribUpdateConnTimeout:4000}</int>
+<int name="distribUpdateSoTimeout">${distribUpdateSoTimeout:7000}</int>
+</shardHandlerFactory>
+</cores>
+</solr>

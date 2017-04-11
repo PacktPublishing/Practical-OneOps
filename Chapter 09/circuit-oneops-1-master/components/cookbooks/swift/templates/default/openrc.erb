@@ -1,0 +1,7 @@
+# COMMON OPENSTACK SWIFT ENVS
+export OS_USERNAME=<%= node[:swift][:username]%>
+export OS_PASSWORD=<%= node[:swift][:password] %>
+export OS_TENANT_NAME=<%= node[:swift][:tenant] %>
+export OS_AUTH_URL=<%= node[:swift][:endpoint] %>
+export OS_AUTH_STRATEGY=<%= node[:swift][:authstrategy] %>
+export OS_NO_CACHE=1

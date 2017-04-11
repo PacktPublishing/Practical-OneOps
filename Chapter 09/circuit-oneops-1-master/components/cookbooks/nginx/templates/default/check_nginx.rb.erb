@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require "net/http"
+
+http = Net::HTTP.new("localhost")
+request = Net::HTTP::Get.new("/nginx_status")
+rows = http.request(request).body.split("\n")
+active_connections = ""
+accepted = ""
+handled = ""
+reading = ""
+writing = ""
+waiting = ""
+
+#Active connections: 1 
+#server accepts handled requests
+# 14 14 14 
+#Reading: 0 Writing: 1 Waiting: 0 
+
+rows.each do |row|
+  case row
+  when /Active connections: (\d+)/
+    active_connections = $1
+  when / (\d+) (\d+) (\d+)/
+    accepted = $1
+    handled = $2
+  when /Reading: (\d+) Writing: (\d+) Waiting: (\d+)/
+    reading = $1
+    writing = $2
+    waiting = $3
+  end
+end
+
+puts "active_connections=#{active_connections} accepted=#{accepted} handled=#{handled} reading=#{reading} writing=#{writing} waiting=#{waiting}|active_connections=#{active_connections} accepted=#{accepted} handled=#{handled} reading=#{reading} writing=#{writing} waiting=#{waiting}"

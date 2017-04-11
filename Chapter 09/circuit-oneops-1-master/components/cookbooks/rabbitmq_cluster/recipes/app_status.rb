@@ -1,0 +1,2 @@
+
+execute "rabbitmqctl status"

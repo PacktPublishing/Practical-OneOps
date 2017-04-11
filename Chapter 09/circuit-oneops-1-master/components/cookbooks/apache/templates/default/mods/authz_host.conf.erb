@@ -1,0 +1,10 @@
+<IfModule authz_host>
+	#
+	# The following lines prevent .htaccess and .htpasswd files from being 
+	# viewed by Web clients. 
+	#
+	<Files ~ "^\.ht">
+	    Order allow,deny
+	    Deny from all
+	</Files>
+</IfModule>

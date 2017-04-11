@@ -1,0 +1,27 @@
+# Flanneld configuration options  
+
+# etcd url location.  Point this to the server where etcd runs
+<%
+endpoints = []
+proto = "http"
+if node.docker_engine.flannel_security_enabled == 'true'
+  proto = "https" %>
+  
+FLANNELD_ETCD_CAFILE="<%= node.docker_engine.flannel_security_cacert %>"
+FLANNELD_ETCD_CERTFILE="<%= node.docker_engine.flannel_security_cert %>"
+FLANNELD_ETCD_KEYFILE="<%= node.docker_engine.flannel_security_key %>"
+  
+<% end
+
+node.workorder.payLoad['etcd-computes'].each do |compute|
+  endpoints.push "#{proto}://#{compute['ciAttributes']['private_ip']}:2379"
+end
+%>
+FLANNEL_ETCD="<%= endpoints.join(',') %>"
+
+# etcd config key.  This is the configuration key that flannel queries
+# For address range assignment
+FLANNEL_ETCD_KEY="/docker-flannel/network"
+
+# Any additional options that you want to pass
+#FLANNEL_OPTIONS=""

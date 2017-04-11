@@ -1,0 +1,15 @@
+/opt/oneops/log/perfsink-nagios.log
+/opt/oneops/log/inductor.log
+/opt/oneops/log/inductor_logsink_agent.log
+/opt/oneops/log/collector_perfsink.log
+/opt/oneops/log/collector_inductor.log
+/opt/oneops/log/collector_logsink.log
+/opt/*activemq*/data/wrapper.log
+{
+  copytruncate
+  daily
+  rotate 2
+  compress
+  missingok
+  create 640 oneops oneops
+}

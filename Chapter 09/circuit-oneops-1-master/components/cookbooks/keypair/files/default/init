@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Fixing root login for sshd
+sed -i s/"session    required     pam_selinux.so close"/"#session    required     pam_selinux.so close"/g /etc/pam.d/sshd
+sed -i s/"session    required     pam_loginuid.so"/"#session    required     pam_loginuid.so"/g /etc/pam.d/sshd
+sed -i s/"session    required     pam_selinux.so open env_params"/"#session    required     pam_selinux.so open env_params"/g /etc/pam.d/sshd
+
+# Fixing permissions for ssh key
+chmod 700 /root/.ssh
+chmod 600 /root/.ssh/authorized_keys
+
+# start services
+echo "starting sshd"
+chkconfig sshd on
+service sshd restart
+
+# finally run syslog in foreground
+echo "starting rsyslog"
+rm -fr /var/run/syslogd.pid
+/sbin/rsyslogd -i /var/run/syslogd.pid -n

@@ -1,0 +1,23 @@
+###
+# kubernetes proxy config
+
+# network-plugin=cni
+<%
+net_args = ""
+if node.kubernetes.network == 'calico'
+  net_args = "--cluster-cidr=#{node.kubernetes.pod_addresses} --proxy-mode=iptables --masquerade-all "
+end
+
+lbs = node.workorder.payLoad.DependsOn.select { |d| d[:ciClassName] =~ /Lb/}
+master = "localhost"
+if lbs.size > 0
+  master = lbs.first['ciAttributes']['dns_record']
+end
+%>
+
+# Add your own!
+KUBE_PROXY_ARGS="<%= net_args %><%= node['kube']['proxy']['args'] %>"
+
+KUBE_MASTER="--master=<%= master %>:8080"
+
+KUBE_LOG_LEVEL="--v=<%= node.kubernetes.log_level %>"

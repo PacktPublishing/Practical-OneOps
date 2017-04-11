@@ -1,0 +1,53 @@
+# Produced by Chef -- changes will be overwritten
+
+# I am server # <%= @myid %>
+
+
+
+<% if @zookeeper_hosts.size > 1 -%>
+<%- @zookeeper_hosts.each_pair do |key, value| %>
+server.<%= value %>=<%= key %>:<%= @zookeeper[:leader_port] %>:<%= @zookeeper[:election_port] %>
+<%- end %>
+<% else -%>
+server=<%= @zookeeper_hosts.keys[0] %>:<%= @zookeeper[:leader_port] %>:<%= @zookeeper[:election_port] %>
+<% end -%>
+
+# The number of milliseconds of each tick (default 2000)
+tickTime=<%=       @zookeeper[:tick_time] %>
+
+# Time, in ticks, to allow followers to connect and sync to a leader. 
+initLimit=<%=@zookeeper[:initial_timeout_ticks] %>
+
+# Time, in ticks, to allow followers to sync with ZooKeeper. If followers fall
+# too far behind a leader, they will be dropped.
+syncLimit=<%=@zookeeper[:sync_timeout_ticks] %>
+
+# Should the leader accepts client connections? default "yes".  
+leaderServes=<%=@leader_is_also_server %> 
+
+# maximum simultaneous connections to allow. 
+maxClientCnxns=<%=@zookeeper[:max_client_connections] %>
+
+maxSessionTimeout=<%=@zookeeper[:max_session_timeout] %>
+
+# number of writes to trigger a snapshot
+snapCount=<%=@zookeeper[:snapshot_trigger] %>
+
+# the directory where the snapshot is stored.
+dataDir=<%=@zookeeper[:data_dir] %>
+
+
+# transaction journal directory. Should be a dedicated device.
+dataLogDir=<%=@zookeeper[:journal_dir] %>
+
+
+# the port at which the clients will connect
+clientPort=<%=@zookeeper[:client_port] %>
+
+# The number of snapshots to retain in dataDir
+autopurge.snapRetainCount=<%=@zookeeper[:autopurge_snapretaincount] %>
+# Purge task interval in hours
+# Set to "0" to disable auto purge feature
+autopurge.purgeInterval=<%=@zookeeper[:autopurge_purgeinterval] %>
+
+

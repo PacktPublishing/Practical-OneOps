@@ -1,0 +1,38 @@
+<configuration scan="true">
+  <jmxConfigurator />
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file><%= node['log4j.appender.R.File'] %></file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <fileNamePattern><%= node['log4j.appender.R.File'] %>.%i.zip</fileNamePattern>
+      <minIndex>1</minIndex>
+      <maxIndex>3</maxIndex>
+    </rollingPolicy>
+
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <maxFileSize><%= node['log4j.appender.R.maxFileSize'] %></maxFileSize>
+    </triggeringPolicy>
+    <encoder>
+      <pattern><%= node['log4j.appender.R.layout.ConversionPattern'] %></pattern>
+      <!-- old-style log format
+      <pattern>%5level [%thread] %date{ISO8601} %F (line %L) %msg%n</pattern>
+      -->
+    </encoder>
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern><%= node['log4j.appender.stdout.layout.ConversionPattern'] %></pattern>
+    </encoder>
+  </appender>
+
+  <root level="<%= node['log4j.rootLevel'] %>">
+  	<% if node['log4j.rootLogger'].split(',').include?("FILE") || node['log4j.rootLogger'].split(',').include?("R") %>
+	<appender-ref ref="FILE" />
+	<% end %>
+  	<% if node['log4j.rootLogger'].split(',').include?("STDOUT") %>
+	<appender-ref ref="STDOUT" />
+	<% end %>
+  </root>
+
+  <logger name="com.thinkaurelius.thrift" level="<%= node['com.thinkaurelius.thrift'] %>"/>
+</configuration>

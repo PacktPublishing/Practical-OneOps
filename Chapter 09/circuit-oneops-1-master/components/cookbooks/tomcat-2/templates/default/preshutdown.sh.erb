@@ -1,0 +1,11 @@
+#!/bin/bash
+# description: Pre Shutdown Script for Tomcat
+
+PRE_SHUTDOWN_COMMAND="<%= node['tomcat']['startup_shutdown']['pre_shutdown_command'] %>"
+
+eval "$PRE_SHUTDOWN_COMMAND"
+if [ $? -eq 1 ]; then
+    echo "Pre Shutdown Command failed!"
+else
+    echo "Pre Shutdown Command succeeded! "
+fi

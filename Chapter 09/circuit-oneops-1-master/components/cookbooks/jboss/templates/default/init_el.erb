@@ -1,0 +1,94 @@
+#!/bin/bash
+#
+# chkconfig: 345 80 20
+# description: JBoss AS 7 EJB Container
+# 
+#
+
+
+export JBOSS_HOME=<%= node['jboss']['jboss_home'] %>
+#define where jboss is - this is the directory containing directories log, bin, conf etc
+#define the user under which jboss will run, or use 'RUNASIS' to run as the current user
+export JBOSS_USER=<%= node['jboss']['jboss_user'] %>
+
+#make sure java is in your path
+JAVAPTH=${JAVAPTH:-"$JAVA_HOME/bin/java"}
+export PATH=$PATH:$JAVAPTH
+JAVA_HOME=$(readlink -e /usr/bin/java | sed "s:bin/java::")
+#source some script files in order to set and export environmental
+##variables
+##as well as add the appropriate executables to $PATH
+[ -r /etc/profile.d/java.sh ] && . /etc/profile.d/java.sh
+[ -r /etc/profile.d/jboss.sh ] && . /etc/profile.d/jboss.sh
+
+
+
+
+
+# in case jboss_home is a symbolic link, let's resolve the real path
+if [ -s $JBOSS_HOME ] ; then
+    JBOSS_TMP=$(ls -ald $JBOSS_HOME | awk '{ print $11 }')
+
+    # sanity check
+    if [ ! -z $JBOSS_TMP ] ; then
+       JBOSS_HOME=$JBOSS_TMP
+    fi
+fi
+
+function start(){
+    echo "Starting JBoss AS <%= node["jboss"]["version"] %>"
+    cd ${JBOSS_HOME}/bin/
+    sudo -u $JBOSS_USER sh ./standalone.sh > /dev/null 2>&1 &
+}
+
+function stop(){
+    jboss_running="$( ps -ef | grep $JBOSS_HOME | grep -v 'grep' )"
+    if [ -z "${jboss_running}" ] ; then
+	echo "JBoss is not running"
+    else
+	echo "Stopping JBoss AS <%= node["jboss"]["version"] %>"
+        cd ${JBOSS_HOME}/bin
+	sudo -u $JBOSS_USER sh ./jboss-cli.sh --connect command=:shutdown
+	echo "Checking for any remaining processes"
+	sleep 5
+	jboss_pids=$(ps -ef | grep java | grep -v grep | awk '{ printf $2" " }')
+	# if there are remaining processes, kill them
+	if [ ! -z "$jboss_pids" ] ; then
+	    kill -9 $jboss_pids
+	fi
+	echo "No remaining processes. Jboss stopped"
+    fi
+}
+
+function status(){
+    jboss_running="$( ps -ef | grep $JBOSS_HOME | grep -v 'grep' )"
+    if [ -z "${jboss_running}" ] ; then
+        echo "JBoss is not running"
+        exit 1
+    else
+        echo "JBoss is running"
+    fi
+}
+case "$1" in
+    start)
+        start
+    ;;
+    stop)
+        stop
+    ;;
+    status)
+        status
+    ;;
+    restart)
+        stop
+	sleep 5
+	start
+    ;;
+    *)
+        echo "Usage: /etc/init.d/jboss {start|stop|status|restart}"
+        exit 1
+    ;;
+esac
+
+exit 0
+

@@ -1,0 +1,30 @@
+#VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = 'win2012r2chef'
+  config.vm.box_url = '/Users/spage/Documents/saheb/Work/Boxes/win2012r2_chef_virtualbox.box'
+  config.vm.guest = :windows
+
+  config.vm.provider "virtualbox" do |v|
+    v.gui = false
+  end
+  config.vm.communicator = "winrm"
+  config.winrm.timeout = 24000
+  config.winrm.max_tries = 20
+
+  config.winrm.host = '127.0.0.1'
+  config.winrm.username = 'vagrant'
+  config.winrm.password = 'vagrant'
+
+  config.vm.provision :chef_solo do |chef|
+    chef.log_level         = :debug
+    chef.cookbooks_path = [".."]
+    #chef.add_recipe("iis::enable")
+    #chef.add_recipe("iis::web_site")
+    #chef.add_recipe("iis::app_pool")
+    chef.add_recipe("iis::urlcompression")
+
+    #chef.json = { 'wm_iis': { 'versions': ['4.6', '4.5.2'] } }
+  end
+
+end

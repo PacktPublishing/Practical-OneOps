@@ -1,0 +1,11 @@
+#!/bin/bash
+# description: Pre Startup Script for Tomcat
+
+PRE_STARTUP_COMMAND="<%= node['tomcat']['startup_shutdown']['pre_startup_command'] %>"
+
+eval "$PRE_STARTUP_COMMAND"
+if [ $? -eq 1 ]; then
+    echo "Pre Start Up Command failed!"
+else
+    echo "Post Start Up Command succeeded!"
+fi

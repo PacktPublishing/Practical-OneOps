@@ -1,0 +1,14 @@
+[Unit]
+Description=uwsgi
+Documentation=https://uwsgi-docs.readthedocs.io/en/latest/
+Before=httpd.service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/uwsgi/sbin/uwsgi --log-syslog --die-on-term --emperor /opt/uwsgi/apps
+User=root
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

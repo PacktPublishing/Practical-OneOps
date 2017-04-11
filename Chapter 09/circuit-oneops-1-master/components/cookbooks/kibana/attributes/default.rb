@@ -1,0 +1,11 @@
+default['kibana']['app_path'] = '/app'
+default['kibana']['install_path'] = "#{node['kibana']['app_path']}/kibana"
+default['kibana']['user'] = 'kibana'
+default['kibana']['group'] = 'kibana'
+default['kibana']['interface'] = node['ipaddress']
+default['kibana']['port'] = 5601
+default['kibana']['file']['type'] = 'tgz' # zip | tgz
+default['kibana']['file']['config'] = 'config/kibana.yml' # relative path of config file
+default['kibana']['file']['config_template'] = 'kibana.yml.erb' # template to use for config
+default['kibana']['version'] = '4.2.1-linux-x64'
+default['kibana']['config']['elasticsearch'] = 'window.location.protocol+"//"+window.location.hostname+":"+window.location.port'

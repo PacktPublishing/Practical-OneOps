@@ -1,0 +1,11 @@
+#
+# Cookbook Name:: nodejs
+# Recipe:: repair
+#
+
+service "nodejs" do
+  service_name "nodejs"
+  supports  :restart => true, :status => true, :stop => true, :start => true
+  action :restart
+end
+

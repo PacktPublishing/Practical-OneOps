@@ -1,0 +1,32 @@
+<%= node['kube']['custom_template_banner'] %>
+
+###
+# The following values are used to configure the kubernetes controller-manager
+
+# defaults from config and apiserver should be adequate
+
+# Comma seperated list of workers
+KUBELET_ADDRESSES="--machines=<%= node['kube']['kubelet']['machines'].join(',') %>"
+
+# Add you own!
+KUBE_CONTROLLER_MANAGER_ARGS="<%= node['kube']['controller-manager']['args'] %>"
+
+KUBE_LOG_LEVEL="--v=<%= node.kubernetes.log_level %>"
+
+# security args
+<%
+args = []
+if node.kubernetes.has_key?("security_enabled") &&
+   node.kubernetes.security_enabled == "true"
+
+   kubernetes_tls_dir = node.kubernetes.security_path
+   args.push("--root-ca-file=#{kubernetes_tls_dir}/ca.crt")
+   args.push("--service-account-private-key-file=#{kubernetes_tls_dir}/server.key")
+
+end 
+
+if node.kubernetes.network == 'calico'
+  args.push("--cluster-cidr=#{node.kubernetes.pod_addresses}")
+end
+%>
+KUBE_AUTH_ARGS="<%= args.join(' ') %>"

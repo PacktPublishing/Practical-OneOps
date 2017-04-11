@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+  name: <%= node[:container_name] %>
+spec:
+  selector:
+    matchLabels:
+      description: <%= node[:container_name] %>
+  template:
+    metadata:
+      labels:
+        description: <%= node[:container_name] %>
+    spec:
+      containers:
+      - image: <%= node[:image_name] %>
+        imagePullPolicy: Always
+        name: <%= node[:container_name] %>
+        ports:
+        <% ports = JSON.parse(node[:container][:ports]) %>
+        <% ports.each do |label,port| %>
+        - containerPort: <%= port %>
+          protocol: TCP
+        <% end %>

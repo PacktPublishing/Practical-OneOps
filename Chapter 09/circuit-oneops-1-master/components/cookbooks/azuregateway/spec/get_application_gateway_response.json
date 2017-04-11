@@ -1,0 +1,12 @@
+{
+  "location": "eastus",
+  "properties": {
+    "frontendIPConfigurations": [
+      {
+        "properties": {
+          "privateIPAddress": "10.0.1.5"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,273 @@
+#!/usr/bin/env ruby
+
+require 'logger'
+require 'socket'
+require 'timeout'
+require 'net/https'
+require 'rubygems'
+require 'json'
+require 'bigdecimal'
+require 'optparse'
+require 'resolv'
+
+class CbServer
+  attr_accessor :user, :major_version, :minor_version, :password, :version
+
+  @user = nil
+  @password = nil
+  @version = nil
+  @major_version, @minor_version = nil
+
+  def initialize(user, password)
+    @user = user
+    @password = password
+  end
+
+  def setVersion(body)
+    if body != nil then
+      @version = body["implementationVersion"]
+      if @version != nil then
+        @major_version, @minor_version = @version.split('.')
+      end
+    end
+  end
+
+end
+
+class Node
+  attr_accessor :hostname, :cluster_membership, :status, :node_stat
+
+  @hostname
+  @cluster_membership
+  @status
+  @node_stat
+
+
+end
+
+class Cluster
+  attr_accessor :nodes, :minReplicaNumber, :buckets, :tasks, :nodes_stats
+
+  def initialize
+    self.nodes = Array.new
+    self.buckets = Array.new
+    self.tasks = Array.new
+    self.nodes_stats = Array.new
+    @minReplicaNumber = 99
+  end
+
+  def getNodesSize()
+    @nodes.size
+  end
+
+  def getNodes()
+    @nodes
+  end
+
+  def nodesToString()
+    rs = ''
+    @nodes.each { |node|
+      rs << "#{node.hostname} #{node.cluster_membership} #{node.status} "
+    }
+    rs
+  end
+
+  def getUnhealthyNodes()
+    unhealthyNodes = Array.new
+    @nodes.each { |node|
+      if node.status != 'healthy' || (node.cluster_membership.include? "inactive") then
+        unhealthyNodes.push(node)
+      end
+    }
+    unhealthyNodes
+  end
+
+  def parseNodes(body)
+    if body != nil then
+      body['nodes'].each { |anode|
+        node = Node.new
+        node.status = anode['status']
+        node.cluster_membership = anode['clusterMembership']
+        node.hostname=anode['hostname']
+        @nodes.push(node)
+      }
+    end
+    @nodes
+  end
+
+end
+
+class RestClient
+  attr_accessor :body, :uri
+
+  def initialize(host_name, port)
+    @host_name = host_name
+    @port = port
+    @http = Net::HTTP.new(@host_name, @port)
+    @http.open_timeout = 5 #timeout to couchbase API
+    @http.use_ssl = false
+    @resp = nil
+  end
+
+  def getData(admin, password)
+    @resp = nil
+
+    @http.start do |http|
+      req = Net::HTTP::Get.new(@uri)
+      #http.open_timeout = 5
+      # we make an HTTP basic auth by passing the
+      # username and password
+      req.basic_auth admin, password
+      @resp, data = http.request(req)
+    end
+
+    setRepToJson()
+
+
+  end
+
+  def setRepToJson()
+    if @resp != nil then
+      @body = JSON.parse(@resp.body())
+    end
+  end
+
+
+end
+
+class DiagnosticCache
+  attr_accessor :logfiles_path, :logger, :commands, :connections
+
+  @logfiles_path = nil #"/opt/diagnostic-cache/log/diagnostic-cache.log"
+  @logfiles_path = nil #"/Users/anatale/IdeaProjects/packer_fork_anatale/components/cookbooks/diagnostic_cache/attributes/diagnostic-cache.log"
+  @logger = nil #Logger.new(logfiles_path, 10, 1024000)
+  @commands = nil
+  @top_ipaddresses = nil
+  @connections = nil
+
+  def initialize(logfiles_path, rotate, log_size)
+
+    @commands = {"Connection Summary \nCONNECTION# IP-ADDRESS" => "sudo netstat -plan | grep EST | awk '{print $5}' | cut -d: -f1 | sort -n | uniq -c",
+                 "Connection Details" => "sudo netstat -plan | grep EST | awk '{print $1 \" \" $5 \" \" $7 }' | sort -n | uniq -c"}
+
+    @logfiles_path = logfiles_path
+    @logger = Logger.new(logfiles_path, rotate,  log_size)
+    @connections = Array.new
+  end
+
+  def exec_netstat
+    begin
+      #execute each commands
+      @commands.each_pair do |index, command|
+        netstat = `#{command}`
+        if index == "Connection Summary \nCONNECTION# IP-ADDRESS" then
+            get_top_ipaddresses(netstat)
+        end
+        @logger.info(index) { "\n#{netstat}" }
+      end
+    rescue => err
+      @logger.fatal("Caught exception; exiting")
+      @logger.fatal(err)
+    end
+  end
+  def get_top_ipaddresses(raw_ips)
+    if raw_ips != nil then
+
+      raw_ips.each_line {|s|
+        connection = Connection.new
+        s.each_line(' ') {|data|
+          data = data.delete(' ')
+          if !data.empty? then
+           # @logger.info("Ip Address: #{data}")
+            if data.include? "." then
+              connection.ip_address = data
+            else
+              connection.max_connection = data.to_i
+            end
+          end
+        }
+        @connections.push(connection)
+      }
+    end
+  end
+
+  def is_port_open(ip, port, seconds=1)
+    error_msg = "Ip:#{ip} Port:#{port} closed  or Time elapsed "
+    beginning_time = Time.now
+    Timeout::timeout(seconds) do
+      begin
+        TCPSocket.new(ip, port).close
+        end_time = Time.now
+        logger.info("Check ip:#{ip} port:#{port}. Time: #{(end_time - beginning_time)*1000} milliseconds")
+        true
+      rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
+        end_time = Time.now
+        logger.error("#{error_msg} #{(end_time - beginning_time)*1000} milliseconds")
+        false
+      end
+    end
+  rescue Timeout::Error
+    end_time = Time.now
+    logger.fatal("#{error_msg} #{(end_time - beginning_time)*1000} milliseconds")
+    false
+  end
+  def remove_cb_ip(ip_remove)
+    @connections.each_with_index do |connection, index|
+      if connection.ip_address != nil && connection.ip_address.to_s.include?(ip_remove) then
+        @connections.delete(connection)
+      end
+    end
+  end
+end
+class Connection
+
+  attr_accessor :ip_address, :max_connection
+  @max_connection = nil
+  @ip_address = nil
+end
+
+admin_user = '<%= @admin_user %>'
+admin_password = '<%= @admin_password %>'
+logfiles_path = '<%= @logfiles_path %>'
+rotate = 10
+log_size = 1024000
+
+#Main
+ip_address = %x( hostname -i )
+dcache = DiagnosticCache.new(logfiles_path, rotate, log_size)
+
+begin
+  ip_cluster = Array.new
+  dcache.exec_netstat
+  cbServer = CbServer.new(admin_user, admin_password)
+  restClient = RestClient.new(ip_address, '8091')
+  cluster = Cluster.new
+
+
+
+  restClient.uri ='/pools/nodes'
+  restClient.getData(cbServer.user, cbServer.password)
+  cluster.parseNodes(restClient.body)
+  dcache.logger.info("\nPinging Couchbase Cluster")
+  cluster.getNodes().each { |node|
+#    dcache.logger.info("IpAddress #{node.hostname}")
+    data = node.hostname.split(":")
+    ip_remote = data[0]
+    dcache.is_port_open(ip_remote, "22")
+    ip_cluster.push(ip_remote)
+  }
+  max_connection = 0
+  ip_remote = nil
+
+ # dcache.logger.info(ip_cluster.inspect)
+
+  ip_cluster.each {|ip| dcache.remove_cb_ip(ip)}
+  dcache.connections.each { |connection|
+    if max_connection < connection.max_connection && connection.ip_address != nil && !connection.ip_address.include?("127.0.0.1") then
+      ip_remote = connection.ip_address
+      max_connection = connection.max_connection
+    end
+  }
+rescue Exception => msg
+  dcache.logger.error("#{msg} #{ip_address} ")
+end

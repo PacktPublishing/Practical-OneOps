@@ -1,0 +1,1607 @@
+--- !ruby/object:Chef::Catalog 
+cis: !map:Mash 
+  128991: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1104-128991
+      lastRfcId: 
+      ciId: 128991
+      comments: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: redundant
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: demo
+      created: 1321431112760
+    prefix_options: &id001 {}
+
+  128969: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1165-128969
+      lastRfcId: 
+      ciId: 128969
+      comments: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Library
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          packages: "[\"sqlite3\",\"libsqlite3-dev\",\"libmysqlclient-dev\",\"libpq-dev\"]"
+        prefix_options: {}
+
+      ciName: web-dblibs-common
+      created: 1321429084345
+    prefix_options: *id001
+  112920: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1067-112920
+      lastRfcId: 
+      ciId: 112920
+      comments: ""
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: S
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: db-compute
+      created: 1321232892331
+    prefix_options: *id001
+  112937: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1067-112937
+      lastRfcId: 
+      ciId: 112937
+      comments: ""
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: XS
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: web-compute
+      created: 1321232892331
+    prefix_options: *id001
+  112932: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1246-112932
+      lastRfcId: 
+      ciId: 112932
+      comments: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: rails
+          version: "0.2"
+          description: Teambox Web Application
+          aliases: "[]"
+          source: packer
+        prefix_options: {}
+
+      ciName: web
+      created: 1321232892331
+    prefix_options: *id001
+  112910: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1152-112910
+      lastRfcId: 
+      ciId: 112910
+      comments: default keypair
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: account.Keypair
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          public: |
+            -----BEGIN RSA PUBLIC KEY-----
+            MIIBCgKCAQEAqEBKQgl9k6Rf4uOkPmH/bKJuXPZI56aUKApBrehNImez8zhruXYx
+            hVEtviBlrlOKXQMhSOlTtz8si/4AU/1XqOwBC7bW63TYR0u2aKk/lIm3sZgqZmrE
+            16OspOMrrlRkAlB7hQBKrXS0IsGbFtqIlsHoJUHziqGU3n1yphH+63i6a+XhdpbG
+            J7RlPf+NIfqOZxk65C8fKfSRiGQuPtmmkJZz+sEx8cKBHBX72gfN7qQGEEIScATV
+            FRwVjZ2OIqtWzPyXiSrv/o4axUOyN67GO8rhFLho31/Rx7aJRINjitD9RJFrR4JT
+            qVKvJNyq1ryQSqu5rWjVEgWLuXQbwzabkQIDAQAB
+            -----END RSA PUBLIC KEY-----
+
+          description: 2048-bit keys
+        prefix_options: {}
+
+      ciName: Default
+      created: 1321231984334
+    prefix_options: *id001
+  112949: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1111-112949
+      lastRfcId: 
+      ciId: 112949
+      comments: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.File
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          exec_cmd: ""
+          content: |-
+            production:
+               adapter: postgresql
+               host: db
+               username: teambox
+               password: tbpass
+               database: teamboxdb
+          path: /kloopz/database.yml
+        prefix_options: {}
+
+      ciName: web-file-database.yml
+      created: 1321232892331
+    prefix_options: *id001
+  112916: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1325-112916
+      lastRfcId: 
+      ciId: 112916
+      comments: ""
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Volume
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          size: 100%FREE
+        prefix_options: {}
+
+      ciName: db-datavol
+      created: 1321232892331
+    prefix_options: *id001
+  112922: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1076-112922
+      lastRfcId: 
+      ciId: 112922
+      comments: ""
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Database
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          dbname: teamboxdb
+          username: teambox
+          extra: ""
+          password: --ENCRYPTED--
+        prefix_options: {}
+
+      ciName: db-database-teambox
+      created: 1321232892331
+    prefix_options: *id001
+  112939: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1165-112939
+      lastRfcId: 
+      ciId: 112939
+      comments: ""
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Library
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          packages: "[\"libxslt1-dev\",\"libxml2-dev\",\"zlib1g-dev\",\"imagemagick\"]"
+        prefix_options: {}
+
+      ciName: web-commonlibs
+      created: 1321232892331
+    prefix_options: *id001
+  112918: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1121-112918
+      lastRfcId: 
+      ciId: 112918
+      comments: ""
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Filesystem
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          device: ""
+          mount_point: /data
+          fstype: xfs
+          options: ""
+        prefix_options: {}
+
+      ciName: db-datafs
+      created: 1321232892331
+    prefix_options: *id001
+  112935: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1203-112935
+      lastRfcId: 
+      ciId: 112935
+      comments: ""
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Nginx
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          version: 1.0.5
+        prefix_options: {}
+
+      ciName: web-nginx
+      created: 1321232892331
+    prefix_options: *id001
+  112946: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1036-112946
+      lastRfcId: 
+      ciId: 112946
+      comments: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Build
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repository: git://github.com/teambox/teambox.git
+          persist: "[\"log\",\"tmp\"]"
+          depth: "1"
+          ci: "false"
+          migration_command: |
+            bundle install
+            cp /kloopz/database.yml config/database.yml
+            bundle exec rake db:migrate
+            bundle exec rake db:seed
+
+          scm: git
+          revision: master
+          restart_command: bundle exec unicorn_rails -D -E production -p 9000
+          environment: "{\"RAILS_ENV\":\"production\",\"MERB_ENV\":\"production\",\"RACK_ENV\":\"production\",\"RUBYOPT\":\"rubygems\"}"
+          submodules: "false"
+          key: ""
+        prefix_options: {}
+
+      ciName: web-build-teambox
+      created: 1321232892331
+    prefix_options: *id001
+  112924: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1253-112924
+      lastRfcId: 
+      ciId: 112924
+      comments: ""
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Postgresql
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          port: "5432"
+          version: "9.0"
+          postgresql_conf: "{\"data_directory\":\"'/data'\"}"
+        prefix_options: {}
+
+      ciName: db-postgresql
+      created: 1321232892331
+    prefix_options: *id001
+  112941: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1277-112941
+      lastRfcId: 
+      ciId: 112941
+      comments: ""
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Ruby
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          version: 1.8.7
+          gems: "{\"bundler\":\"\",\"rake\":\"\",\"rails\":\"\",\"unicorn\":\"\"}"
+        prefix_options: {}
+
+      ciName: web-ruby
+      created: 1321232892331
+    prefix_options: *id001
+  112914: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 112908-1246-112914
+      lastRfcId: 
+      ciId: 112914
+      comments: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: postgresql
+          version: "0.2"
+          description: Teambox DB
+          aliases: "[]"
+          source: packer
+        prefix_options: {}
+
+      ciName: db
+      created: 1321232892331
+    prefix_options: *id001
+description: Project Management
+name: teambox
+nspath: /kloopz
+relations: !map:Mash 
+  112931: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112924-1631-112920
+      comments: ""
+      fromCiId: 112924
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112931
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112920
+      created: 1321232892331
+    prefix_options: &id002 {}
+
+  112942: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112932-2002-112941
+      comments: ""
+      fromCiId: 112932
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112942
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: ruby
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 112941
+      created: 1321232892331
+    prefix_options: *id002
+  128997: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112906-2000-128991
+      comments: ""
+      fromCiId: 112906
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.RealizedIn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 128997
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 128991
+      created: 1321431112760
+    prefix_options: *id002
+  112915: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112906-1352-112914
+      comments: ""
+      fromCiId: 112906
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.ComposedOf
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112915
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 112914
+      created: 1321232892331
+    prefix_options: *id002
+  112926: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112916-1631-112920
+      comments: ""
+      fromCiId: 112916
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112926
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112920
+      created: 1321232892331
+    prefix_options: *id002
+  112948: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112946-1631-112935
+      comments: ""
+      fromCiId: 112946
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112948
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112935
+      created: 1321232892331
+    prefix_options: *id002
+  112921: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112914-2002-112920
+      comments: ""
+      fromCiId: 112914
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112921
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 112920
+      created: 1321232892331
+    prefix_options: *id002
+  112943: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112935-1631-112937
+      comments: ""
+      fromCiId: 112935
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112943
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112937
+      created: 1321232892331
+    prefix_options: *id002
+  128970: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112932-2002-128969
+      comments: ""
+      fromCiId: 112932
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 128970
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: dblibs
+          constraint: 0..1
+        prefix_options: {}
+
+      toCiId: 128969
+      created: 1321429084345
+    prefix_options: *id002
+  112927: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112918-1631-112916
+      comments: ""
+      fromCiId: 112918
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112927
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112916
+      created: 1321232892331
+    prefix_options: *id002
+  112938: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112932-2002-112937
+      comments: ""
+      fromCiId: 112932
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112938
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 112937
+      created: 1321232892331
+    prefix_options: *id002
+  112933: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112906-1352-112932
+      comments: ""
+      fromCiId: 112906
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.ComposedOf
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112933
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 112932
+      created: 1321232892331
+    prefix_options: *id002
+  112944: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112939-1631-112937
+      comments: ""
+      fromCiId: 112939
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112944
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112937
+      created: 1321232892331
+    prefix_options: *id002
+  128971: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 128969-1631-112937
+      comments: ""
+      fromCiId: 128969
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 128971
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112937
+      created: 1321429084345
+    prefix_options: *id002
+  112917: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112914-2002-112916
+      comments: ""
+      fromCiId: 112914
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112917
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datavol
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 112916
+      created: 1321232892331
+    prefix_options: *id002
+  112928: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112918-1631-112920
+      comments: ""
+      fromCiId: 112918
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112928
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112920
+      created: 1321232892331
+    prefix_options: *id002
+  112950: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112932-2002-112949
+      comments: ""
+      fromCiId: 112932
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112950
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: file
+          constraint: 0..999
+        prefix_options: {}
+
+      toCiId: 112949
+      created: 1321232892331
+    prefix_options: *id002
+  112923: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112914-2002-112922
+      comments: ""
+      fromCiId: 112914
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112923
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: database
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 112922
+      created: 1321232892331
+    prefix_options: *id002
+  112934: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112932-1877-112914
+      comments: ""
+      fromCiId: 112932
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.LinksTo
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112934
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 112914
+      created: 1321232892331
+    prefix_options: *id002
+  112945: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112941-1631-112937
+      comments: ""
+      fromCiId: 112941
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112945
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112937
+      created: 1321232892331
+    prefix_options: *id002
+  129000: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 128991-2147-112910
+      comments: ""
+      fromCiId: 128991
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.SecuredBy
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 129000
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 112910
+      created: 1321431112840
+    prefix_options: *id002
+  112929: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112922-1631-112924
+      comments: ""
+      fromCiId: 112922
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112929
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112924
+      created: 1321232892331
+    prefix_options: *id002
+  112940: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112932-2002-112939
+      comments: ""
+      fromCiId: 112932
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112940
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: commonlibs
+          constraint: 1..*
+        prefix_options: {}
+
+      toCiId: 112939
+      created: 1321232892331
+    prefix_options: *id002
+  112951: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112949-1631-112937
+      comments: ""
+      fromCiId: 112949
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112951
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112937
+      created: 1321232892331
+    prefix_options: *id002
+  112919: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112914-2002-112918
+      comments: ""
+      fromCiId: 112914
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112919
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: datafs
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 112918
+      created: 1321232892331
+    prefix_options: *id002
+  112930: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112924-1631-112918
+      comments: ""
+      fromCiId: 112924
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: catalog.DependsOn
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112930
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 112918
+      created: 1321232892331
+    prefix_options: *id002
+  112925: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112914-2002-112924
+      comments: ""
+      fromCiId: 112914
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112925
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: postgresql
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 112924
+      created: 1321232892331
+    prefix_options: *id002
+  112936: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112932-2002-112935
+      comments: ""
+      fromCiId: 112932
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112936
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: nginx
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 112935
+      created: 1321232892331
+    prefix_options: *id002
+  112947: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 112932-2002-112946
+      comments: ""
+      fromCiId: 112932
+      toCi: 
+      nsPath: /kloopz/teambox
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationName: base.Requires
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 112947
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: build
+          constraint: 0..999
+        prefix_options: {}
+
+      toCiId: 112946
+      created: 1321232892331
+    prefix_options: *id002

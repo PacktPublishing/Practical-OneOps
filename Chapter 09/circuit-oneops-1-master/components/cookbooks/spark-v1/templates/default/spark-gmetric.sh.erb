@@ -1,0 +1,32 @@
+#!/usr/bin/python
+
+import sys,json
+import urllib
+from subprocess import call
+
+# Pull the metrics from the REST api and convert them into
+# calls to gmetric to report them to Ganglia
+try:
+  metricsLink = "http://localhost:<%= @metrics_port %>/metrics/<%= @metrics_path %>"
+  metricsData = urllib.urlopen(metricsLink)
+  dataString = metricsData.read()
+except:
+  pass
+
+# Loop through the data and call gmetric with any values
+# returned under the "gauges" element
+try:
+  jsonData = json.loads(dataString)
+  for key in jsonData["gauges"]:
+    call(["gmetric", "--name", key, "--value", str(jsonData["gauges"][key]["value"]), "--type", "uint16", "--group", "spark"])
+
+<% if @is_spark_master %>
+  # Read the value of master.apps and report it as cluster.jobs_running
+  call(["gmetric", "--name", "cluster.jobs_running", "--value", str(jsonData["gauges"]["master.apps"]["value"]), "--type", "uint16", "--group", "cluster"])
+
+  # Report cluster.unique_users as 0 for now until it can be computed
+  # Skipping user reporting for now until it can be figured out.
+  #call(["gmetric", "--name", "cluster.unique_users", "--value", "0", "--type", "uint16", "--group", "cluster"])
+<% end %>
+except:
+  pass

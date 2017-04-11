@@ -1,0 +1,5 @@
+config = {_id: '<%= node[:workorder][:box][:ciName] %>', members: <%= node[:members].to_json %>
+}
+
+rs.initiate(config);
+

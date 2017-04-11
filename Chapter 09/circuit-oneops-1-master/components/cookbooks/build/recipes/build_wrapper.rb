@@ -1,0 +1,210 @@
+require 'json'
+
+STDOUT.sync = true
+
+#ci.ciName
+manifest = node.workorder.payLoad.RealizedAs.first['ciName']
+manifestId = node.workorder.payLoad.RealizedAs.first['ciId']
+install_dir = (node[:build].has_key?('install_dir') && !node[:build][:install_dir].empty?) ? node[:build][:install_dir] : "/opt/#{manifest}"
+as_user = (node[:build].has_key?('as_user') && !node[:build][:as_user].empty?) ? node[:build][:as_user] : "root"
+as_group = (node[:build].has_key?('as_group') && !node[:build][:as_group].empty?) ? node[:build][:as_group] : "root"
+if as_user == 'root'
+  as_home = '/root'
+else
+  as_home = `cd ~#{as_user} && pwd`.chop
+end
+
+Chef::Log.info("Deploying as user #{as_user} with HOME=#{as_home}")
+Chef::Log.info("Using installation directory #{install_dir}")
+
+directory "#{install_dir}/shared" do
+  owner as_user
+  group as_group
+  recursive true
+  mode 0775
+  action :create
+end
+
+ci = nil
+# work order
+if node.workorder.has_key?("rfcCi")
+  ci = node.workorder.rfcCi
+# action order
+elsif node.workorder.has_key?("ci")
+  ci = node.workorder.ci
+end
+
+
+
+# must convert git protocol to ssh or auth fails
+_domain = ci[:nsPath].split('/').drop(1).reverse.drop(1).unshift('').join('.')
+_scm = ci[:ciAttributes][:scm]
+_username = ci[:ciAttributes][:username] || ''
+_password = ci[:ciAttributes][:password] || ''
+_key = ci[:ciAttributes][:key]||''
+_repository = ci[:ciAttributes][:repository]
+_depth = ci[:ciAttributes][:depth]
+_persist = JSON.parse(ci[:ciAttributes][:persist])
+_symlinks = Hash.new
+_persist.each do |dir|
+  _symlinks[dir] = dir
+  directory "#{install_dir}/shared/#{dir}" do
+    owner as_user
+    group as_group
+    recursive true
+    mode 0775
+    action :create
+  end
+end
+# callbacks
+_before_migrate = ci[:ciAttributes][:before_migrate] || ''
+_before_symlink = ci[:ciAttributes][:before_symlink] || ''
+_before_restart = ci[:ciAttributes][:before_restart] || ''
+_after_restart = ci[:ciAttributes][:after_restart] || ''
+
+# setup repo
+unless _key.empty?
+    
+  if _repository =~ /(\w+)@(.+):(.+)/
+    _user = $1
+    _hostname = $2
+    _path = $3
+    # create host alias
+    _repository = "#{_user}@#{manifest}:#{_path}"
+  else
+    _url = URI.parse(_repository) 
+    _user = _url.userinfo
+    _hostname = _url.host
+    _path = _url.path
+    _repository = "#{_url.scheme}://#{_url.userinfo}@#{manifest}#{_url.path}"
+  end
+  
+end
+
+
+_env = JSON.parse(ci[:ciAttributes][:environment]).merge({ "DOMAIN" => "#{node.customer_domain}" })
+# export needed for activemq init.d script
+_envstring = _env.to_a.collect { |v| 'export '+v[0]+'="'+v[1]+'"' }.join("\n")
+if !as_user.empty?
+   _envstring += "\nexport HOME=#{as_home}\n"
+end
+
+directory "/opt/oneops/env/#{manifest}-#{manifestId}" do
+  owner "oneops"
+  group "oneops"
+  recursive true
+  action :create
+end
+
+
+  
+# save the env in a file to help with manual startups and some apps like tomcat
+file "/opt/oneops/env/#{manifest}-#{manifestId}/.env" do
+  owner as_user
+  group as_group
+  mode 0755
+  content _envstring
+  action :create
+end
+
+file "#{install_dir}/build.sh" do
+  owner as_user
+  group as_group
+  mode 0755
+  content ci[:ciAttributes][:migration_command].gsub(/\r\n?/,"\n")
+  action :create
+end
+
+
+build "#{install_dir}" do
+  
+  Chef::Log.level(:debug)
+  
+  deploy_to install_dir
+  user as_user
+  group as_group
+  
+  case _scm
+  when 'svn'
+    scm_provider Chef::Provider::Subversion
+    svn_username _username unless _username.empty?
+    svn_password _password unless _password.empty?
+    svn_arguments "--non-interactive --no-auth-cache"
+  else # git
+    scm_provider Chef::Provider::Git
+    shallow_clone _depth.to_i unless _depth.empty?
+    enable_submodules ci[:ciAttributes][:submodules] == 'false' ? false : true
+  end
+  
+  repository "#{_repository}"
+  revision "#{ci[:ciAttributes][:revision]}"
+  repository_cache 'latest'
+
+  environment _env
+  purge_before_symlink _persist
+  create_dirs_before_symlink([])
+  symlinks _symlinks
+  symlink_before_migrate({})
+  
+  unless ci[:ciAttributes][:migration_command].empty?
+    migrate true
+    migration_command "bash -c #{install_dir}/build.sh"
+  end
+  
+  _restart_cmd = ci[:ciAttributes][:restart_command]
+  skip_first_restart = false
+  service_name = ''
+  if _restart_cmd =~ /service (.*?) /
+    service_name = $1
+  end
+  if _restart_cmd =~ /etc\/init.d\/(.*) /
+    service_name = $1
+  end
+
+  # check to see if service exists or will be created by a dependent daemon  
+  if !service_name.empty? && !::File.exists?("/etc/init.d/#{service_name}")
+      
+    if node.workorder.payLoad.has_key?("daemonizedBy")
+      daemons = node.workorder.payLoad.daemonizedBy
+      
+      daemons.each do |daemon|
+        if daemon["ciAttributes"]["service_name"] == service_name
+          skip_first_restart = true
+          Chef::Log.warn("service #{service_name} control script not created yet; will be generated by dependant daemon. skipping restart.")
+        end
+      end
+    end
+      
+  end
+   
+  unless ci[:ciAttributes][:restart_command].empty? || skip_first_restart
+    restart_command _restart_cmd
+  end
+  
+  # callbacks 
+  before_migrate do eval _before_migrate end unless _before_migrate.empty?
+  before_symlink do eval _before_symlink end unless _before_symlink.empty?
+  before_restart do eval _before_restart end unless _before_restart.empty?
+  after_restart do eval _after_restart end unless _after_restart.empty?
+
+  action ENV.key?('MAILTO') ? :deploy : :force_deploy  
+  
+end
+
+if ci[:ciAttributes][:ci] == 'true'
+  cron "continuous_integration_#{manifest}" do
+    minute "0,5,10,15,20,25,30,35,40,45,50,55"
+    path '${PATH}:/usr/local/bin:/usr/bin'
+    command "chef-solo -l debug -c /home/oneops/cookbooks/chef.rb -j /opt/oneops/workorder/build.#{ci[:ciName]}.json >> /tmp/build.#{ci[:ciName]}.log 2>&1"
+    mailto '/dev/null'
+    action :create
+  end
+elsif ci[:ciAttributes][:ci] == 'false' && ci.has_key?(:ciBaseAttributes) && ci[:ciBaseAttributes][:ci] && ci[:ciBaseAttributes][:ci] == 'true'
+  cron "continuous_integration_#{manifest}" do
+    minute "0,5,10,15,20,25,30,35,40,45,50,55"
+    path '${PATH}:/usr/local/bin:/usr/bin'
+    command "chef-solo -l debug -c /home/oneops/cookbooks/chef.rb -j /opt/oneops/workorder/build.#{ci[:ciName]}.json >> /tmp/build.#{ci[:ciName]}.log 2>&1"
+    mailto '/dev/null'
+    action :delete
+  end
+end

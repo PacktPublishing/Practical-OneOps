@@ -1,0 +1,23 @@
+{
+  "name": "myPublicIP1",
+  "id": "/subscriptions/{guid}/resourceGroups/rg1/Microsoft.Network/publicIpAddresses/ip1",
+  "location": "North US",
+  "tags": {
+    "key": "value"
+  },
+  "etag": "W/\"00000000-0000-0000-0000-000000000000\"",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "ipAddress": "1.1.1.1",
+    "publicIPAllocationMethod": "Static",
+    "idleTimeoutInMinutes": 4,
+    "ipConfiguration": {
+      "id": "/subscriptions/{guid}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/vm1nic1/ipConfigurations/ip1"
+    },
+    "dnsSettings": {
+      "domainNameLabel": "mylabel",
+      "fqdn": "mylabel.northus.cloudapp.azure.com.",
+      "reverseFqdn": "contoso.com."
+    }
+  }
+}

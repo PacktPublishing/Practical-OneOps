@@ -1,0 +1,21 @@
+{
+    "name": "calico-k8s-network",
+    "hostname": "<%= node.hostname %>",
+    "type": "calico",
+    "etcd_endpoints": "<%= node['etcd']['servers'] %>",
+    "log_level": "info",
+    "ipam": {
+        "type": "calico-ipam"
+    },
+    "policy": {
+        "type": "k8s"
+    },
+<%
+mtu = "1416"
+%>
+    "mtu": <%= mtu %>,
+    "kubernetes": {
+       "kubeconfig": "/etc/kubernetes/kubeconfig"
+
+    }    
+}    

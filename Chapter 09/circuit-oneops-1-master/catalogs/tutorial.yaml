@@ -1,0 +1,1153 @@
+--- !ruby/object:Chef::Catalog 
+cis: !map:Mash 
+  243611: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1104-243611
+      lastRfcId: 
+      ciId: 243611
+      comments: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: single
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: qa
+      created: 1322087643575
+    prefix_options: &id001 {}
+
+  243358: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1152-243358
+      lastRfcId: 
+      ciId: 243358
+      comments: default keypair
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: account.Keypair
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          public: |
+            -----BEGIN RSA PUBLIC KEY-----
+            MIIBCgKCAQEAwhQTWR2TVAEfYPYMchBJOtLPitwmtzShQI3xeR4b5Wml7Vg54xU8
+            +4ss/EJ/6l7hrDltvLIlVNfaUWYpec/Hu/0IBU/QsruvsjLewG8OQXTEAQr0onZE
+            5zTIBHHE2qQJ+omTrA//6pB2DByFE+GrlWCrGQsoMVdzqAvQBwHoTyTEgmjbuR+S
+            24nmZOvk3EicVvoLVk1AhCuQ9pF2h5IT8Bas8SXQvgSx44roKt0rDwO+GCvJXGT4
+            whUJhIJb3sVSC0QctQbFu1lE8nSsZhDEGQkVbPUakP9rfYmnBGlqYF5gM+ORnlF1
+            elBlBYlio/K1gnqNJvKEjiIiW4YvP7UfUwIDAQAB
+            -----END RSA PUBLIC KEY-----
+
+          description: 2048-bit keys
+        prefix_options: {}
+
+      ciName: Default
+      created: 1322086602773
+    prefix_options: *id001
+  243364: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1165-243364
+      lastRfcId: 
+      ciId: 243364
+      comments: ""
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Library
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          packages: "[\"sqlite3\",\"libsqlite3-dev\",\"libmysqlclient-dev\",\"libpq-dev\"]"
+        prefix_options: {}
+
+      ciName: demo-dblibs
+      created: 1322086717671
+    prefix_options: *id001
+  533797: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1246-533797
+      lastRfcId: 
+      ciId: 533797
+      comments: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: custom
+          version: "0.2"
+          aliases: "[]"
+          description: ""
+          source: packer
+        prefix_options: {}
+
+      ciName: montest
+      created: 1327346703124
+    prefix_options: *id001
+  243370: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1067-243370
+      lastRfcId: 
+      ciId: 243370
+      comments: ""
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: XS
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: demo-compute
+      created: 1322086717671
+    prefix_options: *id001
+  243366: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1277-243366
+      lastRfcId: 
+      ciId: 243366
+      comments: ""
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Ruby
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          version: 1.8.7
+          gems: "{\"bundler\":\"\",\"rake\":\"\",\"rails\":\"\",\"unicorn\":\"\"}"
+        prefix_options: {}
+
+      ciName: demo-ruby
+      created: 1322086717671
+    prefix_options: *id001
+  533799: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1067-533799
+      lastRfcId: 
+      ciId: 533799
+      comments: ""
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: XS
+          hosts: "{}"
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: montest-compute
+      created: 1327346703124
+    prefix_options: *id001
+  243372: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1203-243372
+      lastRfcId: 
+      ciId: 243372
+      comments: ""
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Nginx
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          version: 1.0.5
+        prefix_options: {}
+
+      ciName: demo-nginx
+      created: 1322086717671
+    prefix_options: *id001
+  243460: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1104-243460
+      lastRfcId: 
+      ciId: 243460
+      comments: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: single
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: dev
+      created: 1322086730340
+    prefix_options: *id001
+  243362: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1246-243362
+      lastRfcId: 
+      ciId: 243362
+      comments: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: rails
+          version: "0.2"
+          aliases: "[]"
+          description: ""
+          source: packer
+        prefix_options: {}
+
+      ciName: demo
+      created: 1322086717671
+    prefix_options: *id001
+  243368: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-10789-243368
+      lastRfcId: 
+      ciId: 243368
+      comments: ""
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Website
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          server_name: _
+          port: "80"
+          root: /kloopz/demo-railsapp/current
+          extra: |
+            try_files $uri/index.html $uri.html $uri @app;
+            
+            location @app {
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_redirect off;
+                proxy_pass http://rails;
+            }
+            
+            error_page 500 502 503 504 /500.html;
+
+          upstream: "{ \"rails\" : \"127.0.0.1:3000\" }"
+        prefix_options: {}
+
+      ciName: demo-website
+      created: 1322086717671
+    prefix_options: *id001
+  243374: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 243356-1036-243374
+      lastRfcId: 
+      ciId: 243374
+      comments: ""
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Build
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repository: git://github.com/railstutorial/demo_app.git
+          persist: "[\"log\",\"tmp\"]"
+          depth: "1"
+          migration_command: |
+            bundle install
+            bundle exec rake db:migrate
+
+          ci: "false"
+          revision: master
+          restart_command: bundle exec unicorn_rails -D -E production -p 3000
+          scm: git
+          environment: "{\"RAILS_ENV\":\"production\",\"RUBYOPT\":\"rubygems\"}"
+          submodules: "false"
+          key: ""
+        prefix_options: {}
+
+      ciName: demo-railsapp
+      created: 1322086717671
+    prefix_options: *id001
+description: Rails Tutorial
+name: tutorial
+nspath: /kloopz
+relations: !map:Mash 
+  243369: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243362
+      relationGoid: 243362-2002-243368
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243369
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: website
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 243368
+      created: 1322086717671
+    prefix_options: &id002 {}
+
+  243380: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243368
+      relationGoid: 243368-1631-243372
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243380
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 243372
+      created: 1322086717671
+    prefix_options: *id002
+  243375: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243362
+      relationGoid: 243362-2002-243374
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243375
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: railsapp
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 243374
+      created: 1322086717671
+    prefix_options: *id002
+  243617: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243354
+      relationGoid: 243354-2000-243611
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.RealizedIn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243617
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 243611
+      created: 1322087643575
+    prefix_options: *id002
+  243381: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243366
+      relationGoid: 243366-1631-243370
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243381
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 243370
+      created: 1322086717671
+    prefix_options: *id002
+  243469: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243460
+      relationGoid: 243460-2147-243358
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.SecuredBy
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243469
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 243358
+      created: 1322086730436
+    prefix_options: *id002
+  243365: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243362
+      relationGoid: 243362-2002-243364
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243365
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: dblibs
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 243364
+      created: 1322086717671
+    prefix_options: *id002
+  533798: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243354
+      relationGoid: 243354-1352-533797
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.ComposedOf
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 533798
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 533797
+      created: 1327346703124
+    prefix_options: *id002
+  243376: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243374
+      relationGoid: 243374-1631-243366
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243376
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 243366
+      created: 1322086717671
+    prefix_options: *id002
+  243371: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243362
+      relationGoid: 243362-2002-243370
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243371
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 243370
+      created: 1322086717671
+    prefix_options: *id002
+  243382: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243364
+      relationGoid: 243364-1631-243366
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243382
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 243366
+      created: 1322086717671
+    prefix_options: *id002
+  243377: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243374
+      relationGoid: 243374-1631-243364
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243377
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 243364
+      created: 1322086717671
+    prefix_options: *id002
+  533800: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 533797
+      relationGoid: 533797-2002-533799
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 533800
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 533799
+      created: 1327346703124
+    prefix_options: *id002
+  243367: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243362
+      relationGoid: 243362-2002-243366
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243367
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: ruby
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 243366
+      created: 1322086717671
+    prefix_options: *id002
+  243466: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243354
+      relationGoid: 243354-2000-243460
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.RealizedIn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243466
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 243460
+      created: 1322086730340
+    prefix_options: *id002
+  243378: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243372
+      relationGoid: 243372-1631-243370
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243378
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 243370
+      created: 1322086717671
+    prefix_options: *id002
+  243620: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243611
+      relationGoid: 243611-2147-243358
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.SecuredBy
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243620
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 243358
+      created: 1322087643658
+    prefix_options: *id002
+  243373: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243362
+      relationGoid: 243362-2002-243372
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.Requires
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243373
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: nginx
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 243372
+      created: 1322086717671
+    prefix_options: *id002
+  243379: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243368
+      relationGoid: 243368-1631-243374
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: catalog.DependsOn
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243379
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+          source: template
+        prefix_options: {}
+
+      toCiId: 243374
+      created: 1322086717671
+    prefix_options: *id002
+  243363: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      comments: ""
+      fromCiId: 243354
+      relationGoid: 243354-1352-243362
+      toCi: 
+      nsPath: /kloopz/tutorial
+      rfcId: 0
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationName: base.ComposedOf
+      fromCi: 
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 243363
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 243362
+      created: 1322086717671
+    prefix_options: *id002

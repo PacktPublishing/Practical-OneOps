@@ -1,0 +1,52 @@
+loop_wait: 10
+etcd:
+  scope: postgres
+  ttl: <%= node['postgresql-governor'][:etcd_ttl] %>
+  # if running etcd with authentication, application authentication by uncommenting the following
+  # authentication:
+    # username: myusername
+    # password: mypassword
+  endpoint: http://<%= node[:platform_fqdn] %>:2379
+  timeout: 5
+haproxy_status:
+  listen: <%= node[:ipaddress] %>:15432
+postgresql:
+  name: <%= node.workorder.payLoad.ManagedVia[0]['ciName'].split("-").join %>
+  listen:  <%= node[:ipaddress] %>:5432
+  data_dir: <%= node['postgresql-governor'][:data] %>
+  maximum_lag_on_failover: <%= node['postgresql-governor'][:maximum_lag_on_failover] %> # by default 8 megabyte in bytes
+  # use_tcp_for_local_connection: true
+  replication:
+    username: replicator
+    password: rep-pass
+    network:  0.0.0.0/0
+  #recovery_conf:
+    #restore_command: cp ../wal_archive/%f %p
+  parameters:
+    <%- {
+    'ident_file' => "'#{node['postgresql-governor'][:data]}/pg_ident.conf'",    # ident configuration file
+    'hba_file' => "'#{node['postgresql-governor'][:data]}/pg_hba.conf'",   # host-based authentication file
+    'listen_addresses' => "'*'",        # what IP address(es) to listen on;
+    'port' => "#{node['postgresql-governor'][:port]}",                # (change requires restart)
+    'max_connections' => "100",            # (change requires restart)
+    'unix_socket_directories' => "'/tmp'",        # (change requires restart)
+    'ssl' => "false",                # (change requires restart)
+    'shared_buffers' => "24MB",            # min 128kB or max_connections*16kB
+    'log_line_prefix' => "'%t '",            # special values:
+    'datestyle' => "'iso, mdy'",
+    'default_text_search_config' => "'pg_catalog.english'",
+    'archive_mode' => "on",
+    'wal_level' => "hot_standby",
+    'synchronous_commit' => "local",
+    'synchronous_standby_names' => "'*'",
+    'archive_command' => "'mkdir -p #{node['postgresql-governor'][:data]}/archivedir && cp %p #{node['postgresql-governor'][:data]}/archivedir/%f'",
+    'wal_keep_segments' => "8",
+    'max_wal_senders' => "5",
+    'archive_timeout' => "1800s",
+    'max_replication_slots' => "5",
+    'hot_standby' => "on"
+    }.merge(JSON.parse(node.workorder.rfcCi.ciAttributes[:postgresql_conf])).each do |param,value| %>
+    <%= param %>: <%= value %>
+    <% end %>
+#initdb_parameters:
+#- '--encoding=SQL_ASCII'

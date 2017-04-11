@@ -1,0 +1,14 @@
+[phpwebtatic]
+name=phpwebtatic
+<% if node[:platform_version].start_with?("5") %>
+baseurl=<%= @php_source %>/5/<%= @php_version %>
+<% elsif node[:platform_version].start_with?("6") %>
+baseurl=<%= @php_source %>/6/<%= @php_version %>
+<% elsif node[:platform_version].start_with?("7") %>
+baseurl=<%= @php_source %>/7/<%= @php_version %>
+<% else %>
+baseurl=<%= @php_source %>/6/<%= @php_version %>
+<% end %>
+enabled=1
+gpgcheck=0
+sslverify=0

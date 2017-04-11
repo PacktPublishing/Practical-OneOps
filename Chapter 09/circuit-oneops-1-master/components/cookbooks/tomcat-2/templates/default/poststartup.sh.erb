@@ -1,0 +1,34 @@
+#!/bin/bash
+# description: Post Startup Script for Tomcat
+
+<% if !node['tomcat']['startup_shutdown']['max_number_of_retries_for_post_startup_check'].nil? && !node['tomcat']['startup_shutdown']['max_number_of_retries_for_post_startup_check'].empty? %>
+NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED=<%= node['tomcat']['startup_shutdown']['max_number_of_retries_for_post_startup_check'] %>
+<% else %>
+NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED=1
+<% end %>
+
+<% if !node['tomcat']['startup_shutdown']['polling_frequency_post_startup_check'].nil? && !node['tomcat']['startup_shutdown']['polling_frequency_post_startup_check'].empty? %>
+TIME_BETWEEN_APP_START_CHECK="<%= node['tomcat']['startup_shutdown']['polling_frequency_post_startup_check'] %>"
+<% else %>
+TIME_BETWEEN_APP_START_CHECK=1
+<% end %>
+
+POST_STARTUP_COMMAND="<%= node['tomcat']['startup_shutdown']['post_startup_command'] %>"
+
+if [ -n "$NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED" ];  then
+    echo "Executing post start up command every $TIME_BETWEEN_APP_START_CHECK second(s) for $NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED times."
+    for (( i = 1; i <= NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED; i++ )); do
+            eval "$POST_STARTUP_COMMAND"
+            STATUS_OF_POST_START_UP_COMMAND=$?
+            if [ $STATUS_OF_POST_START_UP_COMMAND -eq 1 ]; then
+                sleep $TIME_BETWEEN_APP_START_CHECK
+                echo "Post Start Up Command failed;retrying $i of $NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED "
+                continue
+            else
+                echo "Post Start Up Command succeeded!"
+                break
+            fi
+    done
+else
+     echo "Skipping POST_STARTUP_COMMAND as NUMBER_OF_TIMES_TO_CHECK_IF_APP_STARTED not configured"
+fi

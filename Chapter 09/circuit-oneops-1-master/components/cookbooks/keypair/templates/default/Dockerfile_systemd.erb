@@ -1,0 +1,41 @@
+FROM <%= @image_id %>
+ENV container docker
+
+<% if @image_id =~ /redhat|centos|fedora/ %>
+# redhat, centos, fedora
+RUN yum -y update; yum clean all
+RUN yum -y swap -- remove fakesystemd -- install systemd systemd-libs
+RUN systemctl mask dev-mqueue.mount dev-hugepages.mount systemd-remount-fs.service sys-kernel-config.mount sys-kernel-debug.mount sys-fs-fuse-connections.mount
+RUN systemctl mask display-manager.service systemd-logind.service
+RUN systemctl disable graphical.target; systemctl enable multi-user.target
+ADD dbus.service /etc/systemd/system/dbus.service
+VOLUME ["/sys/fs/cgroup"]
+VOLUME ["/run"]
+
+RUN yum -y install rsyslog openssh-server
+RUN yum -y install sudo rsync file make gcc glibc-devel libgcc ruby ruby-libs ruby-devel libxml2-devel libxslt-devel ruby-rdoc rubygems perl
+RUN yum -y install ntp which tar zip unzip sysstat autoconf automake libtool bison bind bind-utils java-1.7.0-openjdk net-tools moreutils nc
+RUN gem update --system 1.8.25
+
+
+<% elsif @image_id =~ /suse/ %>
+# suse
+RUN zypper -q --gpg-auto-import-keys -n ref
+RUN zypper -q -n update
+RUN zypper -q -n in systemd netcfg rsyslog openssh openssl
+RUN zypper -q -n in sudo rsync file make gcc glibc-devel ruby ruby-devel rubygems libxml2-devel libxslt-devel perl
+RUN gem update --system 1.8.25
+RUN zypper -q -n in rubygem-yajl-ruby
+RUN zypper -q -n in ntp which tar zip unzip sysstat autoconf automake libtool bison bind bind-utils java-1.7.0-openjdk netcat
+RUN zypper -q -n in nagios nagios-devel lsof
+RUN echo "HOSTNAME=<%= @image_name %>" > /etc/HOSTNAME
+
+<% elsif @image_id =~ /ubuntu|debian/ %>
+# debian, ubuntu
+RUN apt-get -y update
+RUN apt-get -y install rsyslog openssh-server rsync
+<% end %>
+
+ADD authorized_keys /root/.ssh/authorized_keys
+EXPOSE 22
+CMD  ["/usr/lib/systemd/systemd"]

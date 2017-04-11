@@ -1,0 +1,12 @@
+{
+  "location": "global",
+  "tags": {},
+  "properties": {
+    "TTL": 300,
+    "ARecords": [
+      {
+        "ipv4Address": "1.2.3.4"
+      }
+    ]
+  }
+}

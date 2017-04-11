@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+# Starts hiveserver2 service
+#
+# chkconfig: 2345 80 10
+# description: Hiveserver2 service
+
+source /etc/profile.d/hive.sh
+source /etc/rc.d/init.d/functions
+
+RETVAL=0
+PIDFILE="/var/run/hive-hiveserver2.pid"
+DESC="Hiveserver2 Service"
+HIVE_USER="hive"
+
+
+start() {
+  echo -n $"Starting $DESC: "
+  su - ${HIVE_USER} -c "${HIVE_HOME}/bin/hiveserver2 2>/dev/null 1>&2 &"
+  RETVAL=$?
+  echo
+  [ $RETVAL -eq 0 ] && touch /var/lock/subsys/hive-hiveserver2; ps -ef | grep "hive.service.server.HiveServer2" | grep -v grep | awk '{print $2}' > ${PIDFILE}; echo STARTED
+  return $RETVAL
+}
+
+stop() {
+  echo -n $"Stopping $DESC: "
+  kill -9 $(ps -ef | grep "hive.service.server.HiveServer2" | grep -v grep | awk '{print $2}') 2>/dev/null 1>&2
+  RETVAL=$?
+  sleep 5
+  echo
+  [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/hive-hiveserver2 $PIDFILE; echo > ${PIDFILE}; echo STOPPED
+}
+
+checkstatus(){
+  echo ${DESC}
+  ps -ef | grep -v grep | grep "hive.service.server.HiveServer2" > /dev/null 2>&1
+  RETVAL=$?
+  [ $RETVAL -eq 0 ] && echo RUNNING
+  [ $RETVAL -ne 0 ] && echo STOPPED
+}
+
+restart() {
+  stop
+  start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    checkstatus
+    ;;
+  restart)
+    restart
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|status|restart}"
+    exit 1
+esac
+
+exit $RETVAL

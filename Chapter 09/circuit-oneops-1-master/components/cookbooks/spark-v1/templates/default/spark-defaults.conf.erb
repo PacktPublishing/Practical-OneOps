@@ -1,0 +1,70 @@
+<% 
+  # spark-defaults.conf.erb
+  #
+  # This is the main Spark configuration file.  It contains all
+  # Spark-specific settings used by the Master and Worker.
+ %>
+# Default system properties included when running spark-submit.
+# This is useful for setting default environmental settings.
+
+# Configuration options specified in the pack
+<% 
+   configName = node['app_name']
+   configNode = node[configName]
+
+   is_client_only = false
+
+   if node[configName].has_key?('is_client_only') && (node[configName]['is_client_only'] == 'true')
+     is_client_only = true
+   end
+
+   # Find the configuration to reference.  If there is a dependent
+   # configuration, it takes precedence.
+   dependentCiClass = "bom.oneops.1." + configName.slice(0,1).capitalize + configName.slice(1..-1)
+   spark_configs=node.workorder.payLoad.DependsOn.reject{ |d| d['ciClassName'] != dependentCiClass }
+   if (!spark_configs.nil? && !spark_configs[0].nil?)
+     # There is a dependent configuration.
+
+     # Get the config from the dependent configuration
+     configNode = spark_configs[0][:ciAttributes]
+   end
+
+   enable_history_server = is_client_only && configNode.has_key?('enable_historyserver') && (configNode['enable_historyserver'] == 'true')
+
+   if enable_history_server
+     spark_events_dir = @spark_events_dir
+     spark_history_port = @history_server_port
+%>
+spark.eventLog.enabled true
+spark.eventLog.dir <%= spark_events_dir %>
+spark.history.fs.logDirectory <%= spark_events_dir %>
+spark.history.ui.port <%= spark_history_port %>
+<% else %>
+spark.eventLog.enabled false
+<%
+   end
+
+   if (configNode['spark_config'] != nil)
+     sparkConfig = JSON.parse(configNode['spark_config'])
+
+     # Only install the client components on a compute
+     # with the "client only" flag set.
+     if is_client_only
+       # Insert the MySQL connector into the library path.
+       driverClassPathKey = 'spark.driver.extraClassPath'
+
+       mySqlDriver = `ls -1 #{configNode['hive_dir']}/lib/mysql-connector-* |head -n 1`
+
+       if sparkConfig.has_key?(driverClassPathKey) && !sparkConfig[driverClassPathKey].empty?
+         sparkConfig[driverClassPathKey] = sparkConfig[driverClassPathKey] + ":" + mySqlDriver
+       else
+         sparkConfig[driverClassPathKey] = mySqlDriver
+       end
+     end
+
+     sparkConfig.each_key { |key|
+%>
+<%= key %>  <%= sparkConfig[key] %>
+<%   }
+   end
+%>

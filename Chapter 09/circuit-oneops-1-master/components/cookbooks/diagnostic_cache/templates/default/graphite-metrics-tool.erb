@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'json'
+require 'logger'
+require '<%= @install_target_dir %>/couchbase_monitor.rb'
+
+graphite_logfiles_path = '<%= @graphite_logfiles_path %>'
+rotate = 10
+log_size = 1024000
+
+admin_user = '<%= @admin_user %>'
+admin_password = '<%= @admin_password %>'
+graphite_servers = JSON.parse('<%= @graphite_servers %>')
+graphite_prefix = '<%= @graphite_prefix %>'.gsub(/\.+$/, '').chomp
+
+# OneOps variables
+oo_org = '<%= @oo_org %>'.gsub(/\./, '-')
+oo_assembly = '<%= @oo_assembly %>'.gsub(/\./, '-')
+oo_env = '<%= @oo_env %>'.gsub(/\./, '-')
+oo_platform = '<%= @oo_platform %>'.gsub(/\./, '-')
+oo_cloud = '<%= @oo_cloud %>'.gsub(/\./, '-')
+
+# Send to configured graphite servers
+if (graphite_servers != nil && graphite_servers.length > 0) 
+
+  if (graphite_prefix.length == 0)
+    graphite_prefix = "#{oo_org}-#{oo_assembly}-#{oo_platform}"
+  end
+
+  couchbase_monitor = CouchbaseMonitor.new('localhost:<%= @couchbase_port %>', admin_user, admin_password, graphite_servers,
+                                graphite_prefix, oo_env, oo_cloud, graphite_logfiles_path, rotate, log_size)
+
+  couchbase_monitor.collect_all_stats
+end

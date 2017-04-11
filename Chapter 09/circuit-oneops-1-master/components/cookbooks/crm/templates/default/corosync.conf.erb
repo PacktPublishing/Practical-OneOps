@@ -1,0 +1,26 @@
+totem {
+        version: 2
+        secauth: off
+        interface {
+			    <% node["workorder"]["payLoad"]["RequiresComputes"].each do |member| %>
+                   member {
+                      memberaddr: <%= member["ciAttributes"]["private_ip"] %>                        
+                   }
+    			<% end %>
+                ringnumber: 0
+                bindnetaddr: <%= node["bcast_addr"] %>
+                mcastport: 5405
+        }
+        transport: udpu
+}
+aisexec {
+    user:  root
+    group: root
+}
+service {
+        name: pacemaker
+        ver:  0
+}
+amf {
+        mode: disabled
+}

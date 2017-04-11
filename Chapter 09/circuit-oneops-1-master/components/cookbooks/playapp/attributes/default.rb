@@ -1,0 +1,9 @@
+default["playapp"]["http_port"] = 80
+default["playapp"]["https_port"] = ""
+default["playapp"]["log_file"] = ""
+default["playapp"]["application_conf_file"] = ""
+default["playapp"]["app_name"] = "playApp" 
+default["playapp"]["app_opts"] = ""
+default["playapp"]["app_dir"] = ""
+default["playapp"]["app_location"] = ""
+default["playapp"]["app_secret"] = ""

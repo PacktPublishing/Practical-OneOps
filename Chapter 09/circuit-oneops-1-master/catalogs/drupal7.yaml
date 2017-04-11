@@ -1,0 +1,762 @@
+--- !ruby/object:Chef::Catalog 
+cis: !map:Mash 
+  578187: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: web-php
+      ciId: 578187
+      ciClassName: catalog.Php
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          port: "9000"
+          build_options: "{\"srcdir\":\"/usr/local/src/php\",\"version\":\"PHP_5_3_10\",\"prefix\":\"/usr/local/php\",\"configure\":\"\"}"
+          install_type: repository
+          fcgi: "true"
+        prefix_options: {}
+
+    prefix_options: &id001 {}
+
+  578176: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: db-database
+      ciId: 578176
+      ciClassName: catalog.Database
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          dbname: mydb
+          username: myuser
+          extra: ""
+          password: "::ENCRYPTED::38f578c842e8c004f8cab37a25d96d24537a875175d659aff73e43aaac7eb517962b3cb80e637e59256bccaec2e9a76a080233119e1b48cbce87a93683b7b27a"
+        prefix_options: {}
+
+    prefix_options: *id001
+  578193: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: web-website
+      ciId: 578193
+      ciClassName: catalog.Website
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          port: "80"
+          extra: ""
+          root: /opt/drupal-7.14
+          sslcertkey: ""
+          ssl: "off"
+          server_name: web.s1nova.skyneta.com
+          sslcert: ""
+          upstream: "{}"
+        prefix_options: {}
+
+    prefix_options: *id001
+  580300: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: download-drupal
+      ciId: 580300
+      ciClassName: catalog.Download
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          basic_auth_password: "::ENCRYPTED::00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+          checksum: ""
+          source: http://ftp.drupal.org/files/projects/drupal-7.14.tar.gz
+          basic_auth_user: ""
+          headers: ""
+          post_download_exec_cmd: cd /opt ; tar -zxf /tmp/drupal-7.14.tar.gz ; cp /opt/drupal-7.14/sites/default/default.settings.php /opt/drupal-7.14/sites/default/settings.php ; chmod 777  /opt/drupal-7.14/sites/default/settings.php; mkdir -p /opt/drupal-7.14/sites/default/files/tmp; chown -R www-data /opt/drupal-7.14/sites/default/files
+          path: /tmp/drupal-7.14.tar.gz
+        prefix_options: {}
+
+    prefix_options: *id001
+  578166: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: db
+      ciId: 578166
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          description: ""
+          source: packer
+          version: "0.4"
+          pack: mysql
+        prefix_options: {}
+
+    prefix_options: *id001
+  580449: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: s2nova
+      ciId: 580449
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          availability: single
+          description: ""
+          autoscale: "false"
+          domain: skyneta.com
+          autorepair: "false"
+          subdomain: s2nova
+        prefix_options: {}
+
+    prefix_options: *id001
+  578172: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: db-volume
+      ciId: 578172
+      ciClassName: catalog.Volume
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          options: ""
+          fstype: xfs
+          device: ""
+          mount_point: /db
+          size: 100%FREE
+        prefix_options: {}
+
+    prefix_options: *id001
+  578189: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: web-compute
+      ciId: 578189
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          ostype: ubuntu-11.10
+          size: S
+          hosts: "{}"
+        prefix_options: {}
+
+    prefix_options: *id001
+  578184: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: web
+      ciId: 578184
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          description: ""
+          source: packer
+          version: "0.4"
+          pack: php
+        prefix_options: {}
+
+    prefix_options: *id001
+  578168: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: db-mysql
+      ciId: 578168
+      ciClassName: catalog.Mysql
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          port: "3306"
+          password: "::ENCRYPTED::1fc447f04450bf3453c843487142296c6109eb0d0de787c5f28760e9827f329dec78b93fd05c5b5731f5938a814e8dae56da71bc8c15b42b1398626662ba99b7"
+          datadir: /db
+          version: "5.5"
+        prefix_options: {}
+
+    prefix_options: *id001
+  578174: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: db-storage
+      ciId: 578174
+      ciClassName: catalog.Storage
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          mode: raid0
+          slice_count: "10"
+          size: 10G
+        prefix_options: {}
+
+    prefix_options: *id001
+  578191: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: web-apache
+      ciId: 578191
+      ciClassName: catalog.Apache
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          build_options: "{\"srcdir\":\"/usr/local/src/apache\",\"version\":\"2.2.21\",\"prefix\":\"/usr/local/apache\",\"configure\":\"--enable-so --enable-mods-shared=all\"}"
+          contact: ops@example.com
+          tokens: Prod
+          install_type: repository
+          ports: "[\"80\",\"443\"]"
+          worker: "{\"startservers\":4,\"maxclients\":1024,\"minsparethreads\":64,\"maxsparethreads\":192,\"maxcthreadsperchild\":64,\"maxrequestsperchild\":0}"
+          prefork: "{\"startservers\":16,\"minspareservers\":16,\"maxspareservers\":32,\"serverlimit\":400,\"maxclients\":400,\"maxrequestsperchild\":10000}"
+          keepalive: "On"
+          request_timeout: "300"
+          signature: "On"
+          modules: "[\"mod_log_config\",\"mod_mime\",\"mod_dir\",\"mod_status\",\"mod_alias\",\"mod_auth_basic\",\"mod_authz_host\"]"
+          user: ""
+        prefix_options: {}
+
+    prefix_options: *id001
+  579380: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: s1nova
+      ciId: 579380
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          availability: single
+          description: ""
+          autoscale: "false"
+          domain: skyneta.com
+          autorepair: "false"
+          subdomain: s1nova
+        prefix_options: {}
+
+    prefix_options: *id001
+  578170: !ruby/object:Cms::Ci 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciName: db-compute
+      ciId: 578170
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          ostype: ubuntu-12.04
+          size: S
+          hosts: "{}"
+        prefix_options: {}
+
+    prefix_options: *id001
+description: main
+name: Drupal7
+nspath: ""
+public: true
+relations: !map:Mash 
+  578198: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578187
+      fromCiId: 578193
+      fromCi: 
+      ciRelationId: 578198
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: &id002 {}
+
+  578182: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578172
+      fromCiId: 578168
+      fromCi: 
+      ciRelationId: 578182
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578171: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          constraint: 1..1
+          template: compute
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578170
+      fromCiId: 578166
+      fromCi: 
+      ciRelationId: 578171
+      relationName: base.Requires
+      toCi: 
+    prefix_options: *id002
+  578199: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578191
+      fromCiId: 578193
+      fromCi: 
+      ciRelationId: 578199
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578188: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          constraint: 1..1
+          template: php
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578187
+      fromCiId: 578184
+      fromCi: 
+      ciRelationId: 578188
+      relationName: base.Requires
+      toCi: 
+    prefix_options: *id002
+  578177: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          constraint: 1..*
+          template: database
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578176
+      fromCiId: 578166
+      fromCi: 
+      ciRelationId: 578177
+      relationName: base.Requires
+      toCi: 
+    prefix_options: *id002
+  578183: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578168
+      fromCiId: 578176
+      fromCi: 
+      ciRelationId: 578183
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578194: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          constraint: 1..*
+          template: website
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578193
+      fromCiId: 578184
+      fromCi: 
+      ciRelationId: 578194
+      relationName: base.Requires
+      toCi: 
+    prefix_options: *id002
+  578178: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578170
+      fromCiId: 578172
+      fromCi: 
+      ciRelationId: 578178
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578167: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578166
+      fromCiId: 578162
+      fromCi: 
+      ciRelationId: 578167
+      relationName: base.ComposedOf
+      toCi: 
+    prefix_options: *id002
+  580301: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          constraint: 0..*
+          template: download
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 580300
+      fromCiId: 578184
+      fromCi: 
+      ciRelationId: 580301
+      relationName: base.Requires
+      toCi: 
+    prefix_options: *id002
+  579388: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 579380
+      fromCiId: 578162
+      fromCi: 
+      ciRelationId: 579388
+      relationName: base.RealizedIn
+      toCi: 
+    prefix_options: *id002
+  578195: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578189
+      fromCiId: 578187
+      fromCi: 
+      ciRelationId: 578195
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578173: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          constraint: 1..1
+          template: volume
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578172
+      fromCiId: 578166
+      fromCi: 
+      ciRelationId: 578173
+      relationName: base.Requires
+      toCi: 
+    prefix_options: *id002
+  579389: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: "2"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 26824
+      fromCiId: 579380
+      fromCi: 
+      ciRelationId: 579389
+      relationName: base.Utilizes
+      toCi: 
+    prefix_options: *id002
+  580302: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578189
+      fromCiId: 580300
+      fromCi: 
+      ciRelationId: 580302
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578179: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578174
+      fromCiId: 578172
+      fromCi: 
+      ciRelationId: 578179
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578190: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          constraint: 1..1
+          template: compute
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578189
+      fromCiId: 578184
+      fromCi: 
+      ciRelationId: 578190
+      relationName: base.Requires
+      toCi: 
+    prefix_options: *id002
+  578196: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578191
+      fromCiId: 578187
+      fromCi: 
+      ciRelationId: 578196
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578185: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578184
+      fromCiId: 578162
+      fromCi: 
+      ciRelationId: 578185
+      relationName: base.ComposedOf
+      toCi: 
+    prefix_options: *id002
+  580303: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 580300
+      fromCiId: 578187
+      fromCi: 
+      ciRelationId: 580303
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578180: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578170
+      fromCiId: 578174
+      fromCi: 
+      ciRelationId: 578180
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578169: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          constraint: 1..1
+          template: mysql
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578168
+      fromCiId: 578166
+      fromCi: 
+      ciRelationId: 578169
+      relationName: base.Requires
+      toCi: 
+    prefix_options: *id002
+  580457: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 580449
+      fromCiId: 578162
+      fromCi: 
+      ciRelationId: 580457
+      relationName: base.RealizedIn
+      toCi: 
+    prefix_options: *id002
+  578186: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578166
+      fromCiId: 578184
+      fromCi: 
+      ciRelationId: 578186
+      relationName: catalog.LinksTo
+      toCi: 
+    prefix_options: *id002
+  578197: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578189
+      fromCiId: 578191
+      fromCi: 
+      ciRelationId: 578197
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578175: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          constraint: 1..1
+          template: storage
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578174
+      fromCiId: 578166
+      fromCi: 
+      ciRelationId: 578175
+      relationName: base.Requires
+      toCi: 
+    prefix_options: *id002
+  580458: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: "2"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 26824
+      fromCiId: 580449
+      fromCi: 
+      ciRelationId: 580458
+      relationName: base.Utilizes
+      toCi: 
+    prefix_options: *id002
+  578181: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          step_down: "1"
+          current: "1"
+          step_up: "1"
+          flex: "false"
+          max: "1"
+          source: template
+          min: "1"
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578170
+      fromCiId: 578168
+      fromCi: 
+      ciRelationId: 578181
+      relationName: catalog.DependsOn
+      toCi: 
+    prefix_options: *id002
+  578192: !ruby/object:Cms::Relation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          constraint: 1..1
+          template: apache
+        prefix_options: {}
+
+      relationState: default
+      toCiId: 578191
+      fromCiId: 578184
+      fromCi: 
+      ciRelationId: 578192
+      relationName: base.Requires
+      toCi: 
+    prefix_options: *id002

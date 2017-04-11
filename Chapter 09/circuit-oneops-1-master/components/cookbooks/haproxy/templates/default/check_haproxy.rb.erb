@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+require "net/http"
+require "uri"
+
+# see http://www.haproxy.org/download/1.5/doc/configuration.txt for more detail on the metrics
+current_sessions = 0
+requests = 0
+errors_req = 0
+errors_conn = 0
+errors_resp = 0
+bytes_in = 0
+bytes_out = 0
+
+resp = Net::HTTP.get_response(URI.parse("http://localhost:<%= node.haproxy.stats_web_port %>/?stats;csv"))
+resp.body.split("\n").each do |row|
+  next if row.start_with?("#") || row.start_with?("stats")
+  parts = row.split(",")
+  if parts[1] == "FRONTEND"
+    current_sessions += parts[4].to_i
+    requests += parts[7].to_i
+    errors_req += parts[12].to_i
+    bytes_in += parts[8].to_i
+    bytes_out += parts[9].to_i
+  else
+    errors_conn += parts[13].to_i
+    errors_resp += parts[14].to_i
+  end
+end
+
+out_str = "ok|requests=#{requests} current_sessions=#{current_sessions} errors_req=#{errors_req} "
+out_str += "errors_conn=#{errors_conn} errors_resp=#{errors_resp} bytes_in=#{bytes_in} bytes_out=#{bytes_out}"
+puts out_str

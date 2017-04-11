@@ -1,0 +1,36 @@
+# Systemd unit file for tomcat
+
+[Unit]
+Description=Apache Tomcat Application Container
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+
+<% if(node['tomcat']['startup_shutdown'].has_key?('pre_startup_command') && !node['tomcat']['startup_shutdown']['pre_startup_command'].gsub(/\r\n?/,"\n").nil? && !node['tomcat']['startup_shutdown']['pre_startup_command'].gsub(/\r\n?/,"\n").empty?) %>
+ExecStartPre=<%= node['tomcat']['scripts_dir'] %>/prestartup.sh
+<% end %>
+ExecStart=<%= node['tomcat']['instance_dir'] %>/bin/startup.sh
+<% if(node['tomcat']['startup_shutdown'].has_key?('post_startup_command') && !node['tomcat']['startup_shutdown']['post_startup_command'].gsub(/\r\n?/,"\n").nil? && !node['tomcat']['startup_shutdown']['post_startup_command'].gsub(/\r\n?/,"\n").empty?) %>
+ExecStartPost=<%= node['tomcat']['scripts_dir'] %>/poststartup.sh
+<% end %>
+<% if(node['tomcat']['startup_shutdown'].has_key?('pre_shutdown_command') && !node['tomcat']['startup_shutdown']['pre_shutdown_command'].gsub(/\r\n?/,"\n").nil? && !node['tomcat']['startup_shutdown']['pre_shutdown_command'].gsub(/\r\n?/,"\n").empty?) %>
+ExecStop=<%= node['tomcat']['scripts_dir'] %>/preshutdown.sh
+<% end %>
+ExecStop=<%= node['tomcat']['instance_dir'] %>/bin/shutdown.sh
+<% if(node['tomcat']['startup_shutdown'].has_key?('post_shutdown_command') && !node['tomcat']['startup_shutdown']['post_shutdown_command'].gsub(/\r\n?/,"\n").nil? && !node['tomcat']['startup_shutdown']['post_shutdown_command'].gsub(/\r\n?/,"\n").empty?) %>
+ExecStopPost=<%= node['tomcat']['scripts_dir'] %>/postshutdown.sh
+<% end %>
+
+Restart=on-failure
+
+RestartSec=2
+
+TimeoutSec=<%= node['tomcat']['startup_shutdown']['stop_time'] %>
+
+User=<%= node['tomcat']['global']['tomcat_user'] %>
+Group=<%= node['tomcat']['global']['tomcat_group'] %>
+
+[Install]
+WantedBy=multi-user.target

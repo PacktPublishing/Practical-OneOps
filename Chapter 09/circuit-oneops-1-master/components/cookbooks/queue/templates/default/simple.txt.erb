@@ -1,0 +1,15 @@
+<% JSON.parse(@users).map{ |k,v| %>
+<% JSON.parse(@permission).map{ |k1,v1| %>
+<% if "#{k1}" == "#{k}" %>
+<% if "#{v1}" == 'R'  %>
+<authenticationUser username='<%= "#{k}" %>' password='${<%= "#{k}" %>.password}' groups='<%= "#{@destinationname}" %>_r,advisory'/>
+<% end %>
+<% if "#{v1}" == 'W'  %>
+<authenticationUser username='<%= "#{k}" %>' password='${<%= "#{k}" %>.password}' groups='<%= "#{@destinationname}" %>_w,advisory'/>
+<% end %>
+<% if "#{v1}" == 'RW'  %>
+<authenticationUser username='<%= "#{k}" %>' password='${<%= "#{k}" %>.password}' groups='<%= "#{@destinationname}" %>_w,<%= "#{@destinationname}" %>_r,advisory'/>
+<% end %>
+<% end %>
+<%}%>
+<%}%>

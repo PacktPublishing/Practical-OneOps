@@ -1,0 +1,7 @@
+[main]
+DESTINATIONS = <%= @cluster_members.map do |server|
+"#{server}:2004:carbon01"
+end.join(', ') %>
+
+REPLICATION_FACTOR = <%= node['graphite']['replication_factor'] %>
+SSH_USER = root

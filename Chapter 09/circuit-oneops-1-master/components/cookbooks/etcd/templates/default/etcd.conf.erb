@@ -1,0 +1,44 @@
+# [member]
+<% @member_flags.each { |k,v| %>
+<%= k %>="<%= v %>"
+<% } %>
+
+#[cluster]
+<% @cluster_flags.each { |k,v| %>
+<%= k %>="<%= v %>"
+<% } %>
+
+#[proxy]
+<% @proxy_flags.each { |k,v| %>
+<%= k %>="<%= v %>"
+<% } %>
+
+#[security]
+<% @security_flags.each { |k,v| %>
+<%= k %>="<%= v %>"
+<% } %>
+
+#[logging]
+<% @logging_flags.each { |k,v| %>
+<%= k %>="<%= v %>"
+<% } %>
+
+#[unsafe]
+<% @unsafe_flags.each { |k,v| %>
+<%= k %>="<%= v %>"
+<% } %>
+
+#[experimental]
+<% @experimental_flags.each { |k,v| %>
+<%= k %>="<%= v %>"
+<% } %>
+
+#[miscellaneous]
+<% @miscellaneous_flags.each { |k,v| %>
+<%= k %>="<%= v %>"
+<% } %>
+
+#[profiling]
+<% @profiling_flags.each { |k,v| %>
+<%= k %>="<%= v %>"
+<% } %>

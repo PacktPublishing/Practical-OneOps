@@ -1,0 +1,21 @@
+base <%= @base%>
+binddn <%= @binddn %>
+bindpw <%= @bindpw%>
+scope sub
+pam_login_attribute sAMAccountName
+pam_filter <%= @pamfilter%>
+pam_member_attribute member
+nss_map_objectclass     posixAccount    User
+nss_map_objectclass     shadowAccount   User
+nss_map_objectclass     posixGroup      Group
+nss_map_attribute       uid sAMAccountName
+nss_map_attribute       uidNumber uidNumber
+nss_map_attribute       gidNumber gidNumber
+nss_map_attribute       cn sAMAccountName
+nss_map_attribute       homeDirectory unixHomeDirectory
+nss_map_attribute       loginShell loginShell
+nss_map_attribute       uniqueMember member
+nss_map_attribute       gecos name
+uri <%= @uri%>
+ssl no
+tls_cacertdir /etc/openldap/cacerts

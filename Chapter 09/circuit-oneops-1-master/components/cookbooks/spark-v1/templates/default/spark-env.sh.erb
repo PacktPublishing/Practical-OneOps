@@ -1,0 +1,87 @@
+<% 
+  # spark-env.sh.erb
+  #
+  # This is the Spark environment configuration file.  It contains
+  # all of the environment variables that define the Spark environment.
+
+  configName = node['app_name']
+  configNode = node[configName]
+   
+  dependentCiClass = "bom.oneops.1." + configName.slice(0,1).capitalize + configName.slice(1..-1)
+  spark_configs=node.workorder.payLoad.DependsOn.reject{ |d| d['ciClassName'] != dependentCiClass }
+  if (!spark_configs.nil? && !spark_configs[0].nil?)
+    configNode = spark_configs[0][:ciAttributes]
+  end
+ %>
+#!/usr/bin/env bash
+
+# These configuration values come from the assembly settings.
+export SPARK_WORKER_CORES="<%= configNode['worker_cores'] %>"
+export SPARK_WORKER_MEMORY="<%= configNode['worker_memory'] %>"
+<%
+  # Defaults for executors currently cannot be configured at the
+  # server. Leaving these lines here in case they ever are
+  # configurable from the server.
+  
+#export SPARK_EXECUTOR_CORES="[%= configNode['executor_cores'] %]"
+#export SPARK_EXECUTOR_MEMORY="[%= configNode['executor_memory'] %]"
+%>
+
+# Fix the Spark Worker port to allow the master to have a cleaner view of
+# workers...in case a compute is replaced, the worker should start back
+# up on the same port that the worker was originally listening on.
+export SPARK_WORKER_PORT=9000
+
+export SPARK_CONF_DIR="<%= @spark_dir %>/conf"
+export SPARK_LOG_DIR="<%= @spark_tmp_dir %>/logs"
+
+export SPARK_DIST_CLASSPATH=$(<%= @hadoop_dir %>/bin/hadoop classpath)
+export HADOOP_CONF_DIR=<%= @hadoop_dir %>/etc/hadoop
+
+# The log4j configuration is shared across all components.
+LOG4J="-Dlog4j.configuration=file://$SPARK_CONF_DIR/log4j.properties"
+
+export SPARK_MASTER_OPTS=" $LOG4J -Dspark.log.file=<%= @spark_tmp_dir %>/logs/spark-master.log "
+
+# Add user-specified master options
+<% if configNode['master_opts'] != nil && configNode['master_opts'].size > 0 %>	
+<%   JSON.parse(configNode['master_opts']).each do |opt| %>
+SPARK_MASTER_OPTS="$SPARK_MASTER_OPTS <%= opt %>"
+<% end %>
+export SPARK_MASTER_OPTS
+<% end %>
+
+export SPARK_WORKER_OPTS=" $LOG4J -Dspark.log.file=<%= @spark_tmp_dir %>/logs/spark-worker.log "
+
+# Add user-specified worker options
+<% if configNode['worker_opts'] != nil && configNode['worker_opts'].size > 0 %>	
+<%   JSON.parse(configNode['worker_opts']).each do |opt| %>
+SPARK_WORKER_OPTS="$SPARK_WORKER_OPTS <%= opt %>"
+<% end %>
+export SPARK_WORKER_OPTS
+<% end %>
+
+export SPARK_HISTORY_OPTS=" $LOG4J -Dspark.log.file=<%= @spark_tmp_dir %>/logs/spark-history.log "
+
+<%
+  # Executor option defaults are not configurable at the server and
+  # instead can only be configured at the client.
+  
+#export SPARK_EXECUTOR_OPTS=" $LOG4J"
+
+# Add user-specified executor options
+#[% if configNode['executor_opts'] != nil && configNode['executor_opts'].size > 0 %]
+#[%   JSON.parse(configNode['executor_opts']).each do |opt| %]
+#SPARK_EXECUTOR_OPTS="$SPARK_EXECUTOR_OPTS [%= opt %]"
+#[% end %]
+#export SPARK_EXECUTOR_OPTS
+#[% end %]
+%>
+
+export PYSPARK_PYTHON="/usr/bin/python2"
+
+<% if !configNode['zookeeper_servers'].nil? && configNode['zookeeper_servers'] != "" %>
+export SPARK_DAEMON_JAVA_OPTS="-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=<%= configNode['zookeeper_servers'] %> -Dspark.deploy.zookeeper.dir=/<%= node.workorder.payLoad.Assembly[0][:ciName] %>/<%= node.workorder.payLoad.Environment[0][:ciName] %>"
+<% end %>
+
+export SPARK_LOCAL_DIRS="<%= configNode['spark_tmp_dir'] %>"

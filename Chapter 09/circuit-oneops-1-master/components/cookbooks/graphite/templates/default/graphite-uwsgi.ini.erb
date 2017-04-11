@@ -1,0 +1,16 @@
+[uwsgi]
+#plugins = python
+#gid = graphite
+#uid = graphite
+gid = apache
+uid = apache
+socket = 127.0.0.1:3031
+master = true
+processes = <%= node["cpu"]["total"] %>
+wsgi-file = /opt/graphite/conf/wsgi.py
+chdir = /opt/graphite
+carbon = 127.0.0.1:2103
+buffer-size = 65535
+disable-logging = true
+die-on-term
+listen=1024

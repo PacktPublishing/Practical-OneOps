@@ -1,0 +1,164 @@
+#********************************************************************
+# Wrapper Properties 
+#********************************************************************
+
+# Java Application
+# YAJSW: default is "java"
+wrapper.java.command = /usr/bin/java
+
+# Java Main class.  This class must implement the WrapperListener interface
+#  or guarantee that the WrapperManager class is initialized.  Helper
+#  classes are provided to do this for you.  See the Integration section
+#  of the documentation for details.
+# YAJSW: default is "org.rzo.yajsw.WrapperMain"
+# wrapper.java.mainclass=org.rzo.yajsw.WrapperMain
+
+# Java Classpath (include wrapper.jar)  Add class path elements as
+#  needed starting from 1
+# YAJSW: all libs required by YAJSW are in the manifest of the wrapper.jar -> only classpath of your application is required
+#wrapper.java.classpath.1 = .
+
+# Java Library Path
+# YAJSW: required dll are encapsulated in jar files -> only library path of your application required
+# wrapper.java.library.path.1=../lib
+
+# Java Additional Parameters
+#wrapper.java.additional.1=
+
+# Initial Java Heap Size (in MB)
+# YAJSW: currently not implemented -> use for example wrapper.java.additional.<n>=-Xmx
+#wrapper.java.initmemory=3
+
+# Maximum Java Heap Size (in MB)
+# YAJSW: currently not implemented -> use for example wrapper.java.additional.<n>=-Xmx
+#wrapper.java.maxmemory=64
+
+# Application parameters.  Add parameters as needed starting from 1
+# YAJSW: to specify the main class please use wrapper.java.app.mainclass=
+# wrapper.app.parameter.1=<YourMainClass>
+
+# YAJSW: Application main class
+<% if node["javaservicewrapper"]["main_class"] != nil && ! node["javaservicewrapper"]["main_class"].empty?%>
+wrapper.java.app.mainclass = <%= node["javaservicewrapper"]["main_class"] %> 
+<%end%>
+#executable jar if specified
+<% if node["javaservicewrapper"]["executable_jar"] != nil && ! node["javaservicewrapper"]["executable_jar"].empty?%>
+wrapper.java.app.jar=<%= node["javaservicewrapper"]["executable_jar"] %>
+<%end%>
+#********************************************************************
+# Wrapper Logging Properties
+#********************************************************************
+# Format of output for the console.  (See docs for formats)
+# YAJSW: currently not implemented -> can be implemented by configuration of java logging
+# wrapper.console.format=PM
+
+# Log Level for console output.  (See docs for log levels)
+# YAJSW: currently not implemented -> can be implemented by configuration of java logging
+wrapper.console.loglevel = INFO 
+wrapper.console.pipestreams=true
+
+# Log file to use for wrapper output logging.
+# YAJSW: currently not implemented -> can be implemented by configuration of java logging
+wrapper.logfile=wrapper.log
+
+# Format of output for the log file.  (See docs for formats)
+# YAJSW: currently not implemented -> can be implemented by configuration of java logging
+wrapper.logfile.format=LPTM
+
+# Log Level for log file output.  (See docs for log levels)
+# YAJSW: currently not implemented -> can be implemented by configuration of java logging
+#commented out so can be overridden in additional wrapper configuration
+# wrapper.logfile.loglevel = INFO 
+
+# Maximum size that the log file will be allowed to grow to before
+#  the log is rolled. Size is specified in bytes.  The default value
+#  of 0, disables log rolling.  May abbreviate with the 'k' (kb) or
+#  'm' (mb) suffix.  For example: 10m = 10 megabytes.
+# YAJSW: currently not implemented -> can be implemented by configuration of java logging
+wrapper.logfile.maxsize=10m
+
+# Maximum number of rolled log files which will be allowed before old
+#  files are deleted.  The default value of 0 implies no limit.
+# YAJSW: currently not implemented -> can be implemented by configuration of java logging
+wrapper.logfile.maxfiles=10
+
+# Log Level for sys/event log output.  (See docs for log levels)
+# YAJSW: currently not implemented -> can be implemented by configuration of java logging
+# wrapper.syslog.loglevel=NONE
+
+#********************************************************************
+# Wrapper Windows Properties
+#********************************************************************
+# Title to use when running as a console
+wrapper.console.title = <%= node["javaservicewrapper"]["app_title"] %> 
+
+#********************************************************************
+# Wrapper Windows NT/2000/XP Service Properties
+#********************************************************************
+# WARNING - Do not modify any of these properties when an application
+#  using this configuration file has been installed as a service.
+#  Please uninstall the service before modifying this section.  The
+#  service can then be reinstalled.
+
+# Name of the service
+wrapper.ntservice.name = <%= node["javaservicewrapper"]["app_title"] %>  
+
+# Display name of the service
+wrapper.ntservice.displayname = <%= node["javaservicewrapper"]["app_title"] %>  
+
+# Description of the service
+wrapper.ntservice.description = <%= node["javaservicewrapper"]["app_title"] %>  
+
+<% if !node["javaservicewrapper"]["start_main_args"].nil?%>
+<% node["javaservicewrapper"]["start_main_args"].each_with_index do |k, index|%>
+<%= "wrapper.app.parameter.#{index+1} = "%><%= k %>
+<% end %>
+<% end %>
+
+<% if !node["javaservicewrapper"]["java_params"].nil?%>
+<% node["javaservicewrapper"]["java_params"].each_with_index do |k, index|%>
+<%= "wrapper.java.additional.#{index+1} = #{k} "%>
+<% end %>
+<% end %>
+
+<% if !node["javaservicewrapper"]["java_classpath_params"].nil? && node["javaservicewrapper"]["java_classpath_params"].size > 0%>
+<% node["javaservicewrapper"]["java_classpath_params"].each_with_index do |k, index|%>
+<%= "wrapper.java.classpath.#{index+1} = #{k} "%>
+<% end %>
+<% end %>
+
+#Set environment variables 
+<% if !node["javaservicewrapper"]["environment_vars"].nil? && node["javaservicewrapper"]["environment_vars"].size > 0%>
+	<% node["javaservicewrapper"]["environment_vars"].each do |k, v|%>
+		<%= "wrapper.app.env.#{k} = #{v} "%>
+	<% end %>
+<% end %>
+
+#wrapper.java.additional.2 = -Dcom.sun.management.jmxremote
+
+#wrapper.java.classpath.11 = ${tomcat_home}/bin/bootstrap.jar
+#wrapper.java.classpath.12 = ${tomcat_home}/bin/tomcat-juli.jar
+
+wrapper.working.dir = <%= node["javaservicewrapper"]["working_dir"] %> 
+
+wrapper.jmx= <%= node["javaservicewrapper"]["jmx"] %>
+#wrapper.on_exit.0=SHUTDOWN
+wrapper.on_exit.default=RESTART
+<% if node["javaservicewrapper"]["wrapper_stop_text"] != nil && ! node["javaservicewrapper"]["wrapper_stop_text"].empty?%>
+wrapper.stop.conf = conf/stop.conf
+<% end %>
+wrapper.tray = true
+#wrapper.tray.icon = ${wrapper.working.dir}/../webapps/root/tomcat.gif
+wrapper.filter.trigger.0=Exception
+wrapper.filter.script.0=./scripts/trayMessage.gv
+wrapper.filter.script.0.args=Exception
+
+wrapper.app.account=<%=node["javaservicewrapper"]["as_user"]%>
+wrapper.daemon.run_level_dir=/etc/rcX.d
+
+wrapper.fork_hack=true
+
+# append any additional wrapper text
+<% if node["javaservicewrapper"]["additional_wrapper_text"] != nil && ! node["javaservicewrapper"]["additional_wrapper_text"].empty?%>
+<%=node["javaservicewrapper"]["additional_wrapper_text"]%>
+<% end %>

@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+PROTOCOL=ARGV[0]
+HOST=ARGV[1]
+PORT=ARGV[2]
+URL=ARGV[3]
+
+url="#{PROTOCOL}://#{HOST}:#{PORT}/#{URL}"
+rows = (`curl -i "#{url}"`).split("\n")
+val=0
+perf='not_found=0 offline=0 online=0 others=0'
+rows.each do |row|
+ if row =~ /HTTP.1.1 (\d+)/
+   val=$1
+   if val  =~  /404/
+     perf = "not_found=100 offline=100 online=0 others=#{val}"
+   elsif val  =~ /503/
+    perf = "not_found=0 offline=100 online=0 others=#{val}"
+   elsif val =~ /200/
+    perf = "not_found=0 offline=0 online=100 others=#{val}"
+   else
+     perf = "not_found=0 offline=100 online=0 others=#{val}"
+  end
+ end
+end
+
+puts perf + "|"+ perf

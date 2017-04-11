@@ -1,0 +1,106 @@
+<% if node['tomcat']['server']['override_server_enabled'] == 'true' && !node['tomcat']['server']['server_tomcat'].empty?-%>
+<%= node['tomcat']['server']['server_tomcat'].gsub(/\r\n?/,"\n") %>
+<% else -%>
+<?xml version='1.0' encoding='utf-8'?>
+<!-- ssl port will enable conditionally -->
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<Server port="<%= node['tomcat']['shutdown_port'] %>" shutdown="<%= (0...25).map { ('a'..'z').to_a[rand(26)] }.join %>">
+
+  <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" />
+  <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
+  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+  <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+
+  <GlobalNamingResources>
+    <Resource name="UserDatabase" auth="Container"
+              type="org.apache.catalina.UserDatabase"
+              description="User database that can be updated and saved"
+              factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+              pathname="conf/tomcat-users.xml" />
+  </GlobalNamingResources>
+
+  <Service name="Catalina">
+
+<% if node['tomcat']['server']['http_nio_connector_enabled'] == 'true' %>
+    <!-- A "Connector" using the shared thread pool-->
+    <Connector port="<%= node['tomcat']['server']['port'] %>"
+               protocol="org.apache.coyote.http11.Http11NioProtocol"
+               redirectPort="<%= node['tomcat']['server']['ssl_port'] %>"
+               server="42"
+               allowTrace="false"
+            <% JSON.parse(node['tomcat']['server']['advanced_nio_connector_config']).each{ |k, v|%>
+             <%=k%>="<%=v%>"
+              <% } %>
+               />
+ <%else%>
+ <!--HTTP Connector was disabled-->
+ <% end %>
+
+<%
+if node['tomcat']['server']['https_nio_connector_enabled'] == 'true'
+%>
+<!-- opted in to ssl activation w/ keystore -->
+    <Connector port="<%= node['tomcat']['server']['ssl_port'] %>"
+               protocol="org.apache.coyote.http11.Http11NioProtocol" SSLEnabled="true"
+               maxThreads="<%= node['tomcat']['server']['max_threads'] %>"
+               server="42"
+               allowTrace="false"
+               keystoreFile="<%= node['tomcat']['keystore_path'] %>"
+               keystorePass="<%= node['tomcat']['keystore_pass'] %>"
+               scheme="https" secure="true"
+               clientAuth="false"  sslProtocol="TLS"
+               sslEnabledProtocols="<%= node['tomcat']['ssl_configured_protocols'] %>"
+               ciphers="<%=node['tomcat']['ssl_configured_ciphers'] %>"
+               <% JSON.parse(node['tomcat']['server']['advanced_nio_connector_config']).each{ |k, v|%>
+                <%=k%>="<%=v%>"
+                 <% } %>
+                  />
+<%
+else
+%>
+<!--HTTPS Connector was disabled-->
+<%
+end
+%>
+    <Engine name="Catalina" defaultHost="localhost">
+
+      <Realm className="org.apache.catalina.realm.LockOutRealm">
+
+        <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+               resourceName="UserDatabase" />
+      </Realm>
+
+      <Host name="localhost"  appBase="webapps"
+      unpackWARs="true" autoDeploy="<%=node['tomcat']['server']['autodeploy_enabled']%>" >
+
+			<Valve
+			    className="org.apache.catalina.valves.AccessLogValve"
+			    directory="<%= node['tomcat']['logfiles_path'] %>"
+			    prefix="localhost_access_log"
+			    suffix=".log"
+			    pattern="<%= node['tomcat']['logs']['access_log_pattern'] %>"
+			   />
+
+      <Valve className="org.apache.catalina.valves.ErrorReportValve" showReport="false" showServerInfo="false" />
+
+      </Host>
+    </Engine>
+  </Service>
+</Server>
+
+<% end -%>

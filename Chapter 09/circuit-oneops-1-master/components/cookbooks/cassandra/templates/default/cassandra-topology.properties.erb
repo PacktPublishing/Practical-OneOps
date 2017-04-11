@@ -1,0 +1,33 @@
+#
+# cassandra-topology.properties
+# ip = dc:rack
+#
+<% cloud_map = {} 
+ 
+  node.workorder.payLoad.clouds.each do |c|
+    key = c['ciId'].to_s
+    cloud_map[key] = c
+  end
+   
+  dc_rack_map = JSON.parse(node.workorder.rfcCi.ciAttributes.cloud_dc_rack_map)
+  
+  node.workorder.payLoad.computes.each do |c| 
+    ci_name_parts = c['ciName'].split("-")
+    cloud_ci_id = ci_name_parts[-2] 
+    cloud_name = cloud_map[cloud_ci_id]['ciName']
+    dc_rack = dc_rack_map[cloud_name] 
+    if dc_rack.nil?
+      Chef::Log.error("missing dc_rack_map entry for: #{cloud_name}")
+      exit 1
+    end
+    %>
+    <% if c['ciAttributes'].has_key?('private_ip') && !c['ciAttributes']['private_ip'].empty? %>
+<%= c['ciAttributes']['private_ip'] %>=<%= dc_rack %>
+    <% end %>
+<% end %>
+#
+# extra_topology
+#
+<% if node.workorder.rfcCi.ciAttributes.has_key?("extra_topology") %>
+<%= node.workorder.rfcCi.ciAttributes.extra_topology || "" %>
+<% end %>

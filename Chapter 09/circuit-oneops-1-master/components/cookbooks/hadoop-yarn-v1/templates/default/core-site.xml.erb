@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!-- Licensed under the Apache License, Version 2.0 (the "License"); you
+    may not use this file except in compliance with the License. You may obtain
+    a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless
+    required by applicable law or agreed to in writing, software distributed
+    under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+    OR CONDITIONS OF ANY KIND, either express or implied. See the License for
+    the specific language governing permissions and limitations under the License.
+    See accompanying LICENSE file. -->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+    <% unless @primaryResourceManager.nil? -%>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://<%= @primaryResourceManager %>:9000</value>
+    </property>
+    <% else -%>
+    <!-- Primary resource manager was not detected, fs.defaultFS property omitted -->
+    <% end -%>
+
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value><%= @cia["swift_tmp_dir"] %></value>
+    </property>
+
+    <!-- Swift API -->
+    <property>
+        <name>fs.swift.impl</name>
+        <value>org.apache.hadoop.fs.swifta.snative.SwiftNativeFileSystem</value>
+    </property>
+
+    <property>
+        <name>fs.swift.blocksize</name>
+        <value><%= @cia["swift_block_size"] %></value>
+    </property>
+
+    <property>
+        <name>fs.swift.requestsize</name>
+        <value><%= @cia["swift_request_size"] %></value>
+    </property>
+
+    <property>
+        <name>fs.swift.connect.timeout</name>
+        <value><%= @cia["swift_connect_timeout"] %></value>
+    </property>
+
+    <property>
+        <name>fs.swift.socket.timeout</name>
+        <value><%= @cia["swift_socket_timeout"] %></value>
+    </property>
+
+    <property>
+        <name>fs.swift.connect.retry.count</name>
+        <value><%= @cia["swift_connect_retry_count"] %></value>
+    </property>
+
+    <property>
+        <name>fs.swift.connect.throttle.delay</name>
+        <value><%= @cia["swift_throttle_delay"] %></value>
+    </property>
+
+    <property>
+        <name>fs.swift.lazyseek</name>
+        <value><%= @cia["swift_lazyseek"]  %></value>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.yarn.hosts</name>
+        <value>*</value>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.yarn.groups</name>
+        <value>*</value>
+    </property>
+
+    <!-- S3a API -->
+    <property>
+        <name>fs.s3a.impl</name>
+        <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
+    </property>
+
+    <property>
+        <name>fs.s3a.access.key</name>
+        <value><%= @cia["s3a_access_key"]  %></value>
+    </property>
+
+    <property>
+        <name>fs.s3a.secret.key</name>
+        <value><%= @cia["s3a_secret_key"] %></value>
+    </property>
+
+    <property>
+        <name>fs.s3a.endpoint</name>
+        <value><%= @cia["s3a_end_point"] %></value>
+    </property>
+
+    <!-- Enable directory style bucket names -->
+    <property>
+        <name>fs.s3a.path.style.access</name>
+        <value>true</value>
+    </property>
+
+    <property>
+        <name>fs.s3a.connection.ssl.enabled</name>
+        <value>false</value>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.hive.hosts</name>
+        <value>*</value>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.hive.groups</name>
+        <value>*</value>
+    </property>
+
+<% if @cia.has_key?("extra_core_site") %>
+<%= @cia["extra_core_site"].gsub(/\r\n?/,"\n") %>
+<% end %>
+
+</configuration>

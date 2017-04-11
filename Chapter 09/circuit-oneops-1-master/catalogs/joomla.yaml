@@ -1,0 +1,842 @@
+--- !ruby/object:Chef::Catalog 
+cis: !map:Mash 
+  132544: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 132460-1054-132544
+      lastRfcId: 
+      ciId: 132544
+      comments: ""
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: XS
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: db-compute
+      created: 1318449406169
+    prefix_options: &id001 {}
+
+  132462: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 132460-1104-132462
+      lastRfcId: 
+      ciId: 132462
+      comments: default keypair
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: account.Keypair
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          public: 
+          private: 
+          description: 2048-bit keys
+        prefix_options: {}
+
+      ciName: Default
+      created: 1318448348302
+    prefix_options: *id001
+  132688: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 132460-1090-132688
+      lastRfcId: 
+      ciId: 132688
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: manifest.Environment
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repair: "false"
+          recovery: disabled
+          availability: single
+          capacity: "false"
+        prefix_options: {}
+
+      ciName: demo
+      created: 1318451053943
+    prefix_options: *id001
+  132540: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 132460-1171-132540
+      lastRfcId: 
+      ciId: 132540
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: mysql
+          version: "0.1"
+          description: ""
+          aliases: "[]"
+          source: packer
+        prefix_options: {}
+
+      ciName: db
+      created: 1318449406169
+    prefix_options: *id001
+  132650: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 132460-1054-132650
+      lastRfcId: 
+      ciId: 132650
+      comments: ""
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: XS
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: web-compute
+      created: 1318451024360
+    prefix_options: *id001
+  132645: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 132460-1171-132645
+      lastRfcId: 
+      ciId: 132645
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: php
+          version: "0.1"
+          description: Joomla PHP FrontEnd
+          aliases: "[]"
+          source: packer
+        prefix_options: {}
+
+      ciName: web
+      created: 1318451024360
+    prefix_options: *id001
+  132542: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 132460-1138-132542
+      lastRfcId: 
+      ciId: 132542
+      comments: ""
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Mysql
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          dbname: public
+          port: "3306"
+          username: mysql
+          version: "5.5"
+          password: --ENCRYPTED--
+        prefix_options: {}
+
+      ciName: db-mysql
+      created: 1318449406169
+    prefix_options: *id001
+  132636: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 132460-1064-132636
+      lastRfcId: 
+      ciId: 132636
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Database
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          dbname: joomladb
+          username: joomla
+          password: --ENCRYPTED--
+          extra: ""
+        prefix_options: {}
+
+      ciName: db-database-
+      created: 1318450779922
+    prefix_options: *id001
+  132653: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 132460-1034-132653
+      lastRfcId: 
+      ciId: 132653
+      comments: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Build
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repository: http://joomlacode.org/svn/joomla/development/tags/1.7.x/1.7.2/
+          persist: "[]"
+          depth: "1"
+          migration_command: ""
+          revision: HEAD
+          restart_command: ""
+          scm: svn
+          remote: origin
+          environment: "{}"
+          submodules: "false"
+          key: ""
+        prefix_options: {}
+
+      ciName: web-build-joomla
+      created: 1318451024360
+    prefix_options: *id001
+  132648: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 132460-1158-132648
+      lastRfcId: 
+      ciId: 132648
+      comments: ""
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: catalog.Php
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          fcgi: "true"
+          port: "9000"
+          version: 5.3.6
+        prefix_options: {}
+
+      ciName: web-php
+      created: 1318451024360
+    prefix_options: *id001
+description: Corporate Website
+name: joomla
+nspath: /kloopz
+relations: !map:Mash 
+  132654: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132645-1558-132653
+      comments: ""
+      fromCiId: 132645
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132654
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: build
+          constraint: 0..999
+        prefix_options: {}
+
+      toCiId: 132653
+      created: 1318451024360
+    prefix_options: &id002 {}
+
+  132649: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132645-1558-132648
+      comments: ""
+      fromCiId: 132645
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132649
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: php
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 132648
+      created: 1318451024360
+    prefix_options: *id002
+  132545: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132540-1558-132544
+      comments: ""
+      fromCiId: 132540
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132545
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 132544
+      created: 1318449406169
+    prefix_options: *id002
+  132694: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132458-1190-132688
+      comments: ""
+      fromCiId: 132458
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.RealizedIn
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132694
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 132688
+      created: 1318451053943
+    prefix_options: *id002
+  132546: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132542-2237-132544
+      comments: ""
+      fromCiId: 132542
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: catalog.DependsOn
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132546
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+        prefix_options: {}
+
+      toCiId: 132544
+      created: 1318449406169
+    prefix_options: *id002
+  132695: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132688-1261-3747
+      comments: ""
+      fromCiId: 132688
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Utilizes
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132695
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          priority: 
+        prefix_options: {}
+
+      toCiId: 3747
+      created: 1318451053988
+    prefix_options: *id002
+  132541: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132458-1279-132540
+      comments: ""
+      fromCiId: 132458
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.ComposedOf
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132541
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 132540
+      created: 1318449406169
+    prefix_options: *id002
+  132651: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132645-1558-132650
+      comments: ""
+      fromCiId: 132645
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132651
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 132650
+      created: 1318451024360
+    prefix_options: *id002
+  132646: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132458-1279-132645
+      comments: ""
+      fromCiId: 132458
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.ComposedOf
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132646
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 132645
+      created: 1318451024360
+    prefix_options: *id002
+  132652: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132648-2237-132650
+      comments: ""
+      fromCiId: 132648
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: catalog.DependsOn
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132652
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          current: "1"
+          max: "1"
+          flex: "false"
+          min: "1"
+        prefix_options: {}
+
+      toCiId: 132650
+      created: 1318451024360
+    prefix_options: *id002
+  132647: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132645-1454-132540
+      comments: ""
+      fromCiId: 132645
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: catalog.LinksTo
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132647
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 132540
+      created: 1318451024360
+    prefix_options: *id002
+  132697: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132688-1227-132462
+      comments: ""
+      fromCiId: 132688
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.SecuredBy
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132697
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 132462
+      created: 1318451054044
+    prefix_options: *id002
+  132543: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132540-1558-132542
+      comments: ""
+      fromCiId: 132540
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132543
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: mysql
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 132542
+      created: 1318449406169
+    prefix_options: *id002
+  132637: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 132540-1558-132636
+      comments: ""
+      fromCiId: 132540
+      toCi: 
+      rfcId: 0
+      nsPath: /kloopz/joomla
+      releaseId: 0
+      isActiveInRelease: false
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciRelationId: 132637
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: database
+          constraint: 0..999
+        prefix_options: {}
+
+      toCiId: 132636
+      created: 1318450779922
+    prefix_options: *id002

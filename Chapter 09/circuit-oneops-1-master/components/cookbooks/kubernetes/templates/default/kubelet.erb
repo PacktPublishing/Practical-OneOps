@@ -1,0 +1,34 @@
+###
+# kubernetes kubelet (node) config
+
+KUBELET_API_SERVERS="--api_servers=<%= node['kube']['kubelet']['api_servers'].join(",") %>"
+
+# The address for the info server to serve on (set to 0.0.0.0 or "" for all interfaces)
+KUBELET_ADDRESS="--address=<%= node['kube']['kubelet']['bind-address'] %>"
+
+# The port for the info server to serve on
+KUBELET_PORT="--port=<%= node['kube']['kubelet']['bind-port'] %>"
+
+# network-plugin=cni
+<%
+net_args = ""
+if node.kubernetes.network == 'calico'
+  net_args = "--network-plugin=cni --network-plugin-dir=/etc/cni/net.d "
+end
+%>
+
+KUBELET_ARGS="<%= net_args %><%= node['kube']['kubelet']['args'].strip %>"
+
+
+# security args
+KUBE_AUTH_ARGS=""
+<% if node.workorder.rfcCi.ciAttributes.has_key?("security_enabled") &&
+      node.workorder.rfcCi.ciAttributes.security_enabled == "true" 
+      
+   kubernetes_tls_dir = node.workorder.rfcCi.ciAttributes.security_path
+%>
+
+KUBE_AUTH_ARGS="$KUBE_AUTH_ARGS --tls-cert-file=<%= kubernetes_tls_dir %>/kubelet.crt"
+KUBE_AUTH_ARGS="$KUBE_AUTH_ARGS --tls-private-key-file=<%= kubernetes_tls_dir %>/kubelet.key"
+  
+<% end %>

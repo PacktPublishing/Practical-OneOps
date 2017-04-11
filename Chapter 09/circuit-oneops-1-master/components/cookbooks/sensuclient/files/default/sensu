@@ -1,0 +1,2 @@
+PLUGINS_DIR=`find /usr/lib/sensu-community -type d | sort | tr '\n' ':'`
+EMBEDDED_RUBY=true

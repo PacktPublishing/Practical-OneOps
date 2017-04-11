@@ -1,0 +1,10 @@
+/opt/nginx/logs/*.log {
+    daily
+    missingok
+    notifempty
+    sharedscripts
+    delaycompress
+    postrotate
+        /sbin/restart nginx > /dev/null 2>/dev/null || true
+    endscript
+}

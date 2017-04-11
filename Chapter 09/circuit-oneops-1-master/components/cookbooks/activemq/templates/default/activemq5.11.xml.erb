@@ -1,0 +1,196 @@
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!-- START SNIPPET: example -->
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+    <!-- Allows us to use system properties as variables in this configuration file -->
+   <% if node['activemq']['pwdencyenabled'] == 'false' %>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <value>file:${activemq.conf}/credentials.properties</value>
+        </property>
+    </bean>
+    <% else %>
+     <bean id="environmentVariablesConfiguration" class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+       <property name="algorithm" value="PBEWithMD5AndDES" />
+       <property name="passwordEnvName" value="ACTIVEMQ_ENCRYPTION_PASSWORD" />
+     </bean>
+
+     <bean id="configurationEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+       <property name="config" ref="environmentVariablesConfiguration" />
+     </bean>
+     <bean id="propertyConfigurer" class="org.jasypt.spring.properties.EncryptablePropertyPlaceholderConfigurer">
+       <constructor-arg ref="configurationEncryptor" />
+       <property name="location" value="file:${activemq.conf}/credentials-enc.properties"/>
+     </bean>
+    <% end %>
+
+    <% if node[:activemq].has_key?(:custombeans) %>
+      <%= node[:activemq][:custombeans].gsub(/\r\n?/,"\n") %>
+    <% end %>
+
+    <!--
+        The <broker> element is used to configure the ActiveMQ broker.
+    -->
+    <broker xmlns="http://activemq.apache.org/schema/core" brokerName="activemq" dataDirectory="<%= @datadirectory %>" 
+    <% brokerattributes = node[:activemq].has_key?(:brokerattributes) ? Mash.new(JSON.parse(node[:activemq][:brokerattributes])) : Hash.new %>
+     <% brokerattributes.each do |k,v| %><%= "#{k}" %>=<%= "'#{v}'" %>  <%end%> >
+
+      <destinationInterceptors>
+        <virtualDestinationInterceptor>
+          <virtualDestinations>
+             <virtualTopic name="VirtualTopic.>" prefix="Consumers.*." selectorAware="false"/>
+          </virtualDestinations>
+        </virtualDestinationInterceptor>
+      </destinationInterceptors>
+
+	<destinationPolicy>
+           <policyMap>
+             <policyEntries>
+               <policyEntry queue=">" >
+                  <deadLetterStrategy>
+                     <sharedDeadLetterStrategy processExpired="false"/>
+                  </deadLetterStrategy>
+               </policyEntry>
+               <policyEntry topic=">" >
+                 <pendingMessageLimitStrategy>
+                    <constantPendingMessageLimitStrategy limit="1000"/>
+                 </pendingMessageLimitStrategy>
+               </policyEntry>
+             </policyEntries>
+           </policyMap>
+       </destinationPolicy>
+
+       <plugins> 
+         <% if node[:activemq].has_key?(:customplugins) %>
+           <%= node[:activemq][:customplugins].gsub(/\r\n?/,"\n") %>
+          <% end %> 
+       <% if node['activemq']['authtype'] != 'None' %>
+      
+        <!--Simple-->
+         <% if node['activemq']['authtype'] == 'Simple' %>
+          <simpleAuthenticationPlugin>
+           <users>
+            <authenticationUser username="${activemq.username}" password="${activemq.password}" groups="users,admins,advisory"/>
+           </users>
+          </simpleAuthenticationPlugin>
+         <%end%>
+         <!--Simple-->
+
+         <!--Jaas-->
+         <% if node['activemq']['authtype'] == 'JAAS' %>
+            <jaasAuthenticationPlugin configuration="activemq" />
+         <%end%>
+         <!--Jaas-->
+         <!--auth-->
+         <authorizationPlugin>
+           <map>
+             <authorizationMap>
+               <authorizationEntries>
+                  <authorizationEntry queue=">" read="admins" write="admins" admin="admins" />
+                  <authorizationEntry topic=">" read="admins" write="admins" admin="admins" />
+                  <authorizationEntry topic="ActiveMQ.Advisory.>" read="advisory,admins" write="advisory,admins" admin="advisory,admins"/>
+               </authorizationEntries>
+             </authorizationMap>
+           </map>
+        </authorizationPlugin>
+        <runtimeConfigurationPlugin checkPeriod="1000" />
+       <!--auth-->
+       <%end%>
+    </plugins>
+        <!--
+            The managementContext is used to configure how ActiveMQ is exposed in
+            JMX. By default, ActiveMQ uses the MBean server that is started by
+            the JVM. For more information, see:
+
+            http://activemq.apache.org/jmx.html
+        -->
+        <managementContext>
+            <managementContext createConnector="true"
+             connectorPort="8099" connectorHost="<%= node['fqdn'] %>" createMBeanServer="true" brokerName="activemq" rmiServerPort="1098"/>
+        </managementContext>
+
+        <!--
+            Configure message persistence for the broker. The default persistence
+            mechanism is the KahaDB store (identified by the kahaDB tag).
+            For more information, see:
+
+            http://activemq.apache.org/persistence.html
+        -->
+        <persistenceAdapter>
+            <% kahadbattributes = node[:activemq].has_key?(:kahadbattributes) ? Mash.new(JSON.parse(node[:activemq][:kahadbattributes])) : Hash.new %>
+            <% kahadbattributes.each do |k,v| %><%= "#{k}" %>=<%= "'#{v}'" %>  <%end%> />
+        </persistenceAdapter>
+
+
+          <!--
+            The systemUsage controls the maximum amount of space the broker will
+            use before disabling caching and/or slowing down producers. For more information, see:
+            http://activemq.apache.org/producer-flow-control.html
+          -->
+          <systemUsage>
+            <systemUsage>
+                <memoryUsage>
+                    <memoryUsage percentOfJvmHeap="<%= @jvmheap %>" />
+                </memoryUsage>
+                <storeUsage>
+                    <storeUsage limit="<%= @storeusage %>MB"/>
+                </storeUsage>
+                <tempUsage>
+                    <tempUsage limit="<%= @tempusage %>MB"/>
+                </tempUsage>
+            </systemUsage>
+        </systemUsage>
+
+        <!--
+            The transport connectors expose ActiveMQ over a given protocol to
+            clients and other brokers. For more information, see:
+
+            http://activemq.apache.org/configuring-transports.html
+        -->
+        <% if node['activemq']['adminconsolesecure'] == 'true' %>
+         <sslContext>
+           <sslContext keyStore="file:<%= node['activemq']['adminconsolekeystore'] %>" keyStorePassword="<%= node['activemq']['adminconsolekeystorepassword'] %>"/>
+         </sslContext>
+         <% end %>
+
+        <transportConnectors>
+            <% JSON.parse(node[:activemq][:transportconnector]).map{ |k,v| %>
+                <transportConnector name=<%= "'#{k}'" %> uri=<%= "'#{v}'" %> />
+          <%}%>
+        </transportConnectors>
+
+        <!-- destroy the spring context on shutdown to stop jetty -->
+        <shutdownHooks>
+            <bean xmlns="http://www.springframework.org/schema/beans" class="org.apache.activemq.hooks.SpringContextHook" />
+        </shutdownHooks>
+
+    </broker>
+
+    <!--
+        Enable web consoles, REST and Ajax APIs and demos
+        The web consoles requires by default login, you can disable this in the jetty.xml file
+
+        Take a look at ${ACTIVEMQ_HOME}/conf/jetty.xml for more details
+    -->
+    <import resource="jetty.xml"/>
+
+</beans>

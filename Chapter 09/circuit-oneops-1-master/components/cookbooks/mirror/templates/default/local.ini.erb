@@ -1,0 +1,15 @@
+; CouchDB Configuration Settings
+; Generated and managed by Chef
+
+[httpd]
+port = <%= node[:couchdb][:port] %>
+bind_address = 0.0.0.0
+
+[couchdb]
+<% JSON.parse(node[:couchdb][:config]).each do |key, value| %>
+<%= key %> = <%= value %>
+<% end %>
+
+[log]
+level = info
+

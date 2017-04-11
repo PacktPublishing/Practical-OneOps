@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'json'
+
+expiry_time = ARGV[0]
+
+if expiry_time.to_i != 0
+	current_time_seconds = Time.now.to_i
+	minutes_remaining = (expiry_time.to_i - current_time_seconds)/60
+	hours_remaining = minutes_remaining/60
+	days_remaining = hours_remaining/24
+
+	time_remaining = "days_remaining=#{days_remaining} hours_remaining=#{hours_remaining} minutes_remaining=#{minutes_remaining}"
+
+	puts "#{time_remaining} | #{time_remaining}"
+end
+
+

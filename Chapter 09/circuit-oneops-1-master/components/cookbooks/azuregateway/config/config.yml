@@ -1,0 +1,11 @@
+--- 
+gateway: 
+  backend_address_pool_name: AG-BackEndAddressPool
+  frontend_ip_config_name: frontend_ip_config
+  gateway_config_name: ag-GatewayIP
+  gateway_front_port_name: gateway_front_port
+  gateway_listener_name: gateway_listener
+  gateway_request_route_rule_name: gateway_request_route_rule
+  http_settings_name: gateway_settings
+  ssl_certificate_name: ssl_certificate
+  subscription_id: "/subscriptions/%{subscription_id}/resourceGroups/%{resource_group_name}/providers/Microsoft.Network/applicationGateways/%{ag_name}/%{gateway_attribute}/%{attribute_name}"

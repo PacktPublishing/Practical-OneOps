@@ -1,0 +1,65 @@
+{
+  "customer_domain": "s3rss.test-php-mysql.oneops.com",
+  "platform-resource-group": "<RESOURCE_GROUP>",
+  "workorder": {
+    "cloud": {
+      "ciName": "azure"
+    },
+    "services": {
+      "dns": {
+        "azure": {
+          "ciAttributes": {
+            "tenant_id": "<TENANT-ID>",
+            "client_id": "<CLIENT-ID>",
+            "client_secret": "<CLIENT-SECRET>",
+            "cloud_dns_id": "asm.org",
+            "zone": "oneops.com"
+          }
+        }
+      }
+    },
+    "rfcCi": {
+      "ciAttributes": {
+        "aliases": "[\"alias1\",\"alias2\"]",
+        "full_aliases": "[\"full-alias1\",\"full-alias2\"]"
+      },
+      "ciId": 1578346,
+      "ciName": "db-compute-1189982-1"
+    },
+    "box": {
+      "ciAttributes": {
+        "availability": "single"
+      }
+    },
+    "payLoad": {
+      "DependsOn": [
+        {
+          "ciId": 1577847,
+          "ciAttributes":{
+            "dns_record": "dns-record1.com",
+            "instance_name": "dns_record1.com",
+            "hostname": "a-very-long-hostname-of-length-greater-then-61.test-php-mysql.oneops.com"
+          }
+        },
+        {
+          "ciId": 1577849,
+          "ciAttributes":{
+            "dns_record": "dns-record2.com",
+
+            "hostname": "another-very-long-hostname-of-length-greater-then-61.test-php-mysql.oneops.com"
+          }
+        }
+      ],
+      "Environment": [
+        {
+          "ciAttributes": {
+            "subdomain": "s3rss.test-php-mysql.oneops"
+          }
+        }
+      ],
+      "lb": [
+        {"ciId": 1189945}
+      ]
+    }
+  }
+}

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?><!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+       http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+--><configuration>
+
+    <% if @cia["use_hive_thrift_url"] == true || @cia["use_hive_thrift_url"] == 'true' -%>
+    <!-- Hive Thrift URL override specified in the design.  Omitting the
+    following properties:
+    <property>
+        <name>javax.jdo.option.ConnectionURL</name>
+        <value><%= @cia["hive_connect_url"] %></value>
+    </property>
+
+    <property>
+        <name>javax.jdo.option.ConnectionDriverName</name>
+        <value>com.mysql.jdbc.Driver</value>
+    </property>
+
+    <property>
+        <name>javax.jdo.option.ConnectionUserName</name>
+        <value><%= @cia["hive_db_name"] %></value>
+    </property>
+
+    <property>
+        <name>javax.jdo.option.ConnectionPassword</name>
+        <value><%= @cia["hive_db_password"] %></value>
+    </property>
+    -->
+
+    <property>
+        <name>hive.metastore.uris</name>
+        <value><%= @cia["hive_thrift_url"] %></value>
+    </property>
+    <% else %>
+    <property>
+        <name>javax.jdo.option.ConnectionURL</name>
+        <value><%= @cia["hive_connect_url"] %></value>
+    </property>
+
+    <property>
+        <name>javax.jdo.option.ConnectionDriverName</name>
+        <value>com.mysql.jdbc.Driver</value>
+    </property>
+
+    <property>
+        <name>javax.jdo.option.ConnectionUserName</name>
+        <value><%= @cia["hive_db_name"] %></value>
+    </property>
+
+    <property>
+        <name>javax.jdo.option.ConnectionPassword</name>
+        <value><%= @cia["hive_db_password"] %></value>
+    </property>
+    <% end -%>
+
+  <!-- do not try to auto update database -->
+    <property>
+        <name>hive.exec.scratchdir</name>
+        <value>/tmp/hive</value>
+        <description>HDFS root scratch dir for Hive jobs which gets created with write all (733) permission. For each connecting user, an HDFS scratch dir: ${hive.exec.scratchdir}/&lt;username&gt; is created, with ${hive.scratch.dir.permission}.</description>
+    </property>
+
+    <property>
+        <name>hive.exec.local.scratchdir</name>
+        <value><%= @cia["swift_tmp_dir"] %>/${user.name}</value>
+        <description>Local scratch space for Hive jobs</description>
+    </property>
+
+    <property>
+        <name>hive.downloaded.resources.dir</name>
+        <value><%= @cia["swift_tmp_dir"] %>/${hive.session.id}_resources</value>
+        <description>Temporary local directory for added resources in the remote file system.</description>
+    </property>
+
+    <property>
+        <name>hive.exec.compress.output</name>
+        <value>true</value>
+        <description>
+          This controls whether the final outputs of a query (to a local/HDFS file or a Hive table) is compressed.
+          The compression codec and other options are determined from Hadoop config variables mapred.output.compress*
+        </description>
+    </property>
+
+    <property>
+        <name>hive.exec.compress.intermediate</name>
+        <value>true</value>
+        <description>
+          This controls whether intermediate files produced by Hive between multiple map-reduce jobs are compressed.
+          The compression codec and other options are determined from Hadoop config variables mapred.output.compress*
+        </description>
+    </property>
+
+    <property>
+        <name>hive.intermediate.compression.codec</name>
+        <value>org.apache.hadoop.io.compress.SnappyCodec</value>
+        <description/>
+    </property>
+
+    <property>
+        <name>hive.intermediate.compression.type</name>
+        <value>BLOCK</value>
+        <description/>
+    </property>
+
+    <property>
+        <name>hive.metastore.schema.verification</name>
+        <value>false</value>
+    </property>
+
+    <property>
+        <name>hive.metastore.warehouse.dir</name>
+        <value>/user/hive/warehouse</value>
+        <description>location of default database for the warehouse</description>
+    </property>
+
+    <property>
+        <name>hive.metastore.sasl.enabled</name>
+        <value>false</value>
+        <description>If true, the metastore Thrift interface will be secured with SASL. Clients must authenticate with Kerberos.</description>
+    </property>
+
+    <property>
+        <name>hive.default.fileformat</name>
+        <value>ORC</value>
+        <description>
+          Expects one of [textfile, sequencefile, rcfile, orc].
+          Default file format for CREATE TABLE statement. Users can explicitly override it by CREATE TABLE ... STORED AS [FORMAT]
+        </description>
+    </property>
+
+    <property>
+        <name>hive.default.fileformat.managed</name>
+        <value>ORC</value>
+        <description>
+          Expects one of [none, textfile, sequencefile, rcfile, orc].
+          Default file format for CREATE TABLE statement applied to managed tables only. External tables will be
+          created with format specified by hive.default.fileformat. Leaving this null will result in using hive.default.fileformat
+          for all tables.
+        </description>
+    </property>
+
+    <property>
+        <name>hive.exec.orc.default.block.size</name>
+        <value>134217728</value>
+    </property>
+
+    <property>
+        <name>hive.querylog.location</name>
+        <value><%= @cia["swift_tmp_dir"] %>/${user.name}</value>
+        <description>Location of Hive run time structured log file</description>
+    </property>
+
+    <!--property>
+        <name>hive.support.concurrency</name>
+        <value>false</value>
+        <description>
+          Whether Hive supports concurrency control or not.
+          A ZooKeeper instance must be up and running when using zookeeper Hive lock manager
+        </description>
+    </property>
+
+    <property>
+        <name>hive.zookeeper.quorum</name>
+        <value/>
+        <description>
+          List of ZooKeeper servers to talk to. This is needed for:
+          1. Read/write locks - when hive.lock.manager is set to
+          org.apache.hadoop.hive.ql.lockmgr.zookeeper.ZooKeeperHiveLockManager,
+          2. When HiveServer2 supports service discovery via Zookeeper.
+          3. For delegation token storage if zookeeper store is used, if
+          hive.cluster.delegation.token.store.zookeeper.connectString is not set
+        </description>
+    </property-->
+
+    <property>
+        <name>hive.server2.enable.doAs</name>
+        <value>true</value>
+    </property>
+
+    <property>
+        <name>hive.server2.logging.operation.log.location</name>
+        <value><%= @cia["swift_tmp_dir"] %>/${user.name}/operation_logs</value>
+        <description>Top level directory where operation logs are stored if logging functionality is enabled</description>
+    </property>
+
+    <property>
+        <name>hive.server2.use.SSL</name>
+        <% if defined?(@private_pass)
+                hs2_enable = "true"
+            else
+                hs2_enable = "false"
+            end -%>
+        <value><%= hs2_enable %></value>
+        <description>Set this to true for using SSL encryption in HiveServer2.</description>
+    </property>
+
+    <property>
+        <name>hive.server2.keystore.path</name>
+        <% if defined?(@keystore_loc) -%>
+        <value><%= @keystore_loc %></value>
+        <% else -%>
+        <value/>
+        <% end -%>
+        <description>SSL certificate keystore location.</description>
+    </property>
+
+    <property>
+        <name>hive.server2.keystore.password</name>
+        <% if defined?(@private_pass) -%>
+        <value><%= @private_pass %></value>
+        <% else -%>
+        <value/>
+        <% end -%>
+        <description>SSL certificate keystore password.</description>
+    </property>
+
+    <property>
+        <name>hive.server2.thrift.port</name>
+        <value><%= @cia["hive_server2_thrift_port"] %></value>
+        <description>Port number of HiveServer2 Thrift interface when hive.server2.transport.mode is 'binary'.</description>
+    </property>
+
+    <% if @cia["enable_ldap_auth"] == true || @cia["enable_ldap_auth"] == 'true' -%>
+    <property>
+        <name>hive.server2.authentication</name>
+        <value>LDAP</value>
+    </property>
+
+    <property>
+        <name>hive.server2.authentication.ldap.url</name>
+        <value><%= @cia["hive_server2_auth_ldap_url"] %></value>
+        <description>LDAP connection URL(s)</description>
+    </property>
+
+    <property>
+        <name>hive.server2.authentication.ldap.Domain</name>
+        <value><%= @cia["hive_server2_auth_ldap_domain"] %></value>
+        <description/>
+    </property>
+
+    <% if @cia.has_key?("hive_server2_auth_ldap_basedn") %>
+    <property>
+        <name>hive.server2.authentication.ldap.baseDN</name>
+        <value><%= @cia["hive_server2_auth_ldap_basedn"] %></value>
+        <description/>
+    </property>
+    <% end %>
+
+    <% end -%>
+
+    <!-- Below are extra properties specified in the component design -->
+    <% if @cia.has_key?("extra_hive_site") %>
+    <%= @cia["extra_hive_site"].gsub(/\r\n?/,"\n") %>
+    <% end %>
+
+</configuration>

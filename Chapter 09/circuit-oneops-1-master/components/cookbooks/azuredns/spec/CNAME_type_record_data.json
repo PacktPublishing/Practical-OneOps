@@ -1,0 +1,10 @@
+{
+  "location": "global",
+  "tags": {},
+  "properties": {
+    "TTL": 300,
+    "CNAMERecord": {
+      "cname": "contoso.com"
+    }
+  }
+}

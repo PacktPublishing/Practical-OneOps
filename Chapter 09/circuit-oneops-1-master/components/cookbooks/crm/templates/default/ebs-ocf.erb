@@ -1,0 +1,97 @@
+#!/bin/bash
+#
+#       OCF Resource Agent compliant ebs resource script.
+#
+#
+
+# OCF instance parameters
+#       OCF_RESKEY_device_map
+
+#######################################################################
+# Initialization:
+
+if [ -n "$OCF_DEBUG_LIBRARY" ]; then
+        . $OCF_DEBUG_LIBRARY
+else
+        : ${OCF_FUNCTIONS_DIR=${OCF_ROOT}/lib/heartbeat}
+. ${OCF_FUNCTIONS_DIR}/ocf-shellfuncs
+fi
+#######################################################################
+
+meta_data() {
+        cat <<END
+<?xml version="1.0"?>
+<!DOCTYPE resource-agent SYSTEM "ra-api-1.dtd">
+<resource-agent name="ebs">
+<version>1.1</version>
+
+<longdesc lang="en">Manages an EBS resource</longdesc>
+
+<shortdesc lang="en">Manages an EBS resource</shortdesc>
+
+<parameters>
+<parameter name="device_map" unique="1" required="1">
+<longdesc lang="en">
+Space seperated set of vol-device mappings
+</longdesc>
+<shortdesc lang="en">set of vol-device mappings</shortdesc>
+<content type="string" default="" />
+</parameter>
+</parameters>
+
+<actions>
+<action name="start"   timeout="240" />
+<action name="promote"   timeout="90" />
+<action name="demote"   timeout="90" />
+<action name="notify"   timeout="90" />
+<action name="stop"    timeout="100" />
+<action name="monitor" depth="0"  timeout="20" interval="20" />
+<action name="meta-data"  timeout="5" />
+<action name="validate-all"  timeout="30" />
+</actions>
+</resource-agent>
+END
+
+        exit $OCF_SUCCESS
+}
+
+#
+# Main
+#
+
+if [ $# -ne 1 ]; then
+        usage
+        exit $OCF_ERR_ARGS
+fi
+
+if [ -n "$OCF_RESKEY_device_map" ]; then
+   echo "$OCF_RESKEY_device_map" > /opt/oneops/device_map
+fi
+
+case $1 in
+        start)  /etc/init.d/ebs start
+                ;;
+
+        stop)   /etc/init.d/ebs stop
+                ;;
+
+        status) /etc/init.d/ebs status
+                ;;
+
+        monitor)/etc/init.d/ebs status
+                ;;
+
+        validate-all)   /etc/init.d/ebs status
+                        ;;
+
+        meta-data)      meta_data
+                        ;;
+
+        usage)  usage
+                exit $OCF_SUCCESS
+                ;;
+
+        *)      usage
+                exit $OCF_ERR_UNIMPLEMENTED
+                ;;
+esac

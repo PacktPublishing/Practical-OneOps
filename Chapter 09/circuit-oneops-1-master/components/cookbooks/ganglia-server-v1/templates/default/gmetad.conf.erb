@@ -1,0 +1,17 @@
+<%
+  # gmetad.conf.erb
+  #
+  # This is the gmetad configuration file.  It contains the data
+  # source definitions for all monitored clusters.
+ %>
+<% sourceMap = JSON.parse(@data_source_map)
+
+   sourceMap.each_key { |key|
+ %>
+data_source "<%= sourceMap[key] %>" <%= @polling_interval %> localhost:<%= key %>
+<% } %>
+
+gridname "<%= @grid_name %>"
+
+setuid_username ganglia
+case_sensitive_hostnames 0

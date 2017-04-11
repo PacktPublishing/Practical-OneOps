@@ -1,0 +1,29 @@
+# THIS FILE IS MANAGED BY CHEF
+
+# Ganglia gmond configuration for yarn hosts
+# - gmond runs on the host and gathers system statistics
+# - statistics sent to several gmonds for the cluster (site)
+
+globals
+{
+  deaf = yes
+  host_dmax = 3600 /* Remove if not reported in an hour */
+  send_metadata_interval = 30 /*secs */
+  override_hostname = <%= @hostname %>
+}
+
+cluster {
+  name = "<%= @cluster_name %>"
+  owner = "<%= @owner_name %>"
+}
+
+<% if !@ganglia_servers.nil?
+     @ganglia_servers.each do |server| -%>
+udp_send_channel {
+  bind_hostname = yes
+  host = <%= server.split(':')[0] %>
+  port = <%= server.split(':')[1] %>
+  ttl = 1
+}
+<%   end
+   end %>

@@ -1,0 +1,161 @@
+#VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = 'win2012r2chef121118'
+  config.vm.guest = :windows
+
+  config.vm.provider "virtualbox" do |v|
+    v.gui = false
+  end
+  config.vm.communicator = "winrm"
+  config.winrm.timeout = 24000
+  config.winrm.max_tries = 20
+
+  config.winrm.host = '127.0.0.1'
+  config.winrm.username = 'vagrant'
+  config.winrm.password = 'vagrant'
+
+  config.vm.provision :chef_solo do |chef|
+    chef.log_level      = :info
+    chef.cookbooks_path = [".."]
+
+    chef.add_recipe("iis-website::add")
+    chef.json = {
+      "iis-website": {
+        "compression_max_disk_usage": "100",
+        "session_state_cookieless": "UseCookies",
+        "runtime_version": "v4.0",
+        "requestfiltering_file_extension_allow_unlisted": "true",
+        "requestfiltering_max_url": "4096",
+        "sc_mime_types": "{\n    \"text/*\":\"true\",\n    \"message/*\":\"true\",\n    \"application/x-javascript\":\"true\",\n    \"application/atom+xml\":\"true\",\n    \"application/json\":\"true\",\n    \"application/xml\":\"true\",\n    \"*/*\":\"false\"\n  }",
+        "dc_cpu_usage_to_reenable": "50",
+        "enable_dynamic_compression": "true",
+        "requestfiltering_allow_double_escaping": "false",
+        "url_compression_dc_before_cache": "false",
+        "identity_type": "ApplicationPoolIdentity",
+        "binding_type": "http",
+        "requestfiltering_allow_high_bit_characters": "true",
+        "sc_cpu_usage_to_disable": "90",
+        "windows_authentication": "true",
+        "session_time_out": "20",
+        "requestfiltering_max_allowed_content_length": "30000000",
+        "binding_port": "80",
+        "dc_mime_types": "{\n    \"text/*\":\"true\",\n    \"message/*\":\"true\",\n    \"application/x-javascript\":\"true\",\n    \"application/xml\":\"true\",\n    \"*/*\":\"false\"\n  }",
+        "compresion_min_file_size": "2400",
+        "anonymous_authentication": "true",
+        "requestfiltering_verbs": "{ \"TRACE\": \"true\",\n    \"DEBUG\": \"true\" }",
+        "session_state_cookie_name": "ASP.NET_SessionId",
+        "dc_file_directory": "c:\\logs\\IISTemporaryCompressedFiles",
+        "sc_file_directory": "c:\\logs\\IISTemporaryCompressedFiles",
+        "static_mime_types": "{\n    \".dat\":\"application/text\",\n    \".fat\":\"application/octet-stream\"\n  }",
+        "requestfiltering_max_query_string": "2048",
+        "dc_level": "0",
+        "sc_level": "7",
+        "dc_cpu_usage_to_disable": "90",
+        "sc_cpu_usage_to_reenable": "50",
+        "physical_path": "c:\\apps",
+        "log_file_directory": "c:\\logs",
+        "enable_static_compression": "true"
+      },
+      "workorder": {
+        "rfcCi": {
+          "ciAttributes": {
+            "binding_type": "https",
+            "runtime_version": "v4.0",
+            "binding_port": "443",
+            "identity_type": "ApplicationPoolIdentity",
+            "physical_path": "C:\\apps"
+          },
+          "ciClassName": "bom.oneops.1.Iis-website",
+        },
+        "cloud": {
+          "nsId": 110104,
+          "ciAttributes": {
+            "adminstatus": "active",
+            "auth": "",
+            "priority": "1"
+          },
+          "ciName": "vagrant",
+        },
+        "box": {
+          "nsId": 855010,
+          "ciAttributes": {
+          },
+          "attrProps": {},
+          "ciId": 855020,
+          "ciName": "plat007",
+        },
+        "payLoad": {
+          "OO_GLOBAL_VARS": [
+            {
+              "ciAttributes": {
+                "value": "dev2"
+              },
+              "ciBaseAttributes": {},
+              "ciAttrProps": {},
+              "rfcId": 0,
+              "releaseId": 0,
+              "ciId": 0,
+              "ciClassName": "manifest.Globalvar",
+              "ciName": "env_name",
+              "execOrder": 0,
+              "isActiveInRelease": false
+            }
+          ],
+          "DependsOn": [
+            {
+              "ciAttributes": {
+                "dotnet_version_package_name": "{ \".Net 4.6\":\"dotnet4.6\", \".Net 3.5\":\"dotnet3.5\" }",
+                "chocolatey_package_source": "https://chocolatey.org/api/v2/"
+              },
+              "ciBaseAttributes": {
+                "dotnet_version_package_name": "{ \".Net 4.6\":\"dotnet4.6\", \".Net 3.5\":\"dotnet3.5\" }",
+                "chocolatey_package_source": "https://chocolatey.org/api/v2/"
+              },
+              "ciAttrProps": {},
+              "ciClassName": "bom.oneops.1.Dotnetframework",
+              "impl": "oo::chef-11.18.12",
+              "ciName": "dotnetframework-348854-1",
+              "ciGoid": "855377-10301-855399",
+            },
+            {
+              "ciAttributes": {
+                "path": "/var/lib/certs",
+                "cacertkey": "",
+                "ssl_data": "",
+                "pfx_enable": "true",
+                "ssl_password": "",
+                "cert": "",
+                "passphrase": "",
+                "pkcs12": "false",
+                "key": ""
+              },
+              "ciBaseAttributes": {
+                "path": "/var/lib/certs",
+                "cacertkey": "",
+                "ssl_data": "",
+                "pfx_enable": "true",
+                "ssl_password": "",
+                "cert": "",
+                "passphrase": "",
+                "pkcs12": "false",
+                "key": ""
+              },
+              "ciAttrProps": {
+                "IS_SECURED": {
+                  "ssl_password": "true",
+                  "passphrase": "true",
+                  "key": "true"
+                }
+              },
+            }
+          ],
+        },
+      },
+    }
+
+
+
+  end
+
+end

@@ -1,0 +1,96 @@
+<%
+  # initd-historyserver.erb
+  #
+  # This is the service init script used to run the Spark history
+  # server as a service on this node.
+ %>
+#!/bin/bash
+#
+# Starts spark-historyserver service
+#
+# chkconfig: 2345 80 10
+# description: Spark History Server service
+
+source /etc/rc.d/init.d/functions
+
+SPARK_HOME=<%= @spark_dir %>
+SPARK_HISTORYSERVER_LOG=<%= @spark_tmp_dir %>/logs/spark_historyserver.out
+SPARK_USER="spark"
+SPARK_HISTORYSERVER_PID=/tmp/spark-spark-org.apache.spark.deploy.history.HistoryServer-1.pid
+SPARK_MASTER_URI=`cat $SPARK_HOME/conf/spark.master`
+
+prog=spark-historyserver
+
+RETVAL=0
+
+start() {
+  if [ -f $SPARK_HISTORYSERVER_PID ] && checkpid `cat $SPARK_HISTORYSERVER_PID`; then
+    echo "Spark history server is already running."
+  else
+    # Start a Spark History Server
+    echo -n $"Starting Spark history server: "
+
+    su - ${SPARK_USER} -c "$SPARK_HOME/sbin/start-history-server.sh >> $SPARK_HISTORYSERVER_LOG 2>&1 &"
+
+    RETVAL=$?
+
+    echo_success
+    echo
+  fi
+
+  return $RETVAL
+}
+
+stop() {
+  # check if the process is already stopped by seeing if the pid file exists.
+  if [ ! -f $SPARK_HISTORYSERVER_PID ]; then
+    echo "Spark history server is already stopped."
+
+    return 0
+  fi
+
+  echo -n $"Stopping Spark history server: "
+  sudo -u $SPARK_USER $SPARK_HOME/sbin/stop-history-server.sh 2>&1 >/dev/null
+  if [ "$?" == "0" ]; then
+    RETVAL=0
+    echo_success
+  else
+    RETVAL=1
+    echo_failure
+  fi
+  echo
+
+  [ $RETVAL = 0 ]
+}
+
+status_fn() {
+  if [ -f $SPARK_HISTORYSERVER_PID ] && checkpid `cat $SPARK_HISTORYSERVER_PID`; then
+    echo "Spark history server is running."
+    exit 0
+  else
+    echo "Spark history server is stopped."
+    exit 1
+  fi
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status_fn
+    ;;
+  restart)
+    stop
+    sleep 5
+    start
+    ;;
+  *)
+    echo $"Usage: $prog {start|stop|restart|status}"
+    RETVAL=3
+esac
+
+exit $RETVAL

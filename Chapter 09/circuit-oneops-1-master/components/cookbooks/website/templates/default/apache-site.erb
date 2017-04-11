@@ -1,0 +1,24 @@
+<VirtualHost *:<%= node[:website][:port] -%>>
+
+<% if node[:website].has_key?('server_name') && !node[:website][:server_name].empty? %>
+  ServerName <%= node[:website][:server_name] %>
+<% end %>
+
+  DocumentRoot <%= node[:website][:root] %>
+
+<% if node[:website].has_key?('ssl') && node[:website][:ssl] == "on" %>
+  SSLEngine on
+  SSLCertificateFile <%= node[:website][:dir] %>/ssl/<%= node[:website][:name] %>.crt
+  SSLCertificateKeyFile <%= node[:website][:dir] %>/ssl/<%= node[:website][:name] %>.key
+  <% if node[:website].has_key?('sslcacertkey') && !node[:website][:sslcacertkey].empty? %>
+  SSLCACertificateFile <%= node[:website][:dir] %>/ssl/<%= node[:website][:name] %>.ca
+  <% end %>
+
+<% end %>
+	<Directory <%= node[:website][:root] %>/>
+	<%= node[:website][:directives].gsub(/\r\n?/,"\n") %>
+	</Directory>
+
+  <%= node[:website][:extra].gsub(/\r\n?/,"\n") %>
+
+</VirtualHost>

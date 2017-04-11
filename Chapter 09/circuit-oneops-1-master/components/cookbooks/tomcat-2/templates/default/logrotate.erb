@@ -1,0 +1,25 @@
+/log/apache-tomcat/catalina.out{
+ copytruncate
+ daily
+ size 256M
+ rotate 8
+ missingok
+ maxage 7
+}
+
+<%= node['tomcat']['logfiles_path']%>/*.log{
+ copytruncate
+ daily
+ size 128M
+ rotate 8
+ missingok
+ maxage 7
+}
+
+<%= node['tomcat']['logfiles_path']%>/access%>*.log{
+ copytruncate
+ yearly
+ size 265M
+ rotate 8
+ missingok
+}

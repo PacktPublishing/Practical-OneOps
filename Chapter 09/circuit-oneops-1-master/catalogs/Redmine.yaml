@@ -1,0 +1,455 @@
+--- !ruby/object:Chef::Catalog 
+cis: !map:Mash 
+  101833: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 101823-1054-101833
+      lastRfcId: 
+      ciId: 101833
+      comments: ""
+      rfcId: 71524
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciClassName: catalog.Compute
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          image_id: ""
+          size: XS
+          ostype: ubuntu-11.04
+        prefix_options: {}
+
+      ciName: web-compute
+      created: 1318050782695
+    prefix_options: &id001 {}
+
+  101839: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 101823-1034-101839
+      lastRfcId: 
+      ciId: 101839
+      comments: 
+      rfcId: 71542
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciClassName: catalog.Build
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          repository: http://redmine.rubyforge.org/svn/branches/1.2-stable
+          persist: "[\"log\",\"tmp\"]"
+          depth: "1"
+          migration_command: |-
+            bundle install
+            bundle exec rake db:migrate
+          revision: HEAD
+          restart_command: rails server -e production
+          scm: svn
+          remote: origin
+          environment: "{\"RAILS_ENV\":\"production\",\"MERB_ENV\":\"production\",\"RACK_ENV\":\"production\",\"RUBYOPT\":\"rubygems\"}"
+          submodules: "false"
+          key: ""
+        prefix_options: {}
+
+      ciName: web-build-redmine
+      created: 1318050900801
+    prefix_options: *id001
+  101829: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 101823-1171-101829
+      lastRfcId: 
+      ciId: 101829
+      comments: 
+      rfcId: 71512
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciClassName: catalog.Platform
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          pack: rails
+          version: "0.2"
+          description: ""
+          aliases: "[]"
+          source: packer
+        prefix_options: {}
+
+      ciName: web
+      created: 1318050782192
+    prefix_options: *id001
+  101835: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 101823-1115-101835
+      lastRfcId: 
+      ciId: 101835
+      comments: ""
+      rfcId: 71531
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciClassName: catalog.Library
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          packages: "[\"libxslt1-dev\",\"libxml2-dev\",\"zlib1g-dev\"]"
+        prefix_options: {}
+
+      ciName: web-commonlibs
+      created: 1318050782764
+    prefix_options: *id001
+  101825: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 101823-1104-101825
+      lastRfcId: 
+      ciId: 101825
+      comments: default keypair
+      rfcId: 0
+      nsPath: /kloopz/Redmine
+      releaseId: 0
+      isActiveInRelease: false
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: 
+      ciClassName: account.Keypair
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          public: 
+          private: 
+          description: 2048-bit keys
+        prefix_options: {}
+
+      ciName: Default
+      created: 1318050744254
+    prefix_options: *id001
+  101831: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 101823-1145-101831
+      lastRfcId: 
+      ciId: 101831
+      comments: ""
+      rfcId: 71519
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciClassName: catalog.Nginx
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          version: 1.0.5
+        prefix_options: {}
+
+      ciName: web-nginx
+      created: 1318050782407
+    prefix_options: *id001
+  101837: !ruby/object:Cms::DjCi 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      ciGoid: 101823-1223-101837
+      lastRfcId: 
+      ciId: 101837
+      comments: ""
+      rfcId: 71536
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      ciBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      ciAttrProps: !ruby/object:Cms::DjCi::CiAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciClassName: catalog.Ruby
+      ciAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          version: 1.8.7
+          gems: "{\"rails\":\"2.3.11\",\"rake\":\"\",\"bundler\":\"\",\"rack\":\"1.1.1\"}"
+        prefix_options: {}
+
+      ciName: web-ruby
+      created: 1318050782855
+    prefix_options: *id001
+description: ""
+name: Redmine
+nspath: /kloopz
+relations: !map:Mash 
+  101832: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 101829-1558-101831
+      comments: ""
+      fromCiId: 101829
+      toCi: 
+      rfcId: 71521
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciRelationId: 101832
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: nginx
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 101831
+      created: 1318050782407
+    prefix_options: &id002 {}
+
+  101838: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 101829-1558-101837
+      comments: ""
+      fromCiId: 101829
+      toCi: 
+      rfcId: 71539
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciRelationId: 101838
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: ruby
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 101837
+      created: 1318050782855
+    prefix_options: *id002
+  101834: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 101829-1558-101833
+      comments: ""
+      fromCiId: 101829
+      toCi: 
+      rfcId: 71528
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciRelationId: 101834
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: compute
+          constraint: 1..1
+        prefix_options: {}
+
+      toCiId: 101833
+      created: 1318050782695
+    prefix_options: *id002
+  101840: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 101829-1558-101839
+      comments: ""
+      fromCiId: 101829
+      toCi: 
+      rfcId: 71554
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciRelationId: 101840
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: build
+          constraint: 0..999
+        prefix_options: {}
+
+      toCiId: 101839
+      created: 1318050900801
+    prefix_options: *id002
+  101830: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 101821-1279-101829
+      comments: ""
+      fromCiId: 101821
+      toCi: 
+      rfcId: 71518
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.ComposedOf
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciRelationId: 101830
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      toCiId: 101829
+      created: 1318050782192
+    prefix_options: *id002
+  101836: !ruby/object:Cms::DjRelation 
+    attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+      lastRfcId: 
+      relationGoid: 101829-1558-101835
+      comments: ""
+      fromCiId: 101829
+      toCi: 
+      rfcId: 71533
+      nsPath: /kloopz/Redmine
+      releaseId: 71511
+      isActiveInRelease: true
+      relationAttrProps: !ruby/object:Cms::DjRelation::RelationAttrProps 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      fromCi: 
+      relationName: base.Requires
+      relationBaseAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess {}
+
+        prefix_options: {}
+
+      execOrder: 0
+      rfcAction: add
+      ciRelationId: 101836
+      relationAttributes: !ruby/object:Cms::AttrMap 
+        attributes: !map:ActiveSupport::HashWithIndifferentAccess 
+          template: commonlibs
+          constraint: 1..*
+        prefix_options: {}
+
+      toCiId: 101835
+      created: 1318050782764
+    prefix_options: *id002

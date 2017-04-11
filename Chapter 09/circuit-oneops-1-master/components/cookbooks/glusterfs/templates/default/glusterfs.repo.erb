@@ -1,0 +1,14 @@
+[glusterfs]
+name=glusterfs
+<% if node[:platform_version].start_with?("5") %>
+baseurl=<%= @glusterfs_source %>/<%= @glusterfs_version %>/5/
+<% elsif node[:platform_version].start_with?("6") %>
+baseurl=<%= @glusterfs_source %>/<%= @glusterfs_version %>/6/
+<% elsif node[:platform_version].start_with?("7") %>
+baseurl=<%= @glusterfs_source %>/<%= @glusterfs_version %>/7/
+<% else %>
+baseurl=<%= @glusterfs_source %>/<%= @glusterfs_version %>/6/
+<% end %>
+enabled=1
+gpgcheck=0
+sslverify=0

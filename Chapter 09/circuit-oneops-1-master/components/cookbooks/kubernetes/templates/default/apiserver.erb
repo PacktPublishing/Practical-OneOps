@@ -1,0 +1,65 @@
+<%= node['kube']['custom_template_banner'] %>
+
+###
+# kubernetes system config
+#
+# The following values are used to configure the kube-apiserver
+#
+
+# The address on the local server to listen to.
+KUBE_API_ADDRESS="--insecure-bind-address=<%= node['kube']['api']['bind-address'] %>"
+
+# The port on the local server to listen on.
+KUBE_API_PORT="--insecure-port=<%= node['kube']['api']['bind-port'] %>"
+
+# security args
+<% if node.workorder.rfcCi.ciAttributes.has_key?("security_enabled") &&
+      node.workorder.rfcCi.ciAttributes.security_enabled == "true" 
+      
+   kubernetes_tls_dir = node.workorder.rfcCi.ciAttributes.security_path
+   auth_args = []
+
+    auth_args.push "--secure-port=#{node['kube']['api']['bind-port-secure']}"
+    auth_args.push "--admission_control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota"
+
+
+     if node.workorder.rfcCi.ciAttributes.has_key?("etcd_security_enabled") &&
+      node.workorder.rfcCi.ciAttributes.etcd_security_enabled == "true" 
+      
+        etcd_tls_dir = '/var/lib/certs'
+		auth_args.push "--etcd-cafile=#{etcd_tls_dir}/ca.crt"
+		auth_args.push "---etcd-cerfile=#{etcd_tls_dir}/server.crt"
+		auth_args.push "---etcd-keyfile=#{etcd_tls_dir}/server.key"
+
+     end
+
+	 auth_args.push "--client-ca-file=#{kubernetes_tls_dir}/ca.crt"
+	 auth_args.push "--tls-cert-file=#{kubernetes_tls_dir}/server.crt"
+	 auth_args.push "--tls-private-key-file=#{kubernetes_tls_dir}/server.key"
+	
+	 auth_args.push "--token_auth_file=/etc/kubernetes/token_auth_users"
+	 auth_args.push "--basic_auth_file=/etc/kubernetes/basic_auth_users"
+	 auth_args.push "--authorization-mode=ABAC"
+	 auth_args.push "--authorization-policy-file=/etc/kubernetes/auth_policy"
+	
+	 #auth_args.push "--kubelet-certificate-authority=#{kubernetes_tls_dir}/ca.crt"
+	 #auth_args.push "--kubelet-client-certificate=#{kubernetes_tls_dir}/kubelet.crt"
+	 #auth_args.push "--kubelet-client-key=#{kubernetes_tls_dir}/kubelet.key"
+	
+	 auth_args.push "--service-account-key-file=#{kubernetes_tls_dir}/server.key" %>
+KUBE_AUTH_ARGS="<%= auth_args.join(' ') %>"	 
+<% else %>
+KUBE_AUTH_ARGS=""
+<% end %>
+
+# How the set controller and scheduler find the kube-apiserver
+KUBE_MASTER="--master=localhost:<%= node['kube']['api']['bind-port'] %>"
+
+# Port minions listen on
+KUBELET_PORT="--kubelet_port=<%= node['kube']['kubelet']['bind-port'] %>"
+
+# Address range to use for services
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=<%= node['kube']['service']['addresses'] %>"
+
+# Add you own!
+KUBE_API_ARGS="<%= node['kube']['api']['args'] %>"

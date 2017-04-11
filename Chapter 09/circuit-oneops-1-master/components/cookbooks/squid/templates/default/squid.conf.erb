@@ -1,0 +1,91 @@
+# This file generated from a Chef template.
+# squid/templates/default/squid.conf.erb
+
+
+<% acl_values = JSON.parse(node['squid']['acl_values']) %>
+<% acl_values.each do |acl_val| %>
+acl <%= acl_val %>
+<% end %>
+
+<% http_access_allow_values = JSON.parse(node['squid']['http_access_allow']) %>
+<% http_access_allow_values.each do |access_flag| %>
+http_access allow <%= access_flag %>
+<% end %>
+
+<% http_access_deny_values = JSON.parse(node['squid']['http_access_deny']) %>
+<% http_access_deny_values.each do |deny_flag| %>
+http_access deny <%= deny_flag %>
+<% end %>
+
+http_port <%= node['squid']['port'] %>
+
+#Cache Peers
+<%
+    computes = node.workorder.payLoad.has_key?('RequiresComputes')? node.workorder.payLoad.RequiresComputes : {}
+    currCloudId = node.workorder.cloud.ciId
+    currCloudName = node.workorder.cloud.ciName
+    print "currCloudName=#{currCloudName}\n"
+    currComponentName = node.workorder.rfcCi.ciName
+    cachePeerNodes = Array[]
+    computes.each do |cm|
+            peerIp = cm[:ciAttributes][:private_ip]
+            newName = cm.ciName.sub('compute','squid')
+            if cm.ciName.match(currCloudId.to_s) && newName != currComponentName
+                cachePeerNodes.push(peerIp)
+            end
+    end
+%>
+
+<% cachePeerNodes.each do |cache_peer_ip| %>
+acl siblings src <%= cache_peer_ip %>/32
+<% end %>
+
+<% cachePeerNodes.each do |cache_peer_ip| %>
+cache_peer <%= cache_peer_ip %> sibling 80 3130 allow-miss
+cache_peer_access <%= cache_peer_ip %> deny siblings
+<% end %>
+
+<% if cachePeerNodes.length > 0 %>
+icp_access allow siblings
+http_access allow siblings
+miss_access allow siblings
+<% end %>
+
+logformat squid %tl %6tr %>a %Ss/%03>Hs %<st %rm %ru %rp %un %Sh/%<A %mt
+access_log <%= node['squid']['log_dir'] %>/access.log squid
+refresh_pattern	    ^ftp:			1440	20%	10080
+refresh_pattern     ^gopher:			1440	0%	1440
+refresh_pattern	    -i (/cgi-bin/|\?)		0	0%	0
+refresh_pattern     (Release|Package(.gz)*)$	0	20%	2880
+refresh_pattern     -i (war|jar|ear|tar|zip|gz|gem|rz|xml|pom)  0 0% 0 refresh-ims
+refresh_pattern deb$ 1577846 100% 1577846
+
+hosts_file /etc/hosts
+<%
+dnsServers = ""
+nameservers = `cat /etc/resolv.conf|grep nameserver|grep -v 127.0.0.1`
+nameservers.each_line do |line|
+  first,serverIp = line.split(/ /)
+  dnsServers += "  " + serverIp.chop
+end
+print "dnsServers:#{dnsServers}\n"
+if dnsServers == ""
+    dnsServers = "localhost"
+end
+print "dnsServers:#{dnsServers}\n"
+%>
+dns_nameservers <%= dnsServers%>
+maximum_object_size <%= node['squid']['maximum_object_size'] %> MB
+cache_dir ufs <%= node['squid']['cache_dir'] %> <%= node['squid']['cache_size'] %> 16 256
+coredump_dir <%= node['squid']['coredump_dir'] %>
+cache_mem <%= node['squid']['cache_mem'] %> MB
+cache_replacement_policy heap LFUDA
+memory_pools off
+half_closed_clients off
+client_db off
+log_icp_queries on
+quick_abort_min 0 KB
+quick_abort_max 0 KB
+buffered_logs off
+retry_on_error on
+read_timeout <%= node['squid']['read_timeout'] %> minutes

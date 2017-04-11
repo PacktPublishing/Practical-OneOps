@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+  config.vm.box = "<%= node[:ostype] %>"
+  config.vm.box_url = "<%= node[:image_id] %>"
+  # config.vm.boot_mode = :gui
+  # config.vm.forward_port 80, 8080
+  if Vagrant::VERSION < "1.1.0"
+  	config.vm.network :hostonly, :dhcp
+  	# config.vm.network :bridged, :netmask => "255.255.255.0"
+  end
+  config.vm.share_folder "v-share", "/share", "share"
+  config.vm.customize ["modifyvm", :id, "--cpus", <%= node[:vm_cpu] %>]
+  config.vm.customize ["modifyvm", :id, "--memory", <%= node[:vm_memory] %>]
+  config.vm.provision :shell, :path => "setup.sh"
+end
+
+Vagrant::VERSION >= "1.1.0" and Vagrant.configure("2") do |config|
+  config.vm.network :private_network, type: :dhcp, :netmask => "255.255.255.0"
+  config.vm.network :public_network, bridge: "en0: Wi-Fi (AirPort)"
+end

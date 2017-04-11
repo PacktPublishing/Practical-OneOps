@@ -1,0 +1,18 @@
+---
+driver:
+  name: vagrant
+  box_url: 'C:/Users/spage/Desktop/MyHome/Work/box/win2kr2.box'
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: windows-2012r2
+
+suites:
+  - name: default
+    run_list:
+
+      - recipe[iis::enable]
+
+    attributes:

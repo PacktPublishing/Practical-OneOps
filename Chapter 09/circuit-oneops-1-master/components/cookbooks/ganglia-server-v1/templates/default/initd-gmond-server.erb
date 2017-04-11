@@ -1,0 +1,65 @@
+<%
+  # initd-gmond-server.erb
+  #
+  # This is the init script for the Ganglia gmond server instances.
+  # It is used to start and stop all of the gmond instances for
+  # each data source.
+ %>
+#!/bin/sh
+#
+# chkconfig: 2345 70 40
+# description: gmond-server startup script
+#
+
+# This is a hacked version of /etc/init.d/gmond used to start/stop the
+# possibly multiple /etc/init.d/gmond-server instances used as cluster
+# hsflowd/gmetric endpoints.
+
+# Note: Use the custom binary hard link gmond-server to avoid
+# interference fom /etc/init.d/gmond
+GMOND=/usr/sbin/gmond-server
+
+# TMPDIR set to SysV IPC ramdrive to avoid include processing failures
+TMPDIR=/dev/shm
+export TMPDIR
+
+. /etc/rc.d/init.d/functions
+
+RETVAL=0
+case "$1" in
+  start)
+    for conf in `ls -1 /etc/ganglia/serverconf.d/gmond-*.conf`; do
+      name=`basename ${conf%.*}`
+      echo -n "Starting GANGLIA $name: "
+      [ -f $GMOND ] || exit 1
+      daemon $GMOND -c $conf
+      RETVAL=$?
+      echo
+      [ $RETVAL -eq 0 ] && touch /var/lock/subsys/$name
+    done
+    ;;
+
+  stop)
+    echo -n "Shutting down all GANGLIA $GMOND: "
+    killproc $GMOND
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$GMOND
+    ;;
+
+  restart|reload)
+    $0 stop
+    $0 start
+    RETVAL=$?
+    ;;
+
+  status)
+    status $GMOND
+    RETVAL=$?
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|restart|status}"
+    exit 1
+ esac
+exit $RETVAL

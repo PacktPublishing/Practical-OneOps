@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+# 
+# gets apache data without doing bunch of awk sed (as the nagios plugin does)
+#
+# port gets replaced using chef template
+port = <%= node[:apache][:listen_ports].first %>
+rows = (`curl -s http://localhost:#{port}/server-status`).split("\n")
+
+cpu_user = '0'
+cpu_sys = '0'
+requests_sec = '0'
+traffic_sec = '0'
+active_requests = '0'
+idle_workers = '0'
+
+#   Total accesses: 29628 - Total Traffic: 570.7 MB
+#   CPU Usage: u90.67 s14.75 cu0 cs0 - .482% CPU load
+#   1.36 requests/sec - 26.7 kB/second - 19.7 kB/request
+#   6 requests currently being processed, 26 idle workers
+
+processes=`cat /proc/cpuinfo | grep processor | wc -l`
+
+rows.each do |row|
+
+  if row =~ /CPU Usage: u(\d*(\.\d*)?) s(\d*(\.\d*)?) cu(\d+) cs(\d+)/
+    cpu_user = ($1.to_f/processes.to_f)*100
+    cpu_sys = ($3.to_f/processes.to_f)*100
+
+elsif row =~ /(\d*(\.\d+)?) requests.*- (\d+(\.\d+)?) (k|M|G|T)?B\/second/ 
+    requests_sec = $1
+    traffic_sec = $3.gsub(" ","").gsub(/[a-z]/i, '')
+
+  elsif row =~ /(\d+) requests currently being processed, (\d+) idle workers/
+    active_requests = $1
+    idle_workers = $2
+
+  end
+end
+
+
+perf = "cpu_user=#{cpu_user} "
+perf += "cpu_sys=#{cpu_sys} "
+perf += "requests_sec=#{requests_sec} "
+perf += "traffic_sec=#{traffic_sec} "
+perf += "active_requests=#{active_requests} "
+perf += "idle_workers=#{idle_workers} "
+puts perf + "|"+ perf
+

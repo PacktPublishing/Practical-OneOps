@@ -1,0 +1,88 @@
+#!/bin/sh
+#
+# chkconfig: 2345 70 40
+# description: logstash startup script
+
+[ -f /etc/default/logstash ] && . /etc/default/logstash
+
+LOGSTASH="/opt/logstash/bin/logstash"
+CONF="/etc/logstash/logstash.conf"
+LOGFILE="/var/log/logstash.log"
+LOGSTASH_PID="/var/run/logstash.pid"
+
+
+function missing_bin() { 
+    echo "Failed to find logstash bin file: [$LOGSTASH]"; 
+    echo "Check /etc/init.d/logstash file for correct settings."
+    RETVAL=1; 
+    exit 1;
+}
+
+function missing_conf() { 
+    echo "Failed to find logstash config file:[$CONF]"; 
+    echo "Check /etc/init.d/logstash file for correct settings."
+    RETVAL=1; 
+    exit 1;
+}
+
+test -f $LOGSTASH || missing_bin
+test -f $CONF || missing_conf
+
+. /etc/rc.d/init.d/functions
+
+RETVAL=0
+
+case "$1" in
+    start)
+	echo -n "Starting logstash: "
+	
+	#check to see if we're already running
+	pgrep -f ${LOGSTASH} > /dev/null
+	RUNNING=$?
+	if [ $RUNNING -eq 0 ]; then     
+	    echo "[FAILED]"
+	    echo    
+	    echo "Reason: logstash is already running."
+	    RETVAL=1
+	    exit 1;
+	fi
+	
+	#start it up
+	daemon "$LOGSTASH agent -f $CONF &" >>$LOGFILE 2>&1;
+	pgrep -f ${CONF} > $LOGSTASH_PID #record PID in pid file
+	RETVAL=$?
+	echo
+	if [ $RETVAL -eq 0 ]; then     
+	    touch /var/lock/subsys/logstash
+	else 
+	    echo "RETVAL for daemon = $RETVAL"
+	    echo "PID missing for logstash, PID value not recorded. Something is wrong!"
+	    pgrep ${LOGSTASH}
+	fi 
+	;;
+    
+    stop)
+	echo -n "Shutting down logstash: "
+	killproc logstash 
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/logstash
+	;;
+    
+    restart|reload)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+
+    status)
+	status logstash 
+	RETVAL=$?
+	;;
+    *)
+	echo "Usage: $0 {start|stop|restart|status}"
+	exit 1
+esac
+
+exit $RETVAL
+

@@ -1,0 +1,541 @@
+#!/usr/bin/env ruby
+
+require 'net/https'
+require 'rubygems'
+require 'json'
+require 'bigdecimal'
+require 'optparse'
+require 'socket'
+require 'resolv'
+
+class CbServer
+  attr_accessor :user, :major_version, :minor_version, :password, :version
+
+  @user = nil
+  @password = nil
+  @version = nil
+  @major_version, @minor_version = nil
+
+  def initialize(user, password)
+    @user = user
+    @password = password
+  end
+
+  def setVersion(body)
+    if body != nil then
+      @version = body["implementationVersion"]
+      if @version != nil then
+        @major_version, @minor_version = @version.split('.')
+      end
+    end
+  end
+
+  def isVersionCompatible
+    rs = (("#{major_version}.#{minor_version}" == "2.2") || ("#{major_version}.#{minor_version}" == "2.5") || ("#{major_version}.#{minor_version}" == "3.0"))
+  end
+end
+
+class Cluster
+  attr_accessor :nodes, :minReplicaNumber, :buckets, :tasks, :nodes_stats
+
+  def initialize
+    self.nodes = Array.new
+    self.buckets = Array.new
+    self.tasks = Array.new
+    self.nodes_stats = Array.new
+    @minReplicaNumber = 99
+  end
+
+  def getNodesSize()
+    @nodes.size
+  end
+
+  def nodesToString()
+    rs = ''
+    @nodes.each { |node|
+      rs << "#{node.hostname} #{node.cluster_membership} #{node.status} "
+    }
+    rs
+  end
+
+  def getUnhealthyNodes()
+    unhealthyNodes = Array.new
+    @nodes.each { |node|
+      if node.status != 'healthy' || (node.cluster_membership.include? "inactive") then
+        unhealthyNodes.push(node)
+      end
+    }
+    unhealthyNodes
+  end
+
+  def parseNodes(body)
+    if body != nil then
+      body['nodes'].each { |anode|
+        node = Node.new
+        node.status = anode['status']
+        node.cluster_membership = anode['clusterMembership']
+        node.hostname=anode['hostname']
+        @nodes.push(node)
+      }
+    end
+  end
+
+  def parseNodesBuckets(body)
+    if body != nil then
+      body.each { |anode|
+        bucket = Bucket.new
+        if @minReplicaNumber > anode['replicaNumber'] then
+          @minReplicaNumber = anode['replicaNumber']
+        end
+        bucket.bucket_name = anode['name']
+        bucket.replica_number = anode['replicaNumber']
+        @buckets.push(bucket)
+      }
+    end
+  end
+
+  def parseTasks(body)
+    if body != nil then
+
+      body.each { |anode|
+        task = ClusterTask.new
+        task.errorMessage = anode['errorMessage']
+        task.type = anode['type']
+        task.status = anode['status']
+        tasks.push(task)
+      }
+    end
+  end
+end
+
+class ClusterTask < Cluster
+  attr_accessor :type, :errorMessage, :status
+  @type
+  @status
+  @errorMessage
+end
+
+class Node
+  attr_accessor :hostname, :cluster_membership, :status, :node_stat
+
+  @hostname
+  @cluster_membership
+  @status
+  @node_stat
+end
+
+class RestClient
+  attr_accessor :body, :uri
+
+  def initialize(host_name, port)
+    @host_name = host_name
+    @port = port
+    @http = Net::HTTP.new(@host_name, @port)
+    @http.open_timeout = 5 #timeout to couchbase API
+    @http.use_ssl = false
+    @resp = nil
+  end
+
+  def getData(admin, password)
+    @resp = nil
+
+    @http.start do |http|
+      req = Net::HTTP::Get.new(@uri)
+      #http.open_timeout = 5
+      # we make an HTTP basic auth by passing the
+      # username and password
+      req.basic_auth admin, password
+      @resp, data = http.request(req)
+    end
+
+    setRepToJson()
+  end
+
+  def setRepToJson()
+    if @resp != nil then
+      @body = JSON.parse(@resp.body())
+    end
+  end
+end
+
+class Bucket
+  attr_accessor :bucket_name, :replica_number, :quota_ram, :item_count
+
+  @replica_number = nil
+  @bucket_name = nil
+  @quota_ram = nil
+  @item_count = nil
+
+  def parseQuotaRam(body)
+    if body != nil then
+      body.each { |a_bucket|
+
+        if a_bucket.include? "quota" then
+          @quota_ram =a_bucket[1]['ram']
+          #@quota_ram = a_bucket['quota']['ram']
+        end
+        if a_bucket.include? "basicStats" then
+          @item_count=a_bucket[1]['itemCount']
+        end
+      }
+    end
+  end
+end
+
+class BucketStat < Bucket
+  attr_accessor :bucket_stat
+end
+
+class BucketNodeStat < Bucket
+  attr_accessor :ep_meta_data_memory, :ep_item_commit_failed, :hostname, :couch_docs_actual_disk_size, :couch_docs_data_size, :writing_data_to_disk_failed, :disk_space_used, :metadata_overhead, :ep_bg_fetched, :get_hits, :cache_miss_ratio, :temp_oom_per_sec, :active_doc_resident, :replica_doc_resident, :active_ejection_per_sec, :replica_ejection_per_sec, :ep_flusher_todo, :ep_queue_size, :disk_write_queue, :disk_read_per_sec
+
+  @ep_item_commit_failed
+  @ep_meta_data_memory
+  @ep_item_commit_failed
+  @hostname
+  @couch_docs_actual_disk_size
+  @couch_docs_data_size
+  @writing_data_to_disk_failed
+  @disk_space_used
+  @metadata_overhead
+  @ep_bg_fetched
+  @get_hits
+  @cache_miss_ratio
+  @temp_oom_per_sec
+  @active_doc_resident
+  @replica_doc_resident
+  @active_ejection_per_sec
+  @replica_ejection_per_sec
+  @ep_bg_fetched
+  @ep_flusher_todo
+  @disk_write_queue
+  @disk_read_per_sec
+
+  def getMetadataOverhead(nodesSize)
+    @ep_meta_data_memory / (@quota_ram / Float(nodesSize))
+  end
+
+  def get_active_doc_resident
+    @active_doc_resident
+  end
+
+  def get_replica_doc_resident
+    @replica_doc_resident
+  end
+
+  def get_temp_oom_per_sec
+    @temp_oom_per_sec
+  end
+
+  def get_active_ejection_per_sec
+    @active_ejection_per_sec
+  end
+
+  def get_replica_ejection_per_sec
+    @replica_ejection_per_sec
+  end
+
+  def get_disk_write_queue
+    @disk_write_queue = @ep_queue_size + @ep_flusher_todo
+  end
+
+  def get_cache_miss_ratio()
+    cache_miss_ratio = 0.00
+    cmr = Float(@ep_bg_fetched) / Float(@get_hits) * 100
+    if (cmr > 0) then
+      cache_miss_ratio = cmr
+    end
+    cache_miss_ratio
+  end
+
+  def getDiskUsed(dir="couchbase")
+    output = `df -kh | grep #{dir} | egrep -o '[0-9]+%' | cut -d% -f1`
+    @disk_space_used = (output != nil && !output.empty?) ? output : 0
+  end
+
+  def parseBucketNodeStats(body)
+    if body != nil then
+      node_stat = BucketNodeStat.new
+      body.each { |anode|
+
+
+        if anode.include? "hostname" then
+          node_stat.hostname = anode[1]
+        end
+        if anode.include? 'op' then
+          # puts anode[1]['samples']['ep_meta_data_memory'][0]
+          node_stat.ep_meta_data_memory= anode[1]['samples']['ep_meta_data_memory'][0]
+          node_stat.ep_bg_fetched= anode[1]['samples']['ep_bg_fetched'][0]
+          node_stat.disk_read_per_sec=node_stat.ep_bg_fetched
+          node_stat.temp_oom_per_sec= anode[1]['samples']['ep_tmp_oom_errors'][0]
+          node_stat.active_doc_resident= anode[1]['samples']['vb_active_resident_items_ratio'][0]
+          node_stat.replica_doc_resident= anode[1]['samples']['vb_replica_resident_items_ratio'][0]
+          node_stat.active_ejection_per_sec= anode[1]['samples']['vb_active_eject'][0]
+          node_stat.replica_ejection_per_sec= anode[1]['samples']['vb_replica_eject'][0]
+          node_stat.ep_flusher_todo= anode[1]['samples']['ep_flusher_todo'][0]
+          node_stat.ep_queue_size= anode[1]['samples']['ep_queue_size'][0]
+          node_stat.get_hits= anode[1]['samples']['get_hits'][0]
+          node_stat.ep_item_commit_failed= anode[1]['samples']['ep_item_commit_failed'][0]
+          node_stat.couch_docs_actual_disk_size= anode[1]['samples']['couch_docs_actual_disk_size'][0]
+          node_stat.couch_docs_data_size= anode[1]['samples']['couch_docs_data_size'][0]
+          couch_docs_data_size
+        end
+
+      }
+    end
+    node_stat
+  end
+
+  def getMaxValue(currentVal, newVal)
+    maxVal =(currentVal != nil && currentVal > newVal) ? currentVal : newVal
+  end
+
+  def getMinValue(currentVal, newVal)
+    minVal = (currentVal != nil && currentVal < newVal && (!(currentVal.include? "0.000"))) ? currentVal : newVal
+
+    minVal
+  end
+end
+
+class NumberFormat
+  num = nil
+
+  def toFloat(string)
+    num = sprintf("%.3f", string)
+    if (num == "NaN") then
+      num = 0.00
+    end
+    num
+  end
+
+  num
+end
+
+class ManageFile
+  attr_accessor :data
+  @filename
+
+  def initialize(filename, data)
+    @filename=filename
+    @data=data
+  end
+
+  def write_file
+    begin
+      file = File.open(@filename, "w")
+      file.write(@data)
+    rescue IOError => e
+      #"some error occur, dir not writable"
+    ensure
+      file.close unless file.nil?
+    end
+  end
+end
+
+def write_check_cluster_health_file(data)
+  rs = String.new("#!/usr/bin/env ruby \nputs \"Running... | ")
+  filename = '<%= @file_name %>'
+  rs.concat("#{data}\"")
+  file = ManageFile.new(filename, rs)
+  file.write_file
+end
+
+#Main Program
+# args:
+# @param username     -ex: username
+# @param password     -ex. passwprd
+
+rs=""
+write_check_cluster_health_file(rs)
+
+cbServer = nil
+
+#Process ARGs
+options = {}
+
+optparse = OptionParser.new do |opts|
+  opts.on('-U', '--User Couchbase Admin User', "Mandatory Couchbase Admin User") do |f|
+    options[:user] = f
+  end
+  opts.on('-P', '--Password PASSWORD', "Mandatory Couchbase Admin Password") do |f|
+    options[:password] = f
+  end
+end
+
+optparse.parse!
+
+username = options[:user]
+password = options[:password]
+
+ip_address = %x( hostname -i ).strip!
+global_bucket_name = options[:bucket] ==nil ? 'test' : options[:bucket]
+global_ip_address = "#{ip_address}:8091"
+
+begin
+  cbServer = CbServer.new(username, password)
+  restClient = RestClient.new(ip_address, '8091')
+  cluster = Cluster.new
+  numberFormat = NumberFormat.new
+
+  restClient.uri ='/pools'
+  restClient.getData(cbServer.user, cbServer.password)
+  cbServer.setVersion(restClient.body())
+rescue Exception => msg
+  rs.concat("#{msg} unable_to_connect_to_node=1.00; unhealthy_node_status=1.00 ")
+end
+
+if cbServer.isVersionCompatible then
+
+  restClient.uri ='/pools/nodes'
+  restClient.getData(cbServer.user, cbServer.password)
+  cluster.parseNodes(restClient.body)
+
+  #Print the nodes status
+  #rs.concat(cluster.nodesToString)
+
+  #Print cluster node size
+  nodesSize = numberFormat.toFloat(cluster.getNodesSize)
+  rs.concat("cluster_node_size=#{nodesSize}; ")
+  healthy_node = true
+
+  #Print node status
+  if cluster.getUnhealthyNodes.size > 0 then
+    cluster.getUnhealthyNodes.each { |unhealthy_node|
+      #TODO only grab localhost
+
+      if global_ip_address == unhealthy_node.hostname then
+        unhealthy_node_status = unhealthy_node.status == "healthy" ? numberFormat.toFloat(0) : numberFormat.toFloat(1)
+        unhealthy_node_cluster_membership = (unhealthy_node.cluster_membership.include? "inactive") ? numberFormat.toFloat(1) : numberFormat.toFloat(0)
+        rs.concat("unhealthy_node_status=#{unhealthy_node_status}; unhealthy_node_cluster_membership=#{unhealthy_node_cluster_membership}; ")
+        if unhealthy_node_cluster_membership then
+          healthy_node=false
+        end
+        break
+      end
+    }
+  else
+    rs.concat('unhealthy_node_status=0.00; unhealthy_node_cluster_membership=0.00; unable_to_connect_to_node=0.00; ')
+  end
+
+  restClient.uri ='/pools/default/buckets'
+  restClient.getData(cbServer.user, cbServer.password)
+  cluster.parseNodesBuckets(restClient.body)
+
+  #Print the min replica number of buckets
+  minReplicaNumber = numberFormat.toFloat(cluster.minReplicaNumber)
+  rs.concat("min_replica_bucket_number=#{minReplicaNumber}; ")
+
+  begin
+    #puts cluster.buckets.inspect
+    if cluster.buckets.size > 0 && healthy_node then
+      bucket_node_stat_max = BucketNodeStat.new
+      bucket_node_stat_max.active_doc_resident="0.000"
+      bucket_node_stat_max.replica_doc_resident ="0.000"
+
+      cluster.buckets.each { |bucket|
+        # if bucket.bucket_name == global_bucket_name then
+        restClient.uri ="/pools/default/buckets/#{bucket.bucket_name}"
+        restClient.getData(cbServer.user, cbServer.password)
+        bucket.parseQuotaRam(restClient.body)
+        #rs.concat( "The bucket:#{bucket.bucket_name} has a replica of #{bucket.replica_number} " )
+
+        # Metadata overhead on <node>
+        # Writing data to disk for a specific bucket has failed.
+        # Disk space used for persistent storage has reached at least 90% of capacity
+        #rs.concat("\nbucket=#{bucket.bucket_name} \n")
+        if cluster.nodes.size > 0 then
+
+          cluster.nodes.each { |anode|
+            if "#{ip_address}:8091" == anode.hostname then
+              #rs.concat("node=#{anode.hostname}; ")
+
+              restClient.uri ="/pools/default/buckets/#{bucket.bucket_name}/nodes/#{anode.hostname}/stats"
+              restClient.getData(cbServer.user, cbServer.password)
+              bucket_node_stat = BucketNodeStat.new.parseBucketNodeStats(restClient.body)
+              bucket_node_stat.quota_ram=bucket.quota_ram
+              bucket_node_stat.bucket_name=bucket.bucket_name
+              bucket_node_stat.replica_number =bucket.replica_number
+              bucket_node_stat.item_count = bucket.item_count
+
+              metadata_overhead=numberFormat.toFloat(bucket_node_stat.getMetadataOverhead(nodesSize))
+              disk_space_used=numberFormat.toFloat(bucket_node_stat.getDiskUsed)
+              writing_data_to_disk_failed=numberFormat.toFloat(bucket_node_stat.ep_item_commit_failed)
+              cache_miss_ratio=numberFormat.toFloat(bucket_node_stat.get_cache_miss_ratio)
+              active_doc_resident = numberFormat.toFloat(bucket_node_stat.get_active_doc_resident)
+              replica_doc_resident = numberFormat.toFloat(bucket_node_stat.get_replica_doc_resident)
+              temp_oom_per_sec = numberFormat.toFloat(bucket_node_stat.get_temp_oom_per_sec)
+              active_ejection_per_sec = numberFormat.toFloat(bucket_node_stat.get_active_ejection_per_sec)
+              replica_ejection_per_sec = numberFormat.toFloat(bucket_node_stat.get_replica_ejection_per_sec)
+              disk_read_per_sec = numberFormat.toFloat(bucket_node_stat.disk_read_per_sec)
+              disk_write_queue = numberFormat.toFloat(bucket_node_stat.get_disk_write_queue)
+
+              bucket_node_stat_max.cache_miss_ratio = bucket_node_stat_max.getMaxValue(bucket_node_stat_max.cache_miss_ratio, cache_miss_ratio)
+              bucket_node_stat_max.metadata_overhead = bucket_node_stat_max.getMaxValue(bucket_node_stat_max.metadata_overhead, metadata_overhead)
+              bucket_node_stat_max.disk_space_used =bucket_node_stat_max.getMaxValue(bucket_node_stat_max.disk_space_used, disk_space_used)
+              bucket_node_stat_max.writing_data_to_disk_failed =bucket_node_stat_max.getMaxValue(bucket_node_stat_max.writing_data_to_disk_failed, writing_data_to_disk_failed)
+              if (bucket_node_stat.item_count > 0) then
+                bucket_node_stat_max.active_doc_resident =bucket_node_stat_max.getMinValue(bucket_node_stat_max.active_doc_resident, active_doc_resident)
+                bucket_node_stat_max.replica_doc_resident =bucket_node_stat_max.getMinValue(bucket_node_stat_max.replica_doc_resident, replica_doc_resident)
+              end
+              bucket_node_stat_max.temp_oom_per_sec =bucket_node_stat_max.getMaxValue(bucket_node_stat_max.temp_oom_per_sec, temp_oom_per_sec)
+              bucket_node_stat_max.active_ejection_per_sec =bucket_node_stat_max.getMaxValue(bucket_node_stat_max.active_ejection_per_sec, active_ejection_per_sec)
+              bucket_node_stat_max.replica_ejection_per_sec =bucket_node_stat_max.getMaxValue(bucket_node_stat_max.replica_ejection_per_sec, replica_ejection_per_sec)
+              bucket_node_stat_max.disk_read_per_sec =bucket_node_stat_max.getMaxValue(bucket_node_stat_max.disk_read_per_sec, disk_read_per_sec)
+              bucket_node_stat_max.disk_write_queue =bucket_node_stat_max.getMaxValue(bucket_node_stat_max.disk_write_queue, disk_write_queue)
+
+              break
+            end
+          }
+        end
+        # end
+      }
+
+      rs.concat("disk_write_queue=#{bucket_node_stat_max.disk_write_queue}; ")
+      rs.concat("disk_read_per_sec=#{bucket_node_stat_max.disk_read_per_sec}; ")
+      rs.concat("replica_ejection_per_sec=#{bucket_node_stat_max.replica_ejection_per_sec}; ")
+      rs.concat("active_ejection_per_sec=#{bucket_node_stat_max.active_ejection_per_sec}; ")
+      rs.concat("temp_oom_per_sec=#{bucket_node_stat_max.temp_oom_per_sec}; ")
+      rs.concat("replica_doc_resident=#{bucket_node_stat_max.replica_doc_resident}%; ")
+      rs.concat("active_doc_resident=#{bucket_node_stat_max.active_doc_resident}%; ")
+      rs.concat("cache_miss_ratio=#{bucket_node_stat_max.cache_miss_ratio}%; ")
+      rs.concat("metadata_overhead=#{bucket_node_stat_max.metadata_overhead}%; ")
+      rs.concat("disk_space_used=#{bucket_node_stat_max.disk_space_used}%; ")
+      rs.concat("writing_data_to_disk_failed=#{bucket_node_stat_max.writing_data_to_disk_failed}; ")
+
+    end
+  rescue Exception => msg
+    rs.concat(" metadata_overhead=0.00% disk_space_used=0.00% writing_data_to_disk_failed=0.00% ")
+  end
+
+  restClient.uri ='/pools/default/tasks'
+  restClient.getData(cbServer.user, cbServer.password)
+  cluster.parseTasks(restClient.body)
+
+  if cluster.tasks.size > 0 then
+    cluster.tasks.each { |task|
+      rebalance_failed = numberFormat.toFloat(0)
+      task_status = task.status == "notRunning" ? numberFormat.toFloat(0) : numberFormat.toFloat(1)
+
+
+      if task.type != nil && task.type.length > 3 then
+        rs.concat("#{task.type}=#{task_status}; ")
+      end
+
+      if task.errorMessage != nil && task.type == "rebalance" then
+        rebalance_failed = (task.errorMessage.include? "Rebalance failed") ? numberFormat.toFloat(1) : numberFormat.toFloat(0)
+        rs.concat("rebalance_failed=#{rebalance_failed}; ")
+      else
+        if task.type == "rebalance" then
+          rs.concat("rebalance_failed=#{rebalance_failed}; ")
+        end
+      end
+
+    }
+  end
+else
+  cbServer.version = cbServer.version == nil ? "0.00" : cbServer.version
+  rs.concat("cb_server_not_supported=#{cbServer.version}; ")
+end
+
+#write to file check_cluster_health.rb
+write_check_cluster_health_file(rs)

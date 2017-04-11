@@ -1,0 +1,17 @@
+<%= node["data_dir_path"]%>/logs/solr_gc.log.*{
+ copytruncate
+ yearly
+ size 265M 
+ rotate 8
+ missingok
+}
+
+<%= node["data_dir_path"]%>/logs/solr.log.*{
+ copytruncate
+ yearly
+ size 265M 
+ rotate 8
+ missingok
+}
+
+

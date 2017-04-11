@@ -1,0 +1,78 @@
+grant all on powerdns.* to '<%= @powerdns_username %>'@'localhost' identified by '<%= @powerdns_password %>';
+grant all on powerdns.* to '<%= @powerdns_username %>'@'<%= @node[:ipaddress] %>' identified by '<%= @powerdns_password %>';
+
+create database powerdns;
+
+CREATE TABLE `powerdns`.`domains` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) NOT NULL,
+  `master` varchar(128) default NULL,
+  `last_check` int(11) default NULL,
+  `type` varchar(6) NOT NULL,
+  `notified_serial` int(11) default NULL,
+  `account` varchar(40) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `powerdns`.`perm_items` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(64) NOT NULL default '0',
+  `descr` varchar(1024) NOT NULL default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `powerdns`.`perm_templ` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(128) NOT NULL default '0',
+  `descr` varchar(1024) NOT NULL default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `powerdns`.`perm_templ_items` (
+  `id` int(11) NOT NULL auto_increment,
+  `templ_id` int(11) NOT NULL default '0',
+  `perm_id` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `powerdns`.`records` (
+  `id` int(11) NOT NULL auto_increment,
+  `domain_id` int(11) default NULL,
+  `name` varchar(255) default NULL,
+  `type` varchar(6) default NULL,
+  `content` varchar(255) default NULL,
+  `ttl` int(11) default NULL,
+  `prio` int(11) default NULL,
+  `change_date` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `rec_name_index` (`name`),
+  KEY `nametype_index` (`name`,`type`),
+  KEY `domain_id` (`domain_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `powerdns`.`supermasters` (
+  `ip` varchar(25) NOT NULL,
+  `nameserver` varchar(255) NOT NULL,
+  `account` varchar(40) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `powerdns`.`users` (
+  `id` int(11) NOT NULL auto_increment,
+  `username` varchar(16) NOT NULL default '0',
+  `password` varchar(34) NOT NULL default '0',
+  `fullname` varchar(255) NOT NULL default '0',
+  `email` varchar(255) NOT NULL default '0',
+  `description` varchar(1024) NOT NULL default '0',
+  `perm_templ` tinyint(4) NOT NULL default '0',
+  `active` tinyint(4) NOT NULL default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `powerdns`.`zones` (
+  `id` int(11) NOT NULL auto_increment,
+  `domain_id` int(11) NOT NULL default '0',
+  `owner` int(11) NOT NULL default '0',
+  `comment` varchar(1024) default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+

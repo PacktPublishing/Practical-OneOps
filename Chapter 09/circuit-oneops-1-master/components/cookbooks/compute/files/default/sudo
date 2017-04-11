@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+
+PATH=$PATH:/cygdrive/c/tools/ruby23/bin/:/cygdrive/c/tools/DevKit2/bin
+
+uuid=`uuidgen.exe`
+filename="temp_command_$uuid"
+
+echo "#!/usr/bin/bash" > /tmp/$filename
+echo ${@} >> /tmp/$filename
+chmod 777 /tmp/$filename
+#cat /tmp/$filename
+
+/usr/bin/bash /tmp/$filename
+rc=$?
+echo "Retrun Code is: $rc"
+
+rm /tmp/$filename
+
+exit $rc

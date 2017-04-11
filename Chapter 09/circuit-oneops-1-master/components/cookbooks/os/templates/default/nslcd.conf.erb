@@ -1,0 +1,17 @@
+uri <%= @uri%>
+base <%= @base%>
+binddn <%= @binddn%>
+bindpw <%= @bindpw%>
+scope sub
+scope  group  sub
+scope  hosts  sub
+pagesize 10000
+referrals on
+map    passwd gidNumber        "${gidNumber:+100}"
+map    passwd homeDirectory    "${homeDirectory:-/home/$uid}"
+map    passwd loginShell    "${shell:-/bin/bash}"
+map    passwd gecos    name
+uid nslcd
+gid ldap
+ssl no
+tls_cacertdir /etc/openldap/cacerts

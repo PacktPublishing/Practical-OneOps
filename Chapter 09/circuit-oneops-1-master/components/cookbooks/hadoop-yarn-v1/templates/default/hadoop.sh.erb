@@ -1,0 +1,6 @@
+export HADOOP_HOME=<%= @cia["hadoop_install_dir"] %>/hadoop
+export HADOOP_CONF_DIR=<%= @cia["hadoop_install_dir"] %>/hadoop/etc/hadoop
+export YARN_PID_DIR="/var/run/hadoop"
+export HADOOP_PID_DIR=${YARN_PID_DIR}
+export HADOOP_USER=<%= @cia["hadoop_user"] %>
+export PATH=$PATH:$HOME/bin:${HADOOP_HOME}/bin

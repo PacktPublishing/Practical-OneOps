@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+host_ip=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+solr_port=$1
+solr_running=$(ps -ef|grep solr)
+
+live_node_list=""
+
+if [[ $solr_running =~ "-DzkHost=" ]] ; then
+  live_node_list=$(curl --silent "http://$host_ip:$solr_port/solr/admin/collections?action=LIST&wt=json" | grep -oP '(?<="collections":).*?(])');
+  if [[ ! -z $live_node_list ]] ; then
+    echo "solrcloud is up |up=100"
+  else
+    echo "solrcloud is down |up=0"
+  fi
+else
+  echo "solrcloud is down |up=0"
+fi

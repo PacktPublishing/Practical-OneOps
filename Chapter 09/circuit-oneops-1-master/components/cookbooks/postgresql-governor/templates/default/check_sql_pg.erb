@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+#
+# check_sql - uses external yaml config file to get metrics via sql
+#
+
+require 'rubygems'
+require 'pg'
+require 'yaml'
+
+config_file = ARGV[0]
+if config_file == nil
+  puts "need a config file to argv 0"
+  exit 1
+end
+
+#puts "config file:"+config_file
+cfg = File.open( config_file ) { |yf| YAML::load( yf ) }
+conn_cfg = cfg["connection"]
+#puts "cfg:"+cfg.inspect
+
+values = Hash.new
+
+# Output a table of current connections to the DB
+conn = PGconn.new({:host=>conn_cfg["host"],:user=>conn_cfg["user"],
+                   :password=>conn_cfg["pass"],:dbname=>conn_cfg["db"]})
+
+metrics = cfg["metrics"]
+metrics.each do |metric|
+   
+  key = metric["key"]
+  sql = metric["sql"]
+  
+  if key.empty? || sql.empty?
+    puts "empty key or sql -metric:"+metric.inspect
+    exit 1
+  end
+
+  if key =~ /,/
+    keys = key.split(",")
+  else 
+    keys = [key]
+  end
+
+  conn.exec( sql ) do |result|
+    result.each do |row|
+      #puts "row:"+row.inspect
+      keys.each do |key|
+        key = key.strip
+        values[key] = row[key]
+      end
+    end
+  end
+end
+
+#values.inspect
+
+values.keys.each do |key|
+   print key+"="+values[key]+" "
+end
+
+print "|"
+values.keys.each do |key|
+   print key+"="+values[key]+" "
+end
